@@ -1,0 +1,28 @@
+C:\Users\bombl\Documents\Formation\4 année\tfe\MyApp.Shared\bin\Debug\net8.0\MyApp.Shared.deps.json
+C:\Users\bombl\Documents\Formation\4 année\tfe\MyApp.Shared\bin\Debug\net8.0\MyApp.Shared.runtimeconfig.json
+C:\Users\bombl\Documents\Formation\4 année\tfe\MyApp.Shared\bin\Debug\net8.0\MyApp.Shared.dll
+C:\Users\bombl\Documents\Formation\4 année\tfe\MyApp.Shared\bin\Debug\net8.0\MyApp.Shared.pdb
+C:\Users\bombl\Documents\Formation\4 année\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.csproj.AssemblyReference.cache
+C:\Users\bombl\Documents\Formation\4 année\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bombl\Documents\Formation\4 année\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.AssemblyInfoInputs.cache
+C:\Users\bombl\Documents\Formation\4 année\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.AssemblyInfo.cs
+C:\Users\bombl\Documents\Formation\4 année\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.csproj.CoreCompileInputs.cache
+C:\Users\bombl\Documents\Formation\4 année\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.dll
+C:\Users\bombl\Documents\Formation\4 année\tfe\MyApp.Shared\obj\Debug\net8.0\refint\MyApp.Shared.dll
+C:\Users\bombl\Documents\Formation\4 année\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.pdb
+C:\Users\bombl\Documents\Formation\4 année\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.genruntimeconfig.cache
+C:\Users\bombl\Documents\Formation\4 année\tfe\MyApp.Shared\obj\Debug\net8.0\ref\MyApp.Shared.dll
+C:\Repos\tfe\MyApp.Shared\bin\Debug\net8.0\MyApp.Shared.deps.json
+C:\Repos\tfe\MyApp.Shared\bin\Debug\net8.0\MyApp.Shared.runtimeconfig.json
+C:\Repos\tfe\MyApp.Shared\bin\Debug\net8.0\MyApp.Shared.dll
+C:\Repos\tfe\MyApp.Shared\bin\Debug\net8.0\MyApp.Shared.pdb
+C:\Repos\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.csproj.AssemblyReference.cache
+C:\Repos\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.AssemblyInfoInputs.cache
+C:\Repos\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.AssemblyInfo.cs
+C:\Repos\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.csproj.CoreCompileInputs.cache
+C:\Repos\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.dll
+C:\Repos\tfe\MyApp.Shared\obj\Debug\net8.0\refint\MyApp.Shared.dll
+C:\Repos\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.pdb
+C:\Repos\tfe\MyApp.Shared\obj\Debug\net8.0\MyApp.Shared.genruntimeconfig.cache
+C:\Repos\tfe\MyApp.Shared\obj\Debug\net8.0\ref\MyApp.Shared.dll

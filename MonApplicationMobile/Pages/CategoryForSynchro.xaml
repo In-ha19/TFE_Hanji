@@ -1,0 +1,26 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MonApplicationMobile.Views.CategoryForSynchro">
+    <StackLayout Padding="10">
+        <!-- Liste des catégories avec sélection multiple -->
+        <CollectionView x:Name="categoryCollectionView"
+                        SelectionMode="Multiple"
+                        ItemsSource="{Binding categoryNames}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label Text="{Binding .}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Bouton pour valider la sélection -->
+        <Button Text="Valider"
+                Clicked="OnValidateCategory" />
+
+        <!-- Bouton pour annuler -->
+        <Button Text="Annuler"
+                Clicked="OnCancelCategory" />
+    </StackLayout>
+</ContentPage>

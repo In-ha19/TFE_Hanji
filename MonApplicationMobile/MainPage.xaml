@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MonApplicationMobile.MainPage"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls">
+
+    <Grid RowDefinitions="*,Auto">
+        <!-- WebView prend tout l'espace disponible -->
+        <WebView x:Name="webView"
+                 Grid.Row="0"
+                 Navigating="OnNavigating"
+                 Navigated="OnNavigated"
+                 VerticalOptions="FillAndExpand" />
+
+        <!-- Section en bas de l'écran -->
+        <StackLayout Grid.Row="1" BackgroundColor="LightGray" Padding="10">
+            <HorizontalStackLayout HorizontalOptions="FillAndExpand" Spacing="20">
+                <!-- Bouton pour activer le scanner -->
+                <Button Text="Scanner un code-barres"
+                        Clicked="OnScanButtonClicked"
+                        HorizontalOptions="StartAndExpand" />
+                <Button Text="Synchroniser"
+                        Clicked="OnSyncButtonClicked" 
+                        HorizontalOptions="EndAndExpand" />
+            </HorizontalStackLayout>
+
+
+                <Frame IsVisible="False"
+                   x:Name="cameraFrame"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand">
+                <zxing:CameraBarcodeReaderView
+                    x:Name="cameraBarcodeReaderView"
+                    IsDetecting="False"
+                    BarcodesDetected="BarcodesDetected"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    HeightRequest="200" />
+            </Frame>
+        </StackLayout>
+
+        <!-- Fenêtre modale pour afficher les informations du livre ou un message d'erreur -->
+        <Grid x:Name="modalGrid" IsVisible="False" BackgroundColor="#80000000" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Padding="20" BackgroundColor="White" Spacing="10">
+                <Label x:Name="modalMessage" Text="Livre introuvable" HorizontalOptions="Center" />
+                <Button x:Name="addButton" Text="Ajouter à ma collection" IsVisible="False" HorizontalOptions="Center" Clicked="OnAddButtonClicked"/>
+                <Button Text="Fermer" HorizontalOptions="Center" Clicked="OnCloseButtonClicked"/>
+            </StackLayout>
+        </Grid>
+    </Grid>
+
+</ContentPage>

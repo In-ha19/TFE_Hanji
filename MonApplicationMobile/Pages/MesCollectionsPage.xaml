@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MonApplicationMobile.Views.MesCollectionsPage"
+             Title="Mes Collections">
+
+    <!-- Ajouter ScrollView autour de la disposition principale -->
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+
+            <Label Text="Mes Collections"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+
+            <!-- Liste déroulante des catégories -->
+            <Picker x:Name="CategoryPicker"
+                    Title="Sélectionnez une catégorie"
+                    SelectedIndexChanged="OnCategorySelected"/>
+
+            <!-- Liste des articles -->
+            <CollectionView x:Name="ArticlesCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5" BorderColor="Gray">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold"/>
+                                <Label Text="{Binding Edition}" FontSize="14"/>
+                                <Label Text="{Binding Autor_name}" FontSize="14"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label x:Name="NoArticlesLabel"
+                   Text="Aucun article trouvé."
+                   FontSize="16"
+                   HorizontalOptions="Center"
+                   IsVisible="False"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

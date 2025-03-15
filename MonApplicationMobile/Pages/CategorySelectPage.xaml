@@ -1,0 +1,23 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MonApplicationMobile.Views.CategorySelectPage"
+             Title="Categorie">
+
+    <StackLayout Padding="20">
+        <Label Text="Choisissez une catégorie"
+               FontSize="20" 
+               HorizontalOptions="Center" />
+
+        <!-- Picker pour les catégories -->
+        <Picker x:Name="categoryPicker"
+                SelectedIndexChanged="OnCategorySelected"
+                Title="Sélectionner une catégorie">
+        </Picker>
+
+        <Button Text="Valider"
+                Clicked="OnValidateCategory" />
+
+        <Button Text="Annuler"
+                Clicked="OnCancelCategory" />
+    </StackLayout>
+</ContentPage>

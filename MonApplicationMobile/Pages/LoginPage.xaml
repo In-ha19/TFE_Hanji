@@ -1,0 +1,12 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MonApplicationMobile.Views.LoginPage"
+             Title="Connexion">
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="Entrez votre login" FontSize="20" HorizontalOptions="Center"/>
+
+        <Entry x:Name="LoginEntry" Placeholder="Votre login"/>
+
+        <Button Text="Valider" Clicked="OnLoginClicked"/>
+    </VerticalStackLayout>
+</ContentPage>
