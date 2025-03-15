@@ -46,6 +46,7 @@ namespace Gestionnaire_Collections.Pages.Shared.Families
         public async Task OnGetAsync(string searchString, int? statusFilter)
         {
             const int pageSize = 10;
+            
             var query = _context.Families.AsQueryable();
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -126,7 +127,7 @@ namespace Gestionnaire_Collections.Pages.Shared.Families
             return RedirectToPage("./Index"); 
         }
 
-        public async Task<IActionResult> OnPostRequestMembershipAsync(string familyId)
+        public async Task<IActionResult> OnPostRequestMembershipAsync(string familyId, string searchString, int? statusFilter)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -152,7 +153,7 @@ namespace Gestionnaire_Collections.Pages.Shared.Families
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage();
+            return RedirectToPage(new { PageIndex = PageIndex, searchString = searchString, statusFilter = statusFilter });
         }
     }
 }

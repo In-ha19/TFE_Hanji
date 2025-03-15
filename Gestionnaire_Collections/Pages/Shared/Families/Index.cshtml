@@ -126,6 +126,9 @@
                             else if (status == 2)
                             {
                                 <form method="post" asp-page-handler="RequestMembership" asp-route-familyId="@item.Id">
+                                    <input type="hidden" name="pageIndex" value="@(Model.Family.PageIndex)" />
+                                    <input type="hidden" name="searchString" value="@Request.Query["searchString"]" />
+                                    <input type="hidden" name="statusFilter" value="@Request.Query["statusFilter"]" />
                                     <button type="submit" class="btn btn-primary btn-sm">Demander à rejoindre</button>
                                 </form>
                             }
@@ -133,6 +136,9 @@
                         else
                         {
                             <form method="post" asp-page-handler="RequestMembership" asp-route-familyId="@item.Id">
+                                <input type="hidden" name="pageIndex" value="@(Model.Family.PageIndex)" />
+                                <input type="hidden" name="searchString" value="@Request.Query["searchString"]" />
+                                <input type="hidden" name="statusFilter" value="@Request.Query["statusFilter"]" />
                                 <button type="submit" class="btn btn-primary btn-sm">Demander à rejoindre</button>
                             </form>
                         }
