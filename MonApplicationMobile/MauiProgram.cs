@@ -14,7 +14,7 @@ namespace MonApplicationMobile
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .UseMauiCameraView() // Active la caméra
+                .UseMauiCameraView() 
                 .UseBarcodeReader()
                 .ConfigureFonts(fonts =>
                 {

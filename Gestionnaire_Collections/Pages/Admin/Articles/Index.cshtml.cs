@@ -44,11 +44,9 @@ namespace Gestionnaire_Collections.Pages.Admin.Articles
         {
             const int pageSize = 10;
 
-            // Charger les catégories principales et secondaires
             MainCategories = await _context.Categories.Where(c => c.Is_principal).ToListAsync();
             SubCategories = await _context.Categories.Where(c => !c.Is_principal).ToListAsync();
 
-            // Définir une requête de base pour les articles
             var query = _context.Articles
                 .Include(a => a.Category_Articles)
                 .ThenInclude(ca => ca.Category)

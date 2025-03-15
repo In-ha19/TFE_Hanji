@@ -55,9 +55,8 @@
 
     <script>
         document.getElementById('sendResetLinkBtn').addEventListener('click', function () {
-            // Soumettre le formulaire avec le handler approprié
             var form = document.querySelector('form');
-            form.action = '@Url.Page("/Admin/Users/Edit", "SendResetLink")';  // Action du handler pour le lien de réinitialisation
+            form.action = '@Url.Page("/Admin/Users/Edit", "SendResetLink")';  
             form.submit();
         });
     </script>

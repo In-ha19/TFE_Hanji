@@ -299,22 +299,7 @@ namespace Gestionnaire_Collections.Pages.Admin.Articles
                 };
 
                 _context.Category_Articles.Add(categoryArticleS);
-            }
-            /* if (Article.SelectedCategoryIdsSecondary != null && Article.SelectedCategoryIdsSecondary.Any())
-             {
-                 foreach (var categoryIdS in Article.SelectedCategoryIdsSecondary)
-                 {
-                     var categoryArticleS = new Category_Article
-                     {
-                         ArticleId = articleEntity.Id,
-                         CategoryId = categoryIdS
-                     };
-
-                     _context.Category_Articles.Add(categoryArticleS);
-                 }
-
-                 await _context.SaveChangesAsync();
-             }*/
+            }          
 
             await _context.SaveChangesAsync();       
 
@@ -358,15 +343,6 @@ namespace Gestionnaire_Collections.Pages.Admin.Articles
 
             return new JsonResult(categories);
         }
-        /*public async Task<IActionResult> OnGetAllCategoriesSecondaryAsync()
-         {
-             var categories = await _context.Categories
-                 .Where(c => c.Is_active && !c.Is_principal)
-                 .Select(c => new { value = c.Id, text = c.Name })
-                 .ToListAsync();
-
-             return new JsonResult(categories);
-         }*/
         public async Task<IActionResult> OnGetSecondaryCategoriesAsync(string categoryPrincipalId)
         {
             if (string.IsNullOrEmpty(categoryPrincipalId))
@@ -385,7 +361,6 @@ namespace Gestionnaire_Collections.Pages.Admin.Articles
 
             return new JsonResult(secondaryCategories);
         }
-
         public async Task<IActionResult> OnGetAllCategoriesSecondaryAsync(List<string> excludeIds, string categoryPrincipalId)
         {
             try

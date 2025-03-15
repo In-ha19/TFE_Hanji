@@ -19,7 +19,6 @@ namespace Gestionnaire_Collections.Data
         public DbSet<Message> Messages { get; set; }
         public DbSet<Notepad> Notepads { get; set; }
         public DbSet<MemberShip_Family> MemberShip_Families { get; set; }
-        //public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

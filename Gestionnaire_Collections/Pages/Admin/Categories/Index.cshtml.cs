@@ -52,7 +52,6 @@ namespace Gestionnaire_Collections.Pages.Admin.Categories
                     Parent_name = c.Parent != null ? c.Parent.Name : "Principale"
                 });
 
-            // Appliquer les filtres de recherche
             if (!string.IsNullOrEmpty(searchString))
             {
                 string normalizedSearchString = searchString.ToLower();
@@ -61,7 +60,6 @@ namespace Gestionnaire_Collections.Pages.Admin.Categories
                     a.Parent_name.ToLower().Contains(normalizedSearchString));
             }
 
-            // Filtrer par statut (Actif/Inactif)
             if (!string.IsNullOrEmpty(statusFilter))
             {
                 if (statusFilter == "active")
@@ -74,7 +72,6 @@ namespace Gestionnaire_Collections.Pages.Admin.Categories
                 }
             }
 
-            // Filtrer par type (Principal/Secondaire)
             if (!string.IsNullOrEmpty(typeFilter))
             {
                 if (typeFilter == "principal")
@@ -95,7 +92,6 @@ namespace Gestionnaire_Collections.Pages.Admin.Categories
                 _ => categoriesQuery.OrderBy(c => c.Name) 
             };
 
-            // Créer la liste paginée
             Category = await PaginatedList<CategoryViewModelIndex>.CreateAsync(categoriesQuery.AsNoTracking(), PageIndex, pageSize);
         }
         public async Task<IActionResult> OnPostStatutCategoryAsync(string categoryId)

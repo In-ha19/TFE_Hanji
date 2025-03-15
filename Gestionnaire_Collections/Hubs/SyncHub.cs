@@ -11,6 +11,4 @@ namespace Gestionnaire_Collections.Hubs
             await Clients.All.SendAsync("ReceiveCategories", categoriesWithArticles);
         }
     }
-
-
 }

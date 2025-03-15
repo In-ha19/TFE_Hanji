@@ -28,8 +28,6 @@ namespace Gestionnaire_Collections.Pages.Admin.Messages
             _context = context;
             _userManager = userManager;
         }
-
-        //public List<Message> Messages { get; set; } = new List<Message>();
         public PaginatedList<Message> Messages { get; set; } = null!;
 
         [BindProperty(SupportsGet = true)]

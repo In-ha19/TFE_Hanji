@@ -30,7 +30,6 @@ namespace Gestionnaire_Collections.Pages.Shared.Collections
         [BindProperty]
         public ArticleViewModelCreate_Edit Article { get; set; } = new ArticleViewModelCreate_Edit();
 
-        //public List<Category> Categories { get; set; } = new List<Category>();
         public List<Category> CategoriesPrincipal { get; set; } = new List<Category>();
         public List<Category> CategoriesSecondary { get; set; } = new List<Category>();
         public IFormFile? ImageFile { get; set; }

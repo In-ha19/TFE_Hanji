@@ -64,7 +64,7 @@ namespace Gestionnaire_Collections.Pages.Admin.Articles
                     .Category.Name,
                 SelectedCategoryNameSecondary = article.Category_Articles
                     .Where(ca => !ca.Category.Is_principal)
-                    .Select(ca => ca.Category.Name) // Sélectionner seulement le nom
+                    .Select(ca => ca.Category.Name) 
                     .ToList(),
 
                 Collections = article.Collections.Select(c => new CollectionDTO
@@ -74,10 +74,9 @@ namespace Gestionnaire_Collections.Pages.Admin.Articles
                     ArticleId = c.ArticleId,
                     Note = c.Note
                 }).ToList(),
-                ImageRoot = image?.Root  // Données des collections avec les utilisateurs et notes
+                ImageRoot = image?.Root  
             };
 
-            // Calcul de la moyenne des évaluations ou message alternatif
             var notes = article.Collections
                 .Where(c => c.Note.HasValue)
                 .Select(c => c.Note.Value)

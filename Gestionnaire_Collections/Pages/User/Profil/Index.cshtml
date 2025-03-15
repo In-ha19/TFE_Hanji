@@ -90,7 +90,7 @@
             form.addEventListener("input", checkForChanges);
 
             sendResetLinkBtn.addEventListener('click', function () {
-                form.action = '@Url.Page("/User/Profil/Index", "SendResetLink")';  // Handler pour réinitialiser le mot de passe
+                form.action = '@Url.Page("/User/Profil/Index", "SendResetLink")';  
                 form.submit();
             });
         });

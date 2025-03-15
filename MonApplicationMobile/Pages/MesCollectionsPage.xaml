@@ -4,7 +4,6 @@
              x:Class="MonApplicationMobile.Views.MesCollectionsPage"
              Title="Mes Collections">
 
-    <!-- Ajouter ScrollView autour de la disposition principale -->
     <ScrollView>
         <VerticalStackLayout Padding="20">
 

@@ -24,7 +24,6 @@ namespace VotreProjet.Services
             while (!stoppingToken.IsCancellationRequested)
             {
                 await SendRemindersAsync();
-                //Changer le temps de vérification à 120 min par exemple à la place de 30
                 await Task.Delay(TimeSpan.FromMinutes(30), stoppingToken); 
             }
         }

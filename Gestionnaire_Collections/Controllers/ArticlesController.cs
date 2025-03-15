@@ -30,7 +30,6 @@ namespace Gestionnaire_Collections.Controllers
                 return BadRequest("Login utilisateur requis.");
             }
 
-            // Rechercher l'utilisateur par login
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == request.Login);
             if (user == null)
             {
@@ -38,7 +37,6 @@ namespace Gestionnaire_Collections.Controllers
             }
             string userId = user.Id;
 
-            // Rechercher l'id de la catégorie
             var category = await _context.Categories
                 .FirstOrDefaultAsync(c => c.Name.ToLower() == request.Category.ToLower());
 
@@ -49,26 +47,23 @@ namespace Gestionnaire_Collections.Controllers
 
             string categoryId = category.Id;
 
-            // Rechercher l'article par titre
             var existingArticle = await _context.Articles
                 .FirstOrDefaultAsync(a => a.Name.ToLower() == request.Title.ToLower());
 
             if (existingArticle == null && !string.IsNullOrEmpty(request.Isbn))
             {
-                // Si l'article n'existe pas par titre, chercher par ISBN
                 existingArticle = await _context.Articles
                     .FirstOrDefaultAsync(a => a.Isbn.ToLower() == request.Isbn.ToLower());
             }
 
             if (existingArticle == null)
             {
-                // Si aucun article trouvé, en créer un nouveau
                 existingArticle = new Article
                 {
                     Name = request.Title,
                     Isbn = request.Isbn,
-                    Autor_name = request.Author,  // Si l'auteur est fourni
-                    Edition = request.Edition,  // Si l'édition est fournie
+                    Autor_name = request.Author,  
+                    Edition = request.Edition,  
                     Is_active = true,
                     
                 };
@@ -92,7 +87,6 @@ namespace Gestionnaire_Collections.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            // Vérifier si l'article est déjà dans la collection de l'utilisateur
             bool exists = await _context.Collections
                 .AnyAsync(c => c.UserId == userId && c.ArticleId == existingArticle.Id);
 
@@ -101,12 +95,11 @@ namespace Gestionnaire_Collections.Controllers
                 return new JsonResult(new { success = false, message = "L'article est déjà dans votre collection." });
             }
 
-            // Ajouter l'article à la collection de l'utilisateur
             var newCollection = new Collection
             {
                 UserId = userId,
                 ArticleId = existingArticle.Id,
-                Statut = 3,  // statut par défaut 3
+                Statut = 3,  
             };
 
             _context.Collections.Add(newCollection);

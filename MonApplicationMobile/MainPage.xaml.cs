@@ -52,9 +52,6 @@ namespace MonApplicationMobile
                 Multiple = false 
             };
         }
-
-
-
         private void OnNavigating(object sender, WebNavigatingEventArgs e)
         {
             if (e.Url.StartsWith("https://"))
@@ -62,7 +59,6 @@ namespace MonApplicationMobile
                 e.Cancel = false;  
             }
         }
-
         private async void OnSyncButtonClicked(object sender, EventArgs e)
         {
             string username = Preferences.Get("UserLogin", null);
@@ -97,7 +93,6 @@ namespace MonApplicationMobile
                 }
             }
         }
-
         private void OnScanButtonClicked(object sender, EventArgs e)
         {
             isScannerVisible = !isScannerVisible;
@@ -148,7 +143,6 @@ namespace MonApplicationMobile
                 cameraBarcodeReaderView.IsVisible = false;
             });           
         }
-
         private void OnCloseButtonClicked(object sender, EventArgs e)
         {
             modalGrid.IsVisible = false;
@@ -219,7 +213,6 @@ namespace MonApplicationMobile
                     modalMessage.Text = "Détails du livre non disponibles.";
                 }           
         }
-
         private async Task<List<string>> GetCategoriesFromApi()
         {
             var httpClient = new HttpClient();
@@ -240,7 +233,6 @@ namespace MonApplicationMobile
                 return new List<string>();
             }
         }
-
         private async Task<ScanBooks.BookDetails> GetBookDetails(string barcode)
         {
             try
@@ -274,7 +266,6 @@ namespace MonApplicationMobile
 
             return null;
         }
-
         private async Task<string> AddBookToCollection(AddBookToCollectionRequest request)
         {
             try
@@ -305,7 +296,6 @@ namespace MonApplicationMobile
                 return $"Erreur lors de l'ajout du livre: {ex.Message}";
             }
         }
-
         // Classe pour stocker les informations du livre
         public class AddBookToCollectionRequest
         {

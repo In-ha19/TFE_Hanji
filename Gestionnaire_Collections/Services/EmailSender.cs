@@ -33,11 +33,10 @@ namespace VotreProjet.Services
                 From = new MailAddress(_configuration["EmailSettings:SenderEmail"], _configuration["EmailSettings:SenderName"]),
                 Subject = subject,
                 Body = htmlMessage,
-                IsBodyHtml = true,  // E-mail en format HTML
+                IsBodyHtml = true,  
             };
             mailMessage.To.Add(email);
 
-            // Envoi de l'e-mail (capturé par Papercut)
             await smtpClient.SendMailAsync(mailMessage);
         }
     }

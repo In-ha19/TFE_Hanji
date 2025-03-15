@@ -42,43 +42,26 @@ namespace Gestionnaire_Collections.Controllers
                                                            .Select(c => c.ArticleId)
                                                            .ToListAsync();
 
-            /*var articlesQuery = _context.Articles
-                .Include(a => a.Category_Articles)  
-                .ThenInclude(ca => ca.Category)    
-                .Where(a => a.Is_active && 
-                            a.Category_Articles.Any(ca => request.Categories.Contains(ca.Category.Name)) &&
-                            userCollectionArticleIds.Contains(a.Id))  
+            var articlesQuery = _context.Articles
+                .Join(_context.Category_Articles,
+                    a => a.Id,
+                    ca => ca.ArticleId,
+                    (a, ca) => new { a, ca })
+                .Join(_context.Categories,
+                    ac => ac.ca.CategoryId,
+                    c => c.Id,
+                    (ac, c) => new { ac.a, c })
+                .Where(a => a.a.Is_active == true
+                            && categories.Contains(a.c.Name)  
+                            && userCollectionArticleIds.Contains(a.a.Id))  
                 .Select(a => new CollectionViewModelIndex
                 {
-                    Id = a.Id,
-                    Name = a.Name,
-                    Edition = a.Edition,
-                    Autor_name = a.Autor_name,
-                    CategoryName = a.Category_Articles.FirstOrDefault().Category.Name  
-                });*/
-
-
-
-            var articlesQuery = _context.Articles
-        .Join(_context.Category_Articles,
-            a => a.Id,
-            ca => ca.ArticleId,
-            (a, ca) => new { a, ca })
-        .Join(_context.Categories,
-            ac => ac.ca.CategoryId,
-            c => c.Id,
-            (ac, c) => new { ac.a, c })
-        .Where(a => a.a.Is_active == true
-                    && categories.Contains(a.c.Name)  
-                    && userCollectionArticleIds.Contains(a.a.Id))  
-        .Select(a => new CollectionViewModelIndex
-        {
-            Id = a.a.Id,
-            Name = a.a.Name,
-            Edition = a.a.Edition,
-            Autor_name = a.a.Autor_name,
-            CategoryName = a.c.Name  
-        });
+                    Id = a.a.Id,
+                    Name = a.a.Name,
+                    Edition = a.a.Edition,
+                    Autor_name = a.a.Autor_name,
+                    CategoryName = a.c.Name  
+                });
 
             var articles = await articlesQuery.ToListAsync();
 
