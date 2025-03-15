@@ -1,0 +1,209 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Shared.Collections.IndexMyCollectionModel
+@{
+    ViewData["Title"] = "Liste des collections du user";
+}
+
+<h1>Liste de mes @Model.Name</h1>
+
+<!-- Affichage du message de succès -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@*@if (Model.Articles.Any())
+    {*@
+    <table class="table">
+        <thead>
+            <tr>
+            <th>
+                <a asp-route-name="@Model.Name" asp-route-sortColumn="Name" asp-route-sortOrder="@(Model.SortColumn == "Name" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Nom
+                    @if (Model.SortColumn == "Name")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>
+                <a asp-route-name="@Model.Name" asp-route-sortColumn="Edition" asp-route-sortOrder="@(Model.SortColumn == "Edition" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Édition
+                    @if (Model.SortColumn == "Edition")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>
+                <a asp-route-name="@Model.Name" asp-route-sortColumn="Autor_name" asp-route-sortOrder="@(Model.SortColumn == "Autor_name" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Auteur
+                    @if (Model.SortColumn == "Autor_name")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>
+                <a asp-route-name="@Model.Name" asp-route-sortColumn="Date" asp-route-sortOrder="@(Model.SortColumn == "Date" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Date
+                    @if (Model.SortColumn == "Date")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>Actions</th>
+            <th>
+                <div class="position-relative">
+                    <button id="filterToggle" class="btn btn-light btn_image">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/filter.png" alt="Filtrer" class="filtre_image" />
+                    </button>
+                    <div id="filterPanel" class="position-absolute filtre_div">
+                        <form method="get" class="form-inline d-flex flex-column align-items-start">
+                            <input type="hidden" name="name" value="@Model.Name" />
+                            <div class="mb-2">
+                                <input type="text"
+                                       name="searchString"
+                                       value="@Request.Query["searchString"]"
+                                       class="form-control mr-2"
+                                       placeholder="Rechercher un article" />
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary">Filtrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var article in Model.Articles)
+            {           
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => article.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => article.Edition)</td>
+                    <td>@Html.DisplayFor(modelItem => article.Autor_name)</td>
+                    @*<td>@Html.DisplayFor(modelItem => article.Date)</td>*@
+                    <td>
+                        @{
+                            if (DateTime.TryParse(article.Date, out var parsedDate))
+                            {
+                                @parsedDate.ToString("dd/MM/yyyy")
+                            }
+                        }
+                    </td>
+                    <td>
+                    <a asp-page="./DetailsMyCollection" asp-route-id="@article.Id" class="btn btn-sm btn-success">Mes infos</a>
+                        <a asp-page="./Details" asp-route-id="@article.Id" class="btn btn-info btn-sm">Détails</a>
+                        <button class="btn btn-danger btn-sm btn-delete" data-id="@article.Id">Supprimer de ma collection</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+@*}
+else
+{
+    <p>Collection vide.</p>
+}*@
+
+<!-- Contrôles de pagination -->
+<div class="d-flex justify-content-between align-items-center">
+    <p>Page @Model.Articles.PageIndex sur @Model.Articles.TotalPages</p>
+
+    <nav>
+        <ul class="pagination">
+            @if (Model.Articles.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./IndexMyCollection"
+                       asp-route-name="@Model.Name"
+                       asp-route-pageIndex="@(Model.Articles.PageIndex - 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Précédent</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Précédent</span>
+                </li>
+            }
+
+            @if (Model.Articles.HasNextPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./IndexMyCollection"
+                       asp-route-name="@Model.Name"
+                       asp-route-pageIndex="@(Model.Articles.PageIndex + 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Suivant</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Suivant</span>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+<!-- Modal de confirmation -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmer la suppression</h5>
+                <button type="button" class="close confirmationModalCloseButton" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Voulez-vous vraiment supprimer cet article de votre collection ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary confirmationModalCloseButton" data-dismiss="modal">Annuler</button>
+                <form id="deleteForm" method="post" asp-page-handler="Delete" style="display:inline;">
+                    <input type="hidden" name="id" id="articleIdToDelete" />
+                    <input type="hidden" name="Name" value="@Model.Name" />
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.btn-delete').on('click', function () {
+                const articleId = $(this).data('id');
+                $('#articleIdToDelete').val(articleId);
+                $('#deleteModal').modal('show');
+            });
+
+            $('.confirmationModalCloseButton').on('click', function () {
+                $('#deleteModal').modal('hide');
+            });
+        });
+        document.getElementById("filterToggle").addEventListener("click", function () {
+            var filterPanel = document.getElementById("filterPanel");
+
+            if (filterPanel.style.display === "none" || filterPanel.style.display === "") {
+                filterPanel.style.display = "block";
+            } else {
+                filterPanel.style.display = "none";
+            }
+        });
+    </script>
+}

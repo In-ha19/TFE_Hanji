@@ -1,0 +1,288 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Shared.Notepads.IndexModel
+@{
+    ViewData["Title"] = "Ma liste de souhait";
+}
+
+<h1>Ma liste de souhait</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-success">Ajouter une note</a>
+</p>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-warning">
+        @Model.ErrorMessage
+    </div>
+}
+else
+{
+   @*@if (Model.Notes.Any())
+    {*@ 
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th>
+                    <a asp-route-sortColumn="Titre" asp-route-sortOrder="@(Model.SortColumn == "Titre" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                        Titre
+                        @if (Model.SortColumn == "Titre")
+                        {
+                            <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                        }
+                    </a>
+                </th>
+                <th>
+                    <a asp-route-sortColumn="Date_reminder" asp-route-sortOrder="@(Model.SortColumn == "Date_reminder" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                        Date de rappel
+                        @if (Model.SortColumn == "Date_reminder")
+                        {
+                            <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                        }
+                    </a>
+                </th>
+                <th>
+                    <div class="position-relative">
+                        <button id="filterToggle" class="btn btn-light btn_image">
+                            <img src="https://img.icons8.com/ios-filled/50/000000/filter.png" alt="Filtrer" class="filtre_image" />
+                        </button>
+                        <div id="filterPanel" class="position-absolute filtre_div">
+                            <form method="get" class="form-inline d-flex flex-column align-items-start">
+                                <div class="mb-2">
+                                    <input type="text"
+                                           name="searchString"
+                                           value="@Request.Query["searchString"]"
+                                           class="form-control mr-2"
+                                           placeholder="Rechercher une note" />
+                                </div>
+
+                                <div class="mb-2">
+                                    <label for="dateFilter" class="form-label">Filtrer par date</label>
+                                    <input type="date"
+                                           name="dateFilter"
+                                           value="@Request.Query["dateFilter"]"
+                                           class="form-control" />
+                                </div>
+
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Filtrer</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var note in Model.Notes)
+                {
+                    <tr data-bs-toggle="modal" data-bs-target="#noteModal"
+                        data-id="@note.Id"
+                        data-titre="@note.Titre"
+                        data-text="@note.Text"
+                        data-date-reminder="@note.Date_reminder?.ToString("yyyy-MM-dd")">
+                        <td>@Html.DisplayFor(modelItem => note.Titre)</td>
+                        <td>@Html.DisplayFor(modelItem => note.Date_reminder)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+   @*}
+    else
+    {
+        <p>Vous n'avez aucune note pour le moment.</p>
+    }*@ 
+}
+
+<!-- Contrôles de pagination -->
+<div class="d-flex justify-content-between align-items-center">
+    <p>Page @Model.Notes.PageIndex sur @Model.Notes.TotalPages</p>
+
+    <nav>
+        <ul class="pagination">
+            @if (Model.Notes.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./Index"
+                       asp-route-pageIndex="@(Model.Notes.PageIndex - 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-dateFilter="@Request.Query["dateFilter"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Précédent</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Précédent</span>
+                </li>
+            }
+
+            @if (Model.Notes.HasNextPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./Index"
+                       asp-route-pageIndex="@(Model.Notes.PageIndex + 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-dateFilter="@Request.Query["dateFilter"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Suivant</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Suivant</span>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+<!-- Modale de gestion de note -->
+<div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="noteModalLabel">Détails de la note</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+                <form id="noteForm">
+                    <input type="hidden" id="noteId" />
+                    <div class="mb-3">
+                        <label for="noteTitre" class="form-label">Titre</label>
+                        <input type="text" class="form-control" id="noteTitre" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="noteText" class="form-label">Text</label>
+                        <textarea class="form-control" id="noteText" rows="5"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="noteDateReminder" class="form-label">Date de rappel</label>
+                        <input type="date" class="form-control" id="noteDateReminder" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" id="deleteNoteButton" class="btn btn-danger">Supprimer</button>
+                <button type="button" id="saveNoteButton" class="btn btn-success" disabled>Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modale de confirmation de suppression -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmer la suppression</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+                <p>Êtes-vous sûr de vouloir supprimer cette note ?</p>
+                <input type="hidden" id="noteToDeleteId" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" id="confirmDeleteButton" class="btn btn-danger">Confirmer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var originalData = {};
+
+        document.querySelectorAll('tr[data-bs-toggle="modal"]').forEach(row => {
+            row.addEventListener('click', function () {
+                const id = this.getAttribute('data-id');
+                const titre = this.getAttribute('data-titre');
+                const text = this.getAttribute('data-text'); 
+                const dateReminder = this.getAttribute('data-date-reminder');
+
+                document.getElementById('noteId').value = id;
+                document.getElementById('noteTitre').value = titre;
+                document.getElementById('noteText').value = text; 
+                document.getElementById('noteDateReminder').value = dateReminder;
+
+                originalData = { id, titre, text, dateReminder };
+
+                document.getElementById('saveNoteButton').disabled = true;
+            });
+        });
+
+        document.getElementById('noteForm').addEventListener('input', function () {
+            const titre = document.getElementById('noteTitre').value;
+            const text = document.getElementById('noteText').value; 
+            const dateReminder = document.getElementById('noteDateReminder').value;
+
+            const isModified = titre !== originalData.titre || text !== originalData.text || dateReminder !== originalData.dateReminder;
+            document.getElementById('saveNoteButton').disabled = !isModified;
+        });
+
+        document.getElementById('deleteNoteButton').addEventListener('click', function () {
+            const id = document.getElementById('noteId').value;
+            document.getElementById('noteToDeleteId').value = id;
+
+            const confirmDeleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
+            confirmDeleteModal.show();
+        });
+
+        document.getElementById('confirmDeleteButton').addEventListener('click', function () {
+            const id = document.getElementById('noteToDeleteId').value;
+
+            $.ajax({
+                url: '/Shared/Notepads?handler=Delete',
+                method: 'POST',
+                data: { id },
+                success: function () {
+                    location.reload();
+                },
+                error: function () {
+                    alert('Une erreur est survenue lors de la suppression.');
+                }
+            });
+        });
+
+        document.getElementById('saveNoteButton').addEventListener('click', function () {
+            const id = document.getElementById('noteId').value;
+            const titre = document.getElementById('noteTitre').value;
+            const text = document.getElementById('noteText').value;
+            const dateReminder = document.getElementById('noteDateReminder').value;
+
+            $.ajax({
+                url: '/Shared/Notepads?handler=UpdateNote',
+                method: 'POST',
+                data: { id, titre, text, dateReminder },
+                success: function () {
+                    location.reload();
+                },
+                error: function () {
+                    alert('Une erreur est survenue lors de l’enregistrement.');
+                }
+            });
+        });
+        document.getElementById("filterToggle").addEventListener("click", function () {
+            var filterPanel = document.getElementById("filterPanel");
+
+            if (filterPanel.style.display === "none" || filterPanel.style.display === "") {
+                filterPanel.style.display = "block";
+            } else {
+                filterPanel.style.display = "none";
+            }
+        });
+    </script>
+}

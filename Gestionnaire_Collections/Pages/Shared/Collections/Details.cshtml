@@ -1,0 +1,334 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Shared.Collections.DetailsModel
+@{
+    ViewData["Title"] = $"Détails de l'article : {Model.Article.Name}";
+    var isInCollection = Model.UserCollectionArticleIds.Contains(Model.Article.Id);
+
+}
+
+<h1>Détails de l'article</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div class="row">
+    <h4>@Model.Article.Name</h4>
+    <!-- Colonne gauche pour l'image -->
+    <div class="col-md-6">
+        <dt class="col-sm-2">Image</dt>
+        @if (!string.IsNullOrEmpty(Model.Article.ImageRoot))
+        {
+            <img src="@Model.Article.ImageRoot" alt="Image de l'article" class="img-fluid article-image" />
+        }
+        else
+        {
+            <span>Image non spécifiée</span>
+        }
+        <br />
+        <dt class="col-sm-6">
+            <input type="hidden" id="articleId" value="@Model.Article.Id" />
+
+            <button id="showFamilyUsersButton" class="btn btn-primary">
+                Afficher les utilisateurs
+            </button>
+            <div id="familyUsersSection" style="display: none;" class="table_scroll">
+                <table id="userTable" class="table table-bordered ">
+                    <thead>
+                        <tr>
+                            <th>Nom d'utilisateur</th>
+                            <th>Famille</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userList">
+                        <!-- Les utilisateurs et leur famille seront affichés ici -->
+                    </tbody>
+                </table>
+            </div>
+        </dt>
+    </div>
+
+    <!-- Colonne droite pour les détails -->
+    <div class="col-md-6">
+
+        <div class="form-group">
+            <label for="toggleDetails">Livre</label>
+            <input type="checkbox" id="toggleDetails" class="switch-checkbox">
+        </div>
+
+        <dl class="row">
+
+            <dt class="col-sm-4">Nom</dt>
+            <dd class="col-sm-8">@Model.Article.Name</dd>
+
+            <dt class="col-sm-4">Moyenne des évaluations</dt>
+            <dd class="col-sm-8">
+                @(string.IsNullOrEmpty(Model.EvaluationMessage)
+                    ? "Aucune évaluation disponible"
+                    : Model.EvaluationMessage)
+            </dd>
+
+            <div id="detailsFields" class="hidden">
+                <dt class="col-sm-4">Édition</dt>
+                <dd class="col-sm-8">@(!string.IsNullOrEmpty(Model.Article.Edition) ? Model.Article.Edition : "Non spécifié")</dd>
+
+                <dt class="col-sm-4">ISBN</dt>
+                <dd class="col-sm-8">@(!string.IsNullOrEmpty(Model.Article.Isbn) ? Model.Article.Isbn : "Non spécifié")</dd>
+
+                <dt class="col-sm-4">Auteur</dt>
+                <dd class="col-sm-8">@(!string.IsNullOrEmpty(Model.Article.Autor_name) ? Model.Article.Autor_name : "Non spécifié")</dd>
+            </div>
+
+            <dt class="col-sm-4">Résumé</dt>
+            <dd class="col-sm-8">@(!string.IsNullOrEmpty(Model.Article.Summary) ? Model.Article.Summary : "Non spécifié")</dd>
+
+            @*<dt class="col-sm-4">Actif</dt>
+            <dd class="col-sm-8">
+                @(Model.Article.Is_active ? "Oui" : "Non")
+            </dd>*@
+
+            <dt class="col-sm-4">Prix</dt>
+            <dd class="col-sm-8">
+                @(Model.Article.Price.HasValue ? $"{Model.Article.Price.Value:C}" : "Non spécifié")
+            </dd>
+
+            <dt class="col-sm-4">Catégorie principale</dt>
+            <dd class="col-sm-8">
+                @(string.IsNullOrEmpty(Model.Article.SelectedCategoryName) ? "Non spécifiée" : Model.Article.SelectedCategoryName)
+            </dd>
+
+            <dt class="col-sm-4">Catégories secondaires</dt>
+            <div class="row">
+                <dd class="col-sm-8">
+                    @if (Model.Article.SelectedCategoryNameSecondary != null && Model.Article.SelectedCategoryNameSecondary.Any())
+                    {
+                        <div class="table_scroll">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    @foreach (var category in Model.Article.SelectedCategoryNameSecondary)
+                                    {
+                                        <tr>
+                                            <td>@category</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <span>Non spécifiées</span>
+                    }
+                </dd>
+            </div>
+    </div>
+    
+</div>
+
+<button class="btn btn-sm btn-success"
+        data-id="@Model.Article.Id"
+        data-price="@Model.Article.Price"
+        type="button"
+        @if (isInCollection)
+        {
+            <text>disabled</text>
+        } >
+            Ajouter à ma collection
+</button>
+
+<input type="hidden" id="articleId" value="@Model.Article.Id" />
+
+<!-- <a asp-page="./Index" asp-route-name="@Model.Article.SelectedCategoryName" class="btn btn-secondary">Retour à la liste</a> -->
+<button class="btn btn-secondary btn_retour">Retour à la liste</button>
+
+<!-- Modale -->
+    <div class="modal fade" id="addToCollectionModal" tabindex="-1" aria-labelledby="addToCollectionLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="addToCollectionForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addToCollectionLabel">Ajouter à ma collection</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <input type="hidden" id="articleId" name="ArticleId" value="@Model.Article.Id" />
+
+                        @*<div class="mb-3">
+                    <label for="note" class="form-label">Évaluation</label>
+                    <input type="number" class="form-control" id="note" name="Note" min="0" max="5" step="0.1" />
+                    </div>*@
+                        <div class="mb-3">
+                            <label for="note" class="form-label">Évaluation</label>
+                            <div id="star-rating" class="star-rating">
+                                <input type="radio" name="Note" value="5" id="star5" />
+                                <label for="star5" title="5 étoiles">★</label>
+                                <input type="radio" name="Note" value="4" id="star4" />
+                                <label for="star4" title="4 étoiles">★</label>
+                                <input type="radio" name="Note" value="3" id="star3" />
+                                <label for="star3" title="3 étoiles">★</label>
+                                <input type="radio" name="Note" value="2" id="star2" />
+                                <label for="star2" title="2 étoiles">★</label>
+                                <input type="radio" name="Note" value="1" id="star1" />
+                                <label for="star1" title="1 étoile">★</label>
+                            </div>
+                        </div>                       
+                        
+                        <div class="mb-3">
+                            <label for="statut" class="form-label">Statut</label>
+                            <select class="form-control" id="statut" name="Statut">
+                                <option value="0">À lire</option>
+                                <option value="1">En cours</option>
+                                <option value="2">Terminé</option>
+                                <option value="3">Aucun</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="text" class="form-label">Note</label>
+                            <textarea class="form-control" id="text" name="Text"></textarea>
+                        </div>                       
+                        <div class="mb-3">
+                            <label for="purchasedPrice" class="form-label">Prix d'achat</label>
+                            <input type="text" class="form-control" id="purchasedPrice" name="Purchased_Price" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="purchasedDate" class="form-label">Date d'achat</label>
+                            <input type="date" class="form-control" id="purchasedDate" name="Purchased_Date" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+@section Scripts {
+    <script>
+        document.getElementById('purchasedPrice').addEventListener('input', function (e) {
+            let value = e.target.value.replace(',', '.');
+            e.target.value = value;
+        });
+        $(document).ready(function () {
+            $(".btn_retour").click(function () {
+                window.history.go(-1);
+            });
+   
+            $(".star-rating input[type='radio']").change(function () {
+                var note = $(this).val();
+                console.log("Note sélectionnée : " + note); 
+            });
+
+            $(".btn-add-to-collection").click(function () {
+                if ($(this).is(":disabled")) {
+                    return; 
+                }
+                var artId = $(this).data("id");
+                var price = $(this).data("price");
+                console.log(price);
+                console.log(artId);
+                $("#articleId").val(artId);
+                $("#purchasedPrice").val(price);
+
+                // Vérification après injection
+                console.log("Valeur du champ ArticleId :", $("#articleId").val());
+                $("#addToCollectionModal").modal("show");
+            });
+
+            $("#addToCollectionForm").submit(function (e) {
+                e.preventDefault();
+
+                var articleId = $("#articleId").val();
+    console.log("Valeur de #articleId lors de la soumission :", articleId);
+
+                var formData = $(this).serialize();
+                //formData.push({ name: "ArticleId", value: $("#articleId").val() });
+
+                console.log(formData.toString())
+
+                $.ajax({
+                    url: '@Url.Page("/Shared/Collections/Details", "AddToCollection")',
+                    method: "POST",
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            $("#addToCollectionModal").modal("hide");
+                            alert("L'article a été ajouté à votre collection avec succès !");
+                            location.reload();
+                        }
+                        else {
+                            $("#addToCollectionModal").modal("hide");
+                            alert(response.message);
+                        }
+                    },
+                    error: function () {
+                        alert("Une erreur s'est produite lors de l'ajout à la collection.");
+                    }
+                });
+            });
+        });
+        document.getElementById("showFamilyUsersButton").addEventListener("click", function () {
+            const articleId = document.getElementById("articleId").value;
+            const section = document.getElementById("familyUsersSection");
+
+            if (section.style.display === "none") {
+                $.ajax({
+                    url: '/Shared/Collections/Details?handler=GetFamilyUsersWithArticle',
+                    method: 'POST',
+                    data: { articleId: articleId },
+                    success: function (response) {
+                        let content = ""; 
+
+                        if (response.success) {
+                            const users = response.users.slice(0, 10);
+
+                            if (users.length > 0) {
+                                const userList = users.map(user => {
+                                    if (user.userName) {
+                                        return `<tr><td>${user.userName}</td><td>${user.familyName}</td></tr>`;
+                                    } else {
+                                        return "<tr><td>Nom d'utilisateur non disponible</td><td></td></tr>";
+                                    }
+                                }).join('');
+
+                                content += `<tbody>${userList}</tbody>`;
+                            } else {
+                                content += "<p>Aucun utilisateur trouvé dans cette famille.</p>";
+                            }
+
+                            document.getElementById("userList").innerHTML = content; 
+                        } else {
+                            section.innerHTML = `<p>${response.message}</p>`;
+                        }
+                    },
+                    error: function () {
+                        section.innerHTML = "<p>Erreur lors du chargement des utilisateurs.</p>";
+                    }
+                });
+
+                section.style.display = "block";
+                this.innerText = "Masquer les utilisateurs";
+            } else {
+                section.style.display = "none";
+                this.innerText = "Afficher les utilisateurs";
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleDetails = document.getElementById("toggleDetails");
+            const detailsFields = document.getElementById("detailsFields");
+
+            toggleDetails.addEventListener("change", function () {
+                if (this.checked) {
+                    detailsFields.classList.remove("hidden");
+                } else {
+                    detailsFields.classList.add("hidden");
+                }
+            });
+        });
+    </script>
+    }

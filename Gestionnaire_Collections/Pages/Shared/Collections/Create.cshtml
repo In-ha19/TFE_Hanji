@@ -1,0 +1,451 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Shared.Collections.CreateModel
+
+@{
+    ViewData["Title"] = "Créer une collection";
+    var showModal = TempData["ShowModal"] != null && (bool)TempData["ShowModal"];
+}
+
+<h1>Créer des articles pour la catégorie "@Model.CategoryName"</h1>
+
+<h4>Article</h4>
+<hr />
+
+@if (@Model.CategoryName == "Manga" || @Model.CategoryName == "Webtoon")
+{
+    <div class="form-group">
+        <label for="title">Enregistrez votre collection complète par son nom *Mettre le nom le plus complèt</label>
+        <div class="input-group">
+            <input type="text" id="title" name="Title" class="form-control" />
+            <button type="button" class="btn btn-primary" onclick="searchAnilist()">🔍</button>
+        </div>
+    </div>
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" name="CategoryName" value="@ViewData["CategoryName"]" />
+
+    <div class="row">
+
+        <div class="form-group">
+            <label for="toggleDetails">Livre</label>
+            <input type="checkbox" id="toggleDetails" class="switch-checkbox">
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Article.Name" class="control-label"></label>
+                <input asp-for="Article.Name" class="form-control" />
+                <span asp-validation-for="Article.Name" class="text-danger"></span>
+            </div>
+
+            <div id="detailsFields" class="hidden">
+                <div class="form-group">
+                    <label asp-for="Article.Edition" class="control-label"></label>
+                    <input asp-for="Article.Edition" class="form-control" />
+                    <span asp-validation-for="Article.Edition" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Article.Isbn" class="control-label"></label>
+                    <input asp-for="Article.Isbn" class="form-control" />
+                    <span asp-validation-for="Article.Isbn" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Article.Autor_name" class="control-label"></label>
+                    <input asp-for="Article.Autor_name" class="form-control" />
+                    <span asp-validation-for="Article.Autor_name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Article.Date" class="control-label"></label>
+                <input asp-for="Article.Date" class="form-control" type="date" />
+                <span asp-validation-for="Article.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Article.Price" class="control-label"></label>
+                <input asp-for="Article.Price" class="form-control" />
+                <span asp-validation-for="Article.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Article.Summary" class="control-label"></label>
+                <textarea asp-for="Article.Summary" class="form-control" rows="5" cols="50"></textarea>
+                <span asp-validation-for="Article.Summary" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="ImageFile">Image</label>
+                <input type="file" id="ImageFile" name="ImageFile" class="form-control" accept="image/jpeg, image/png, image/gif, image/svg+xml" />
+            </div>
+            <div class="form-group">
+                <label>Catégorie principale :</label>
+                <input class="form-control" value="@Model.CategoryName" readonly />
+            </div>
+            <div class="form-group">
+                <label for="CategorySecondarySearch" class="control-label">Recherche pour la catégorie secondaire :</label>
+                <div class="d-flex">
+                    <input type="text" id="CategorySecondarySearchId" class="form-control" placeholder="Rechercher..." />
+                    <button type="button" id="CategorySearchSecondaryButton" class="btn btn-primary ml-2">Rechercher</button>
+                    <button type="button" id="ResetSearchSecondaryButton" class="btn btn-secondary ml-2">Réinitialiser</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Catégorie(s) secondaire(s)</label>
+
+                <div class="custom-multi-select-wrapper">
+                    <select class="custom-multi-select" name="AvailableCategories" id="AvailableCategories" multiple>
+                        @foreach (var category in (SelectList)ViewData["CategoriesSecondary"])
+                        {
+                            <option value="@category.Value">@category.Text</option>
+                        }
+                    </select>
+
+                    <div class="custom-multi-select-btn-wrapper">
+                        <button type="button" class="custom-multi-select btn-add" onclick="select()">+</button>
+                        <button type="button" class="custom-multi-select btn-substract" onclick="deselect()">-</button>
+                    </div>
+
+                    <select multiple
+                            class="custom-multi-select"
+                            asp-for="Article.SelectedCategoryIdsSecondary"
+                            id="SelectedCategories">
+                        @foreach (var selectedCategoryId in Model.Article.SelectedCategoryIdsSecondary ?? new List<string>())
+                        {
+                            var category = ((SelectList)ViewData["CategoriesSecondary"]).FirstOrDefault(c => c.Value == selectedCategoryId);
+                            if (category != null)
+                            {
+                                <option value="@category.Value">@category.Text</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">Créer</button>
+        <a asp-page="Index" asp-route-name="@Model.CategoryName"  class="btn btn-secondary">Annuler</a>
+    </div>
+</form>
+
+@*<div>
+    <a asp-page="Index">Retour à la liste</a>
+</div>*@
+
+<!-- Modale -->
+@if (TempData["ShowModal"] != null && (bool)TempData["ShowModal"])
+{
+    <div class="modal fade" id="addToCollectionModal" tabindex="-1" aria-labelledby="addToCollectionLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="addToCollectionForm">
+                    
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addToCollectionLabel">Ajouter à ma collection</h5>
+                        
+                    </div>
+                    <div class="modal-body">
+                        
+                        @*<div class="mb-3">
+                    <label for="note" class="form-label">Évaluation</label>
+                    <input type="number" class="form-control" id="note" name="Note" min="0" max="5" step="0.1" />
+                    </div>*@
+                        <input type="hidden" name="ArticleId" value="@TempData["ArticleId"]" />
+                        <div class="mb-3">
+                            <label for="note" class="form-label">Évaluation</label>
+                            <div id="star-rating" class="star-rating">
+                                <input type="radio" name="Note" value="5" id="star5" />
+                                <label for="star5" title="5 étoiles">★</label>
+                                <input type="radio" name="Note" value="4" id="star4" />
+                                <label for="star4" title="4 étoiles">★</label>
+                                <input type="radio" name="Note" value="3" id="star3" />
+                                <label for="star3" title="3 étoiles">★</label>
+                                <input type="radio" name="Note" value="2" id="star2" />
+                                <label for="star2" title="2 étoiles">★</label>
+                                <input type="radio" name="Note" value="1" id="star1" />
+                                <label for="star1" title="1 étoile">★</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="statut" class="form-label">Statut</label>
+                            <select class="form-control" id="statut" name="Statut">
+                                <option value="0">À lire</option>
+                                <option value="1">En cours</option>
+                                <option value="2">Terminé</option>
+                                <option value="3">Aucun</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="text" class="form-label">Note</label>
+                            <textarea class="form-control" id="text" name="Text"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="purchasedPrice" class="form-label">Prix d'achat</label>
+                            <input type="text" class="form-control" id="purchasedPrice" name="Purchased_Price" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="purchasedDate" class="form-label">Date d'achat</label>
+                            <input type="date" class="form-control" id="purchasedDate" name="Purchased_Date" />
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">                       
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            console.log("jQuery is loaded and ready.");
+            
+            // Empêche l'envoi du formulaire avec la touche "Enter"
+            $('#CategorySearchId, #CategorySecondarySearchId').on('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();  
+                }
+            });
+
+            $('#CategorySearchSecondaryButton').click(function () {
+                var searchQuery = $('#CategorySecondarySearchId').val();
+                @*const categoryName = '@ViewData["CategoryName"]';*@
+                const categoryName = '@Html.Raw(ViewData["CategoryName"])';
+
+                var selectedCategories = $('#SelectedCategories option').map(function () {
+                 return $(this).val();
+                 }).get();
+
+                $.ajax({
+                    url: '@Url.Page("/Shared/Collections/Create", new { handler = "Search" })',
+                    type: 'GET',
+                    data: {
+                        CategorySearch: searchQuery, isPrincipal: false, categoryName: categoryName,selectedCategoryIds: selectedCategories
+                    },
+                    traditional: true,
+                    success: function (data) {
+                        $('#AvailableCategories').empty();
+                        $.each(data, function (index, item) {
+                            $('#AvailableCategories').append($('<option>', {
+                                value: item.value,
+                                text: item.text
+                            }));
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error('Erreur lors de la recherche des catégories secondaires :', textStatus, errorThrown);
+                    }
+                });
+            });
+            $('#ResetSearchSecondaryButton').click(function () {
+                const selectedCategory = document.getElementById("SelectedCategories");
+                if (!selectedCategory) console.error('Impossible de récupérer selectedCategory')
+                const selectedIds = Array.from(document.getElementById("SelectedCategories").options).map(option => option.value);
+                console.log(selectedIds)
+
+               @* const categoryName = '@ViewData["CategoryName"]';*@
+                const categoryName = '@Html.Raw(ViewData["CategoryName"])';
+                console.log(categoryName);
+
+                $.ajax({
+                    url: '@Url.Page("/Shared/Collections/Create", new { handler = "AllCategoriesSecondary" })',
+                    type: 'GET',
+                    traditional: true,
+                    data: { excludeIds: selectedIds, categoryName: categoryName },
+                    success: function (data) {
+                        $('#AvailableCategories').empty();
+                        $.each(data, function (index, item) {
+                            $('#AvailableCategories').append($('<option>', {
+                                value: item.value,
+                                text: item.text
+                            }));
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error('Erreur lors de la réinitialisation des catégories secondaires :', textStatus, errorThrown);
+                    }
+                });
+            });
+            if ('@TempData["ShowModal"]' === 'True') {
+                const addToCollectionModal = document.getElementById('addToCollectionModal');
+                if (!addToCollectionModal) console.error('Impossible de récupérer addToCollectionModal ')
+                var modal = new bootstrap.Modal(document.getElementById('addToCollectionModal'));
+                var articleId = '@TempData["ArticleId"]';
+                console.log(articleId);
+                modal.show();
+                $('#articleIdInput').val(articleId);
+            }
+            $(".star-rating input[type='radio']").change(function () {
+                var note = $(this).val();
+                console.log("Note sélectionnée : " + note);
+            });
+
+            $("#addToCollectionForm").submit(function (e) {
+                e.preventDefault();
+                
+                var formData = $(this).serialize();
+                console.log(formData);
+                
+
+                $.ajax({
+                    url: '@Url.Page("/Shared/Collections/Create", "AddToCollection")',
+                    method: "POST",
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            $("#addToCollectionModal").modal("hide");
+                            alert("L'article a été ajouté à votre collection avec succès !");
+                            location.reload();
+                        }
+                        else {
+                            $("#addToCollectionModal").modal("hide");
+                            alert(response.message);
+                        }
+                    },
+                    error: function () {
+                        alert("Une erreur s'est produite lors de l'ajout à la collection.");
+                    }
+                });
+            });
+        });
+        const purchasedPrice = document.getElementById('purchasedPrice');
+        if (!purchasedPrice) {
+            console.error('Impossible de récupérer purchasedPrice ')
+        } 
+        else {
+            document.getElementById('purchasedPrice').addEventListener('input', function (e) {
+                // Remplacer la virgule par un point
+                let value = e.target.value.replace(',', '.');
+                e.target.value = value;
+            });
+        }
+        function select(deselect = false) {
+            let fromSelectElement;
+            let toSelectElement;
+
+            if (deselect) {
+                toSelectElement = document.getElementById("AvailableCategories");
+                fromSelectElement = document.getElementById("SelectedCategories");
+            } else {
+                toSelectElement = document.getElementById("SelectedCategories");
+                fromSelectElement = document.getElementById("AvailableCategories");
+            }
+
+            if (!toSelectElement || !fromSelectElement) {
+                console.error("Impossible de récupérer les deux listes d'éléments");
+                return;
+            }
+
+            const optionList = fromSelectElement.selectedOptions;
+            while (optionList.length !== 0) {
+                toSelectElement.add(optionList[0]);
+            }
+        }
+
+        const deselect = () => select(true);
+
+        document.querySelector('form').addEventListener('submit', function () {
+            const selectedCategories = document.getElementById("SelectedCategories");
+            for (let i = 0; i < selectedCategories.options.length; i++) {
+                selectedCategories.options[i].selected = true;
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleDetails = document.getElementById("toggleDetails");
+            const detailsFields = document.getElementById("detailsFields");
+
+            toggleDetails.addEventListener("change", function () {
+                if (this.checked) {
+                    detailsFields.classList.remove("hidden");
+                } else {
+                    detailsFields.classList.add("hidden");
+                }
+            });
+        });
+
+        //AniList
+        async function searchAnilist() {
+            let title = document.getElementById("title").value;
+            if (!title) {
+                alert("Veuillez entrer un titre !");
+                return;
+            }
+
+            let query = `
+                query ($search: String) {
+                    Media(search: $search, type: MANGA) {
+                        title {
+                            romaji
+                            english
+                        }
+                        description
+                        coverImage {
+                            large
+                        }
+                        siteUrl
+                    }
+                }
+            `;
+
+            let variables = { search: title };
+
+            let response = await fetch("https://graphql.anilist.co", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ query, variables })
+            });
+
+            let data = await response.json();
+            let media = data.data.Media;
+
+            if (media) {
+
+                let title = media.title.romaji || media.title.english;
+                document.getElementById("title").value = title;
+
+                title += " - Collection complète";
+                document.getElementById("Article_Name").value = title;
+
+                document.getElementById("Article_Summary").value = media.description.replace(/<[^>]*>/g, ""); 
+
+                downloadImage(media.coverImage.large);
+            } else {
+                alert("Titre non trouvé sur AniList !");
+            }
+        }
+
+        function downloadImage(imageUrl) {
+            fetch(imageUrl)
+                .then(response => response.blob())
+                .then(blob => {
+                    let uniqueId = crypto.randomUUID();
+                    let fileName = `cover_${uniqueId}.jpg`;
+
+                    let file = new File([blob], fileName, { type: "image/jpeg" });
+
+                    let dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+
+                    let inputFile = document.getElementById("ImageFile");
+                    inputFile.files = dataTransfer.files;
+                    alert("Image ajoutée au champ fichier !");
+                })
+                .catch(error => console.error("Erreur lors du téléchargement de l'image :", error));
+        }
+    </script>
+}

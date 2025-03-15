@@ -1,0 +1,27 @@
+0000000000000000000000000000000000000000 d0d9d497d49a34c167958e247b64e3843f8ed3c5 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738051082 +0100	branch: Created from master
+d0d9d497d49a34c167958e247b64e3843f8ed3c5 a46eea6ab030235934132d129ef7c5a892797034 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738062973 +0100	commit: verif et imahe logo et accueil
+a46eea6ab030235934132d129ef7c5a892797034 2f4780c94549db0cdc98defb47c22f861a4c6f39 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738066610 +0100	commit: suite verif
+2f4780c94549db0cdc98defb47c22f861a4c6f39 2417eb0175827c3d86156da88b93e636c801b32e LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738071853 +0100	commit: correction ajouter ma collection dans detail
+2417eb0175827c3d86156da88b93e636c801b32e e39f299a289e2f9e32be69604968bb2400da1fb1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738074352 +0100	commit: correction updtae de mes info pour un article
+e39f299a289e2f9e32be69604968bb2400da1fb1 fb061580adde9046a3b862c32cef50933552af1f LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738139352 +0100	commit: deplacement brtn user à l'article
+fb061580adde9046a3b862c32cef50933552af1f 17345aae3538e7d57c1ddfc702d0cdc143ae5208 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738140600 +0100	commit: erreur login das profil
+17345aae3538e7d57c1ddfc702d0cdc143ae5208 da7abdf114a49689d75bacde1c41e3964d41cfa1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738141031 +0100	commit: correction profil
+da7abdf114a49689d75bacde1c41e3964d41cfa1 291b155cb7a82e5c6b432ede30b147206c2630ab LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738146246 +0100	commit: correction on voit les article des user de nos familles
+291b155cb7a82e5c6b432ede30b147206c2630ab 8a6dccdd99c57019cc9d9edab355c9133615d31a LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738147488 +0100	commit: correction
+8a6dccdd99c57019cc9d9edab355c9133615d31a f267e0b01a4c719c0c91c2098548cb4486d6a5a7 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738153568 +0100	commit: verif et correction famille, message, collection, profil pour les user
+f267e0b01a4c719c0c91c2098548cb4486d6a5a7 36c115823bce3cb543a614c21027f58e8c431aa1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738157753 +0100	commit: verifi et correction sauf pagi ok user
+36c115823bce3cb543a614c21027f58e8c431aa1 2ac80626c1601eef4b9c5321694864c5ba088b12 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738170933 +0100	commit: verif et correction admin : user et categories
+2ac80626c1601eef4b9c5321694864c5ba088b12 0c2a973e01a95be9327fb912353623e1c426e9d4 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738223465 +0100	commit: taille pour résumé article, message user et description famille
+0c2a973e01a95be9327fb912353623e1c426e9d4 126db531eb5324cdcc171905c27dd3f0d83855e9 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738226466 +0100	commit: verif et correction fin
+126db531eb5324cdcc171905c27dd3f0d83855e9 05338abc8f588a0ace2bad6da848d99599fbacd0 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738232035 +0100	commit: correction retirection
+05338abc8f588a0ace2bad6da848d99599fbacd0 d0d0f32847ae1554d43002ead00dfa4e32368bc8 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738232782 +0100	commit: changement bar de nav
+d0d0f32847ae1554d43002ead00dfa4e32368bc8 b779e9b4cdfee1be4fff2ccb2d8459e1cef7e7af LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738232982 +0100	commit: login erreur message en francais
+b779e9b4cdfee1be4fff2ccb2d8459e1cef7e7af c6de846314e481d6d376abd502037b8c5ff0ee53 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738234622 +0100	commit: style dans css et enter pas pour les filtre
+c6de846314e481d6d376abd502037b8c5ff0ee53 f05652508575e58eb96cacb93032db2573fc1ecc LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738245691 +0100	commit: enlever enter pour lien réinisialissatin des mail
+f05652508575e58eb96cacb93032db2573fc1ecc dc2ed74071a7aea03cd3ce03e056fb989e3ce409 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738248917 +0100	commit: correction email dans profil et debut coulueur bouton
+dc2ed74071a7aea03cd3ce03e056fb989e3ce409 d45d4ecc6f417b9c056f4070b0843aaad2efafbc LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738402931 +0100	commit: rechargelment page des depense lors de filtre du dernier tableau
+d45d4ecc6f417b9c056f4070b0843aaad2efafbc e275b1493e5a8c583fdb0e8fb3b75c210a1aa862 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738405140 +0100	commit: corr
+e275b1493e5a8c583fdb0e8fb3b75c210a1aa862 22f484afb48345092fe802c7d198594df9f8231d LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738408418 +0100	commit: c
+22f484afb48345092fe802c7d198594df9f8231d 75aca0673d14f9f343bc8f56ab793f8979ef1999 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738411771 +0100	commit: masquer les champs si pas livre pour les articles
+75aca0673d14f9f343bc8f56ab793f8979ef1999 ba8b580410341f9c9f5d8087a943e675947bb3b8 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738415413 +0100	commit: pagi et filtre d'une page à une autre ok
+ba8b580410341f9c9f5d8087a943e675947bb3b8 3bf0b366c7d86a018cc5a08612d69294c6d498b1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738751810 +0100	commit: correction diverse

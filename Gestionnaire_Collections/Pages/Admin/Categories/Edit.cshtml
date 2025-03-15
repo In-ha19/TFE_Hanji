@@ -1,0 +1,63 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Admin.Categories.EditModel
+
+@{
+    ViewData["Title"] = "Modifier Catégories";
+}
+
+<h1>Mise à jour</h1>
+
+<h4>@Model.Category.Name</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Category.Id" />
+            <div class="form-group">
+                <label asp-for="Category.Name" class="control-label"></label>
+                <input asp-for="Category.Name" class="form-control" />
+                <span asp-validation-for="Category.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Category.Is_active" /> @Html.DisplayNameFor(model => model.Category.Is_active)
+                </label>
+            </div>
+            @*<div class="form-group form-check">
+                 <label class="form-check-label">
+                     <input class="form-check-input" asp-for="Category.Is_principal" /> @Html.DisplayNameFor(model => model.Category.Is_principal)
+                 </label>
+             </div>*@
+            @if (Model.Category.Is_principal == false)
+            {
+                <div class="form-group">
+                    <label asp-for="Category.Parent_id" class="control-label"></label>
+                    <select asp-for="Category.Parent_id" class="form-control" asp-items="ViewBag.Parent_id"></select>
+                    <span asp-validation-for="Category.Parent_id" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Enregistrer" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <button class="btn btn-secondary btn_retour">Retour à la liste</button>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".btn_retour").click(function () {
+               // window.history.go(-1);
+                window.location.href = `/Admin/Categories/Index`;
+            });
+        });
+    </script>
+}

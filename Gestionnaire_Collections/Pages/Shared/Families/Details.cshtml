@@ -1,0 +1,126 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Shared.Families.DetailsModel
+
+@{
+    ViewData["Title"] = $"Détails de la famille : {Model.Family.Name}";
+}
+
+<h1>Détails, membre et demande d'adhésion</h1>
+
+<div>
+    <h4>@Model.Family.Name</h4>
+    <hr />
+    <dl class="row">       
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Family.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Family != null && !string.IsNullOrEmpty(Model.Family.Description))
+            {
+                @Html.Raw(Model.Family.Description.Replace("\n", "<br />"))
+            }
+            else
+            {
+                <span>Non spécifié</span>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <h4>Membres de la famille</h4>
+    <div class="scrollable-table">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nom d'utilisateur</th>
+                    <th>Manager</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var familyUser in Model.FamilyUsers)
+                {
+                    <tr>
+                        <td>@familyUser.User.UserName</td>
+                        <td>
+                            @if (!familyUser.Is_manager)
+                            {
+                                <input type="checkbox" onchange="document.getElementById('managerForm-@familyUser.UserId').submit();" />
+                                <form id="managerForm-@familyUser.UserId" method="post" asp-page-handler="PromoteToManager" asp-route-userId="@familyUser.UserId" asp-route-familyId="@Model.Family.Id"></form>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Manager</span>
+                            }
+                        </td>
+                        <td>
+                            @if (!familyUser.Is_manager)
+                            {
+                                <form method="post" asp-page-handler="RemoveUser" asp-route-userId="@familyUser.UserId" asp-route-familyId="@Model.Family.Id">
+                                    <button type="submit" class="btn btn-danger btn-sm">Retirer</button>
+                                </form>
+                            }
+                        </td>
+                    </tr>               
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div>
+    <h4>Demandes d'adhésion</h4>
+    @if (Model.Requests.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Utilisateur</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var request in Model.Requests)
+                {
+                    <tr>
+                        <td>@request.Requester.UserName</td>
+                        <td>
+                            <form method="post" asp-page-handler="UpdateRequestStatus" asp-route-requestId="@request.Id" asp-route-status="1">
+                                <button type="submit" class="btn btn-success btn-sm">Accepter</button>
+                            </form>
+                            <form method="post" asp-page-handler="UpdateRequestStatus" asp-route-requestId="@request.Id" asp-route-status="2">
+                                <button type="submit" class="btn btn-danger btn-sm">Refuser</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Aucune demande d'adhésion en attente.</p>
+    }
+</div>
+
+<div>
+    @*<a asp-page="./Edit" asp-route-id="@Model.Family.Id" class="btn btn-warning btn-sm">Modifier</a>*@
+    @*<a asp-page="./Index">Retour à la liste</a>*@
+    @*<button class="btn btn-secondary btn_retour">Retour à la liste</button>*@
+    <a asp-page="@Model.ReturnUrl" class="btn btn-secondary">Retour à la liste</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            $(".btn_retour").click(function () {
+                //window.history.go(-1);
+                window.location.href = `/Shared/Families/IndexMyFamilies`;
+            });
+        });
+    </script>
+}

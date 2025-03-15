@@ -1,0 +1,352 @@
+﻿@page 
+@model Gestionnaire_Collections.Pages.Admin.Articles.EditModel
+
+@{
+    ViewData["Title"] = "Modifier Articles";
+}
+
+<h1>Mise à jour de l'article</h1>
+
+<h4>@Model.Article.Name</h4>
+<hr />
+
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Article.Id" />
+    <div class="row">
+
+        <div class="form-group">
+            <label for="toggleDetails">Livre</label>
+            <input type="checkbox" id="toggleDetails" class="switch-checkbox">
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Article.Name" class="control-label"></label>
+                <input asp-for="Article.Name" class="form-control" />
+                <span asp-validation-for="Article.Name" class="text-danger"></span>
+            </div>
+
+            <div id="detailsFields" class="hidden">
+                <div class="form-group">
+                    <label asp-for="Article.Edition" class="control-label"></label>
+                    <input asp-for="Article.Edition" class="form-control" />
+                    <span asp-validation-for="Article.Edition" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Article.Isbn" class="control-label"></label>
+                    <input asp-for="Article.Isbn" class="form-control" />
+                    <span asp-validation-for="Article.Isbn" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Article.Autor_name" class="control-label"></label>
+                    <input asp-for="Article.Autor_name" class="form-control" />
+                    <span asp-validation-for="Article.Autor_name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Article.Date" class="control-label"></label>
+                <input asp-for="Article.Date" class="form-control" type="date" />
+                <span asp-validation-for="Article.Date" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Article.Price" class="control-label"></label>
+                <input asp-for="Article.Price" class="form-control" />
+                <span asp-validation-for="Article.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Article.Summary" class="control-label"></label>
+                <textarea asp-for="Article.Summary" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Article.Summary" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="ImageFile">Image actuelle :</label>
+            <div>               
+                @if (!string.IsNullOrEmpty(Model.Article.ImageRoot))
+                {
+                    <img src="@Model.Article.ImageRoot" alt="Image de l'article" class="img-fluid article-image" />
+                }
+                else
+                {
+                    <p>Aucune image existante</p>
+                }
+            </div>
+
+            <div>
+                <label for="ImageFile">Télécharger une nouvelle image :</label>
+                <input type="file" asp-for="ImageFile" accept="image/jpeg, image/png, image/gif, image/svg+xml" />
+            </div>
+
+            <div class="form-group">
+                <label for="CategorySearch" class="control-label">Recherche pour la catégorie principale :</label>
+                <div class="d-flex">
+                    <input type="text" id="CategorySearchId" class="form-control" placeholder="Rechercher..." />
+                    <button type="button" id="CategorySearchPrincipalButton" class="btn btn-primary ml-2">Rechercher</button>
+                    <button type="button" id="ResetSearchPrincipalButton" class="btn btn-secondary ml-2">Réinitialiser</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Catégorie principale :</label>
+                <select class="form-select" asp-for="Article.SelectedCategoryId" id="CategoryList">
+                    @foreach (var category in (SelectList)ViewData["CategoriesPrincipal"])
+                    {
+                        <option value="@category.Value">@category.Text</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="CategorySecondarySearch" class="control-label">Recherche pour la catégorie secondaire :</label>
+                <div class="d-flex">
+                    <input type="text" id="CategorySecondarySearchId" class="form-control" placeholder="Rechercher..." />
+                    <button type="button" id="CategorySearchSecondaryButton" class="btn btn-primary ml-2">Rechercher</button>
+                    <button type="button" id="ResetSearchSecondaryButton" class="btn btn-secondary ml-2">Réinitialiser</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Catégorie(s) secondaire(s)</label>
+
+                <div class="custom-multi-select-wrapper">
+                    <select class="custom-multi-select" name="AvailableCategories" id="AvailableCategories" multiple>
+                        @foreach (var category in (SelectList)ViewData["CategoriesSecondary"])
+                        {
+                            var alreadySelected = Model.Article.SelectedCategoryIdsSecondary.Any(c => c == category.Value);
+                            if (!alreadySelected)
+                            {
+                                <option value="@category.Value">@category.Text</option>
+                            }
+                        }
+                    </select>
+
+                    <div class="custom-multi-select-btn-wrapper">
+                        <button type="button" class="custom-multi-select btn-add" onclick="select()">+</button>
+                        <button type="button" class="custom-multi-select btn-substract" onclick="deselect()">-</button>
+                    </div>
+
+                    <select multiple
+                            class="custom-multi-select"
+                            asp-for="Article.SelectedCategoryIdsSecondary"
+                            id="SelectedCategories">
+                        @foreach (var selectedCategoryId in Model.Article.SelectedCategoryIdsSecondary ?? new List<string>())
+                        {
+                            var category = ((SelectList)ViewData["CategoriesSecondary"]).FirstOrDefault(c => c.Value == selectedCategoryId);
+                            if (category != null)
+                            {
+                                <option value="@category.Value">@category.Text</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <a asp-page="Index" class="btn btn-secondary">Annuler</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            console.log("jQuery is loaded and ready.");
+
+            $('#CategorySearchId, #CategorySecondarySearchId').on('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                }
+            });
+
+            $('#CategoryList').change(function () {
+                var categoryPrincipalId = $(this).val();
+
+                if (categoryPrincipalId) {
+                    $('#SelectedCategories').empty();
+                    $.ajax({
+                        url: '@Url.Page("/Admin/Articles/Edit", new { handler = "SecondaryCategories" })',
+                        type: 'GET',
+                        data: { categoryPrincipalId: categoryPrincipalId },
+                        success: function (data) {
+                            $('#AvailableCategories').empty();
+
+                            $.each(data, function (index, item) {
+                                $('#AvailableCategories').append($('<option>', {
+                                    value: item.value,
+                                    text: item.text
+                                }));
+                            });
+                            updateSelectedCategories(data);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.error('Erreur lors de la récupération des catégories secondaires:', textStatus, errorThrown);
+                        }
+                    });
+                }
+            });
+
+            $('#CategorySearchPrincipalButton').click(function () {
+                console.log("Search button clicked.");
+                var searchQuery = $('#CategorySearchId').val();
+                console.log("Search query:", searchQuery);
+
+                $.ajax({
+                    url: '@Url.Page("/Admin/Articles/Edit", new { handler = "Search" })',
+                    type: 'GET',
+                    data: { CategorySearch: searchQuery, isPrincipal: true },
+                    success: function (data) {
+                        console.log("Success");
+                        console.log("Data received:", data);
+                        $('#CategoryList').empty();
+                        $.each(data, function (index, item) {
+                            $('#CategoryList').append($('<option>', {
+                                value: item.value,
+                                text: item.text
+                            }));
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log('Erreur lors de la recherche des catégories.');
+                        console.log("AJAX error:", textStatus, errorThrown);
+                        console.log("Response text:", jqXHR.responseText);
+                    }
+                });
+            });
+            $('#ResetSearchPrincipalButton').click(function () {
+                // Vider le champ de recherche
+                $('#CategorySearchId').val('');
+
+                $.ajax({
+                    url: '@Url.Page("/Admin/Articles/Edit", "AllCategories")',
+                    type: 'GET',
+                    success: function (data) {
+                        $('#CategoryList').empty();
+                        $.each(data, function (index, item) {
+                            $('#CategoryList').append($('<option>', {
+                                value: item.value,
+                                text: item.text
+                            }));
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log('Erreur lors de la réinitialisation de la recherche des catégories.');
+                        console.log("AJAX error:", textStatus, errorThrown);
+                        console.log("Response text:", jqXHR.responseText);
+                    }
+                });
+            });
+
+            $('#CategorySearchSecondaryButton').click(function () {
+                var searchQuery = $('#CategorySecondarySearchId').val();
+                var categoryPrincipalId = $('#CategoryList').val();
+                console.log("Category Principal ID:", categoryPrincipalId);
+
+                var selectedCategories = $('#SelectedCategories option').map(function () {
+                    return $(this).val();
+                }).get();
+
+                $.ajax({
+                    url: '@Url.Page("/Admin/Articles/Edit", new { handler = "Search" })',
+                    type: 'GET',
+                    data: {
+                        CategorySearch: searchQuery,
+                        isPrincipal: false,
+                        categoryPrincipalId: categoryPrincipalId,
+                        selectedCategoryIds: selectedCategories
+                    },
+                    traditional: true,
+                    success: function (data) {
+                        $('#AvailableCategories').empty();
+                        $.each(data, function (index, item) {
+                            $('#AvailableCategories').append($('<option>', {
+                                value: item.value,
+                                text: item.text
+                            }));
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error('Erreur lors de la recherche des catégories secondaires :', textStatus, errorThrown);
+                    }
+                });
+            });
+
+            $('#ResetSearchSecondaryButton').click(function () {
+                const selectedIds = Array.from(document.getElementById("SelectedCategories").options).map(option => option.value);
+                console.log(selectedIds)
+                var categoryPrincipalId = $('#CategoryList').val();
+
+                $.ajax({
+                    url: '@Url.Page("/Admin/Articles/Edit", new { handler = "AllCategoriesSecondary" })',
+                    type: 'GET',
+                    traditional: true,
+                    data: { excludeIds: selectedIds, categoryPrincipalId: categoryPrincipalId, },
+                    success: function (data) {
+                        $('#AvailableCategories').empty();
+                        $.each(data, function (index, item) {
+                            $('#AvailableCategories').append($('<option>', {
+                                value: item.value,
+                                text: item.text
+                            }));
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error('Erreur lors de la réinitialisation des catégories secondaires :', textStatus, errorThrown);
+                    }
+                });
+            });
+        });
+
+        function select(deselect = false) {
+            let fromSelectElement;
+            let toSelectElement;
+
+            if (deselect) {
+                toSelectElement = document.getElementById("AvailableCategories");
+                fromSelectElement = document.getElementById("SelectedCategories");
+            } else {
+                toSelectElement = document.getElementById("SelectedCategories");
+                fromSelectElement = document.getElementById("AvailableCategories");
+            }
+
+            if (!toSelectElement || !fromSelectElement) {
+                console.error("Impossible de récupérer les deux listes d'éléments");
+                return;
+            }
+
+            const optionList = fromSelectElement.selectedOptions;
+            while (optionList.length !== 0) {
+                toSelectElement.add(optionList[0]);
+            }
+        }
+
+        const deselect = () => select(true);
+
+        document.querySelector('form').addEventListener('submit', function () {
+            const selectedCategories = document.getElementById("SelectedCategories");
+            for (let i = 0; i < selectedCategories.options.length; i++) {
+                selectedCategories.options[i].selected = true;
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleDetails = document.getElementById("toggleDetails");
+            const detailsFields = document.getElementById("detailsFields");
+
+            toggleDetails.addEventListener("change", function () {
+                if (this.checked) {
+                    detailsFields.classList.remove("hidden");
+                } else {
+                    detailsFields.classList.add("hidden");
+                }
+            });
+        });
+    </script>
+}

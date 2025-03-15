@@ -1,0 +1,207 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Admin.Categories.IndexModel
+
+@{
+    ViewData["Title"] = "Liste des catégories ";
+}
+
+<h1>Liste des catégories</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Ajouter une nouvelle catégorie</a>
+</p>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<!-- Filtre -->
+@{
+    var statusOptions = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Tous", Value = "", Selected = string.IsNullOrEmpty(Request.Query["statusFilter"]) },
+        new SelectListItem { Text = "Actif", Value = "active", Selected = Request.Query["statusFilter"] == "active" },
+        new SelectListItem { Text = "Inactif", Value = "inactive", Selected = Request.Query["statusFilter"] == "inactive" }
+    };
+
+    var typeOptions = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Tous", Value = "", Selected = string.IsNullOrEmpty(Request.Query["typeFilter"]) },
+        new SelectListItem { Text = "Principal", Value = "principal", Selected = Request.Query["typeFilter"] == "principal" },
+        new SelectListItem { Text = "Secondaire", Value = "secondary", Selected = Request.Query["typeFilter"] == "secondary" }
+    };
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sortColumn="Name" asp-route-sortOrder="@(Model.SortColumn == "Name" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Nom
+                    @if (Model.SortColumn == "Nom")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category[0].Is_active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category[0].Is_principal)
+            </th>
+            <th>
+                <a asp-route-sortColumn="Parent_name" asp-route-sortOrder="@(Model.SortColumn == "Parent_name" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Catégorie principale
+                    @if (Model.SortColumn == "Parent_name")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>Actions</th>
+            <th>
+                <div class="position-relative">
+                    <button id="filterToggle" class="btn btn-light btn_image">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/filter.png" alt="Filtrer" class="filtre_image" />
+                    </button>
+                    <div id="filterPanel" class="position-absolute filtre_div" >
+                        <form method="get" class="form-inline d-flex flex-column align-items-start">
+                            <div class="mb-2">
+                                <input type="text"
+                                       name="searchString"
+                                       value="@Request.Query["searchString"]"
+                                       class="form-control mr-2"
+                                       placeholder="Nom, Catégorie parent" />
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="statusFilter" class="d-block">Actif/Inactif</label>
+                                <select id="statusFilter" name="statusFilter" class="form-control form-control-sm" asp-items="statusOptions"></select>
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="typeFilter" class="d-block">Filtrer par catégorie</label>
+                                <select id="typeFilter" name="typeFilter" class="form-control form-control-sm" asp-items="typeOptions"></select>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-sm mt-2">Filtrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Category)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Is_active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Is_principal)
+                </td>
+                <td>
+                    @if (!item.Is_principal)
+                    {
+                        @Html.DisplayFor(modelItem => item.Parent_name)
+                    }
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Modifier</a>
+                    <form method="post" asp-page-handler="StatutCategory" style="display:inline;">
+                        <input type="hidden" name="categoryId" value="@item.Id" />
+                        <button type="submit" class="btn btn-sm @(item.Is_active ? "btn-delete" : "btn-active")"
+                                id="category-@item.Id"
+                                @(item.Is_active ? "data-action='deactivate'" : "")>
+                                @(item.Is_active ? "Désactiver" : "Activer")
+                        </button>
+                    </form>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Contrôles de pagination -->
+<div class="d-flex justify-content-between align-items-center">
+    <p>Page @Model.Category.PageIndex sur @Model.Category.TotalPages</p>
+
+    <nav>
+        <ul class="pagination">
+            @if (Model.Category.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./Index"
+                       asp-route-pageIndex="@(Model.Category.PageIndex - 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-typeFilter="@Request.Query["typeFilter"]"
+                       asp-route-statusFilter="@Request.Query["statusFilter"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Précédent</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Précédent</span>
+                </li>
+            }
+
+            @if (Model.Category.HasNextPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./Index"
+                       asp-route-pageIndex="@(Model.Category.PageIndex + 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-typeFilter="@Request.Query["typeFilter"]"
+                       asp-route-statusFilter="@Request.Query["statusFilter"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Suivant</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Suivant</span>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("button[data-action='deactivate']").click(function () {
+                var categoryId = $(this).closest("form").find("input[name='categoryId']").val();
+
+                if (confirm('Êtes-vous sûr de vouloir désactiver cette catégorie et ses sous-catégories ?')) {
+                    $(this).closest("form").submit();
+                }
+            });
+        });
+
+            document.getElementById("filterToggle").addEventListener("click", function () {
+                var filterPanel = document.getElementById("filterPanel");
+
+                if (filterPanel.style.display === "none" || filterPanel.style.display === "") {
+                    filterPanel.style.display = "block"; 
+                } else {
+                    filterPanel.style.display = "none";   
+                }
+            });
+    </script>
+}

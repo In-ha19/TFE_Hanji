@@ -1,0 +1,64 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Admin.Users.EditModel
+@{
+    ViewData["Title"] = "Modifier l'utilisateur";
+}
+
+<h2>Modifier l'utilisateur</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<form method="post">
+    <input type="hidden" name="login" value="@Model.UserEdit.Login" />
+    <div class="form-group">
+        <label asp-for="UserEdit.Login"></label>
+        <input asp-for="UserEdit.Login" class="form-control" />
+        <span asp-validation-for="UserEdit.Login" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="UserEdit.Email"></label>
+        <input asp-for="UserEdit.Email" class="form-control" readonly />
+        <span asp-validation-for="UserEdit.Email" class="text-danger"></span>
+    </div>
+   @*<button type="submit" asp-page-handler="SendResetLink" class="btn btn-link">Envoyer un lien de réinitialisation de mot de passe</button>*@ 
+    <button type="button" class="btn btn-link" id="sendResetLinkBtn">Envoyer un lien de réinitialisation de mot de passe</button>
+
+    <div class="form-group form-check">
+        <input asp-for="UserEdit.EmailConfirmed" class="form-check-input" />
+        <label asp-for="UserEdit.EmailConfirmed" class="form-check-label"></label>
+    </div>
+    <div class="form-group form-check">
+        <input asp-for="UserEdit.IsAdmin" class="form-check-input" />
+        <label asp-for="UserEdit.IsAdmin" class="form-check-label"></label>
+    </div>
+    <div class="form-group form-check">
+        <input asp-for="UserEdit.IsActive" class="form-check-input" disabled/>
+        <label asp-for="UserEdit.IsActive" class="form-check-label"></label>
+    </div>
+    @if (!Model.UserEdit.IsActive)
+    {
+        <button type="submit" asp-page-handler="ActivateUser" class="btn btn-ActiveUser ">Activer l'utilisateur</button>
+    }
+    <br />
+    <br />
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <a asp-page="/Admin/Users/Index" class="btn btn-secondary">Annuler</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        document.getElementById('sendResetLinkBtn').addEventListener('click', function () {
+            // Soumettre le formulaire avec le handler approprié
+            var form = document.querySelector('form');
+            form.action = '@Url.Page("/Admin/Users/Edit", "SendResetLink")';  // Action du handler pour le lien de réinitialisation
+            form.submit();
+        });
+    </script>
+}

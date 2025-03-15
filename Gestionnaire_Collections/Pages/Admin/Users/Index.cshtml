@@ -1,0 +1,440 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Admin.Users.IndexModel
+@{
+    ViewData["Title"] = "Liste des Utilisateurs";
+}
+
+<h2>Liste des Utilisateurs</h2>
+
+<a asp-page="./Create" class="btn btn-success">Ajouter un nouvel utilisateur</a>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@{
+    var emailConfirmedOptions = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Tous", Value = "" },  
+        new SelectListItem { Text = "Confirmé", Value = "true" },  
+        new SelectListItem { Text = "Non confirmé", Value = "false" }  
+    };
+ 
+    emailConfirmedOptions.ForEach(option =>
+    {
+        option.Selected = option.Value == Request.Query["EmailConfirmed"];
+    });
+
+    var isAdminOptions = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Tous", Value = "" },  
+        new SelectListItem { Text = "Administrateur", Value = "true" },  
+        new SelectListItem { Text = "Non administrateur", Value = "false" } 
+    };
+    isAdminOptions.ForEach(option =>
+    {
+        option.Selected = option.Value == Request.Query["IsAdmin"];
+    });
+
+    var isActiveOptions = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Tous", Value = "" },  
+        new SelectListItem { Text = "Actif", Value = "true" },  
+        new SelectListItem { Text = "Inactif", Value = "false" }  
+    };
+    isActiveOptions.ForEach(option =>
+    {
+        option.Selected = option.Value == Request.Query["IsActive"];
+    });
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sortColumn="Login" asp-route-sortOrder="@(Model.SortColumn == "Login" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Login
+                    @if (Model.SortColumn == "Login")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>
+                <a asp-route-sortColumn="Email" asp-route-sortOrder="@(Model.SortColumn == "Email" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Email
+                    @if (Model.SortColumn == "Email")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>@Html.DisplayNameFor(model => model.Users[0].EmailConfirmed)</th>
+            <th>@Html.DisplayNameFor(model => model.Users[0].IsAdmin)</th>
+            <th>@Html.DisplayNameFor(model => model.Users[0].IsActive)</th>
+            <th>Actions</th>
+            <th>
+                <div class="position-relative">
+                    <button id="filterToggle" class="btn btn-light btn_image">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/filter.png" alt="Filtrer" class="filtre_image" />
+                    </button>
+                    <div id="filterPanel" class="position-absolute filtre_div">
+                        <form method="get" class="form-inline d-flex flex-column align-items-start">
+                            <div class="mb-2">
+                                <input type="text"
+                                       name="searchString"
+                                       value="@Request.Query["searchString"]"
+                                       class="form-control mr-2"
+                                       placeholder="Login, email" />
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="emailFilter" class="form-label">Email Confirmé</label>
+                                <select name="emailConfirmedFilter" class="form-control mr-2" asp-items="emailConfirmedOptions"></select>
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="adminFilter" class="form-label">Admin</label>
+                                <select name="isAdminFilter" class="form-control mr-2" asp-items="isAdminOptions"></select>
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="actifFilter" class="form-label">Actif/Inactif</label>
+                                <select name="isActiveFilter" class="form-control mr-2" asp-items="isActiveOptions"></select>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="btn btn-primary">Filtrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Login</td>
+                <td>@user.Email</td>
+                <td>@(user.EmailConfirmed ? "Oui" : "Non")</td>
+                <td>@(user.IsAdmin ? "Oui" : "Non")</td>
+                <td>@(user.IsActive ? "Oui" : "Non")</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-login="@user.Login" class="btn btn-warning btn-sm">Modifier</a>
+                    <form method="post" asp-page-handler="DeactivateUser" style="display:inline;">
+                        <input type="hidden" name="login" value="@user.Login" />
+                        <button type="button"
+                                class="btn btn-danger btn-sm deactivate-btn"
+                                id="btn-@user.Login"
+                                data-login="@user.Login"
+                                data-active="@user.IsActive"
+                                onclick="confirmDeactivation('@user.Login', '@user.IsActive')">
+                            Désactiver
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Contrôles de pagination -->
+<div class="d-flex justify-content-between align-items-center">
+    <p>Page @Model.Users.PageIndex sur @Model.Users.TotalPages</p>
+
+    <nav>
+        <ul class="pagination">
+            @if (Model.Users.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./Index"
+                       asp-route-pageIndex="@(Model.Users.PageIndex - 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-emailConfirmedFilter="@Request.Query["emailConfirmedFilter"]"
+                       asp-route-isAdminFilter="@Request.Query["isAdminFilter"]"
+                       asp-route-isActiveFilter="@Request.Query["isActiveFilter"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Précédent</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Précédent</span>
+                </li>
+            }
+
+            @if (Model.Users.HasNextPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./Index"
+                       asp-route-pageIndex="@(Model.Users.PageIndex + 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-emailConfirmedFilter="@Request.Query["emailConfirmedFilter"]"
+                       asp-route-isAdminFilter="@Request.Query["isAdminFilter"]"
+                       asp-route-isActiveFilter="@Request.Query["isActiveFilter"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Suivant</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Suivant</span>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+<!-- Modal pour changer le manager -->
+<div class="modal fade" id="NewManagerModal" tabindex="-1" role="dialog" aria-labelledby="managerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="managerModalLabel">Choisir un nouveau manager pour la/les famille(s)</h5>
+                <button type="button" class="close confirmationModalCloseButton" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="accordion" id="familiesAccordion"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary confirmationModalCloseButton" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="confirmManagerChange" onclick="confirmNewManager()">Confirmer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            const currentUserLogin = '@User.Identity.Name'; 
+            $(`#btn-${currentUserLogin}`).prop('disabled', true);
+
+            $('.deactivate-btn').each(function () {
+                const isActive = $(this).data('active') === 'True'; 
+                if (!isActive) {
+                    $(this).prop('disabled', true);
+                }
+            });
+        });
+        $('.confirmationModalCloseButton').on('click', function () {
+            $('#NewManagerModal').modal('hide');
+        });
+        function confirmDeactivation(login, isActive) {
+            if (confirm('Êtes-vous sûr de vouloir désactiver cet utilisateur ?')) {
+                checkManagerStatus(login, isActive);
+            } else {
+                console.log("Désactivation annulée.");
+            }
+        }
+
+        function checkManagerStatus(login, isActive) {
+            isActive = isActive == 'True';
+
+            console.log("checkManagerStatus called with login: " + login + " and isActive: " + isActive);
+
+            if (isActive) {
+                $.ajax({
+                    url: '/Admin/Users/Index?handler=ManagerStatus',
+                    method: 'GET',
+                    data: { login: login },
+                    success: function (response) {
+                        console.log("Manager status response: ", response);
+
+                        if (!response.canDelete) {
+                            console.log("User is a manager, showing modal");
+                            newManager(login)
+
+                        } else {
+                            console.log("User is not a manager, deactivating user");
+                            updateUserStatus(login, false);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Error in AJAX request: ", status, error); 
+                    }
+                });
+            }
+        }
+        function newManager(login) {
+            $.ajax({
+                url: '/Admin/Users/Index?handler=NewManager',
+                method: 'GET',
+                data: { login: login },
+                success: function (response) {
+                    console.log(response)
+                    populateAccordion(response);
+                    checkIfAllFamiliesHaveManager();
+                    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                        radio.addEventListener('change', checkIfAllFamiliesHaveManager); 
+                    });
+                    $("#NewManagerModal").modal('show');
+                    $("#NewManagerModal").data("userLogin", login);
+                    
+                },
+                error: function (xhr, status, error) {
+                    console.error("Erreur lors de la récupération des données :", error);
+                }
+            })
+
+        }
+        function updateUserStatus(login, isActive) {
+            console.log("updateUserStatus called with login: " + login + " and isActive: " + isActive);
+
+            $.ajax({
+                url: '/Admin/Users/Index?handler=DeactivateUser',
+                method: 'POST',
+                data: { login: login },
+                success: function () {
+                    console.log('User successfully deactivated: ' + login);
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.log("AJAX Error: ", xhr.status, status, error);
+                    alert('Erreur lors de la mise à jour de l\'utilisateur.');
+                }
+            });
+        }
+        function populateAccordion(data) {
+            const accordionContainer = document.getElementById("familiesAccordion");
+            accordionContainer.innerHTML = "";
+
+            data.forEach((famille, index) => {
+                const itemId = `collapse${index}`;
+                const headerId = `heading${index}`;
+
+                const usersList = famille.users.map(user =>
+                    `<div class="form-check">
+                                <input class="form-check-input" type="radio" name="managerSelection${famille.id}" id="user-${user.id}" value="${user.id}">
+                                <label class="form-check-label" for="user-${user.id}">
+                                    ${user.nom}
+                                </label>
+                            </div>`
+                ).join("");
+
+                const accordionItem = `
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="${headerId}">
+                                    <button class="accordion-button ${index === 0 ? '' : 'collapsed'}"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#${itemId}"
+                                            aria-expanded="${index === 0}"
+                                            aria-controls="${itemId}">
+                                        ${famille.nom}
+                                    </button>
+                                </h2>
+                                <div id="${itemId}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" aria-labelledby="${headerId}" data-bs-parent="#familiesAccordion">
+                                    <div class="accordion-body">
+                                        <ul>${usersList}</ul>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                accordionContainer.innerHTML += accordionItem;
+            });
+        }
+        function checkIfAllFamiliesHaveManager() {
+            console.log("Vérification de l'état des boutons radio par famille");
+
+            const allRadioGroups = document.querySelectorAll('[name^="managerSelection"]'); 
+
+            let allSelected = true; 
+
+            allRadioGroups.forEach(group => {
+                const isAnyRadioSelected = document.querySelector(`input[name="${group.name}"]:checked`);
+                if (!isAnyRadioSelected) {
+                    allSelected = false; 
+                }
+            });
+
+            const confirmButton = document.getElementById("confirmManagerChange");
+            confirmButton.disabled = !allSelected;  
+        }
+
+
+        function confirmNewManager() {
+            
+            const selectedUser = document.querySelector('[name^="managerSelection"]:checked');
+
+            if (!selectedUser) {
+                alert("Veuillez sélectionner un utilisateur comme nouveau manager.");
+                return;
+            }
+
+            const newManagerId = selectedUser.value;
+            const userLogin = $("#NewManagerModal").data("userLogin");
+
+            if (!userLogin) {
+                alert("Login de l'utilisateur non trouvé.");
+                return;
+            }
+
+            console.log("Nouveau manager ID :", newManagerId, "Pour l'utilisateur :", userLogin);
+            const userFamilies = [];
+            //récupérer le premier élément et le mettre sous la forme suivante
+            //foreach(les groupes de radio bouton)
+            //créer userFamily
+            //ajouter dans  tableau userFamilies
+            //mettre dans le data de la requête ajax
+            //vérifier que je récupère les bonnes données dans le backend
+            const allGroups = document.querySelectorAll('input[type="radio"]:checked'); 
+            allGroups.forEach(selectedOption => {
+                const familyId = selectedOption.name.replace("managerSelection", ""); 
+                const userId = selectedOption.value; 
+
+                const userFamily = {
+                    userId: userId,
+                    familyId: familyId
+                };
+                userFamilies.push(userFamily);
+            });
+
+            if (userFamilies.length === 0) {
+            alert("Veuillez sélectionner au moins un utilisateur comme nouveau manager pour chaque famille.");
+            return;
+            }
+
+            $.ajax({
+                url: '/Admin/Users/Index?handler=ChangeManager', 
+                method: 'POST',
+                data: {
+                    login: userLogin,
+                    userFamilies: userFamilies
+                },
+                success: function () {
+                    alert("Le(s) manager(s) ont été mis à jour avec succès.");
+                    updateUserStatus(userLogin, false);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Erreur lors de la mise à jour du manager :", error);
+                    alert("Une erreur est survenue lors de la mise à jour du manager.");
+                }
+            });
+        }
+        document.getElementById("filterToggle").addEventListener("click", function () {
+            var filterPanel = document.getElementById("filterPanel");
+
+            if (filterPanel.style.display === "none" || filterPanel.style.display === "") {
+                filterPanel.style.display = "block";
+            } else {
+                filterPanel.style.display = "none";
+            }
+        });
+    </script>
+
+}
+

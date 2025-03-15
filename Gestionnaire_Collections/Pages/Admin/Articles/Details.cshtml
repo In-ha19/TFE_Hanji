@@ -1,0 +1,155 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Admin.Articles.DetailsModel
+@{
+    ViewData["Title"] = $"Détails de l'article : {Model.Article.Name}";
+}
+
+<h1>Détails de l'article</h1>
+
+<div class="row">
+    <h4>@Model.Article.Name</h4>
+
+    <!-- Colonne gauche pour l'image -->
+    <div class="col-md-6">
+        <dt class="col-sm-2">Image</dt>
+        @if (!string.IsNullOrEmpty(Model.Article.ImageRoot))
+        {
+            <img src="@Model.Article.ImageRoot" alt="Image de l'article" class="img-fluid article-image" />
+        }
+        else
+        {
+            <span>Image non spécifiée</span>
+        }
+    </div>
+
+    <!-- Colonne droite pour les détails -->
+    <div class="col-md-6">
+
+        <div class="form-group">
+            <label for="toggleDetails">Livre</label>
+            <input type="checkbox" id="toggleDetails" class="switch-checkbox">
+        </div>
+
+        <dl class="row">
+            <dt class="col-sm-4">Nom</dt>
+            <dd class="col-sm-8">@Model.Article.Name</dd>
+
+            <dt class="col-sm-4">Moyenne des évaluations</dt>
+            <dd class="col-sm-8">
+                @(string.IsNullOrEmpty(Model.EvaluationMessage)
+                    ? "Aucune évaluation disponible"
+                    : Model.EvaluationMessage)
+            </dd>
+
+            <div id="detailsFields" class="hidden">
+                <dt class="col-sm-4">Édition</dt>
+                <dd class="col-sm-8">@(!string.IsNullOrEmpty(Model.Article.Edition) ? Model.Article.Edition : "Non spécifié")</dd>
+
+                <dt class="col-sm-4">ISBN</dt>
+                <dd class="col-sm-8">@(!string.IsNullOrEmpty(Model.Article.Isbn) ? Model.Article.Isbn : "Non spécifié")</dd>
+
+                <dt class="col-sm-4">Auteur</dt>
+                <dd class="col-sm-8">@(!string.IsNullOrEmpty(Model.Article.Autor_name) ? Model.Article.Autor_name : "Non spécifié")</dd>
+            </div>
+
+            <dt class="col-sm-4">Résumé</dt>
+            <dd class="col-sm-8">
+                @Html.Raw(!string.IsNullOrEmpty(Model.Article.Summary) ? Model.Article.Summary.Replace("\n", "<br />") : "Non spécifié")
+            </dd>
+
+            <dt class="col-sm-4">Actif</dt>
+            <dd class="col-sm-8">
+                @(Model.Article.Is_active ? "Oui" : "Non")
+            </dd>
+
+            <dt class="col-sm-4">Prix</dt>
+            <dd class="col-sm-8">
+                @(Model.Article.Price.HasValue ? $"{Model.Article.Price.Value:C}" : "Non spécifié")
+            </dd>
+
+            <dt class="col-sm-4">Catégorie principale</dt>
+            <dd class="col-sm-8">
+                @(string.IsNullOrEmpty(Model.Article.SelectedCategoryName) ? "Non spécifiée" : Model.Article.SelectedCategoryName)
+            </dd>
+
+            <dt class="col-sm-4">Catégories secondaires</dt>
+            <div class="row">
+                <dd class="col-sm-8">
+                    @if (Model.Article.SelectedCategoryNameSecondary != null && Model.Article.SelectedCategoryNameSecondary.Any())
+                    {
+                        <div class="table_scroll">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    @foreach (var category in Model.Article.SelectedCategoryNameSecondary)
+                                    {
+                                        <tr>
+                                            <td>@category</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <span>Non spécifiées</span>
+                    }
+                </dd>
+            </div>
+
+            <dt class="col-sm-4">Utilisateurs associés</dt>
+            <div class="row">
+                <dd class="col-sm-8">
+                    @if (Model.Article.Collections.Any())
+                    {
+                        <div class="table_scroll">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Nom d'utilisateur</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var collection in Model.Article.Collections)
+                                    {
+                                        <tr>
+                                            <td>@collection.User.UserName</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <span>Aucun utilisateur associé</span>
+                    }
+                </dd>
+            </div>           
+        </dl>
+
+        <a asp-page="./Edit" asp-route-id="@Model.Article.Id" class="btn btn-warning">Modifier</a>
+        <a asp-page="./Index" class="btn btn-secondary">Retour à la liste</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleDetails = document.getElementById("toggleDetails");
+            const detailsFields = document.getElementById("detailsFields");
+
+            toggleDetails.addEventListener("change", function () {
+                if (this.checked) {
+                    detailsFields.classList.remove("hidden");
+                } else {
+                    detailsFields.classList.add("hidden");
+                }
+            });
+        });
+    </script>
+}
+

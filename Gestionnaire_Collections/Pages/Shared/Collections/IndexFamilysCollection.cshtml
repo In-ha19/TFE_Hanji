@@ -1,0 +1,169 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Shared.Collections.IndexFamilysCollectionModel
+@{
+    ViewData["Title"] = "Liste des collections des familles du user";
+}
+
+<h1>Liste des @Model.Name de mes familles</h1>
+
+<!-- Affichage du message de succès -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@*@if (Model.Articles.Any())
+{*@
+    <table class="table">
+        <thead>
+            <tr>
+            <th>
+                <a asp-route-name="@Model.Name" asp-route-sortColumn="Name" asp-route-sortOrder="@(Model.SortColumn == "Name" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Nom
+                    @if (Model.SortColumn == "Name")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>
+                <a asp-route-name="@Model.Name" asp-route-sortColumn="Edition" asp-route-sortOrder="@(Model.SortColumn == "Edition" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Édition
+                    @if (Model.SortColumn == "Edition")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>
+                <a asp-route-name="@Model.Name" asp-route-sortColumn="Autor_name" asp-route-sortOrder="@(Model.SortColumn == "Autor_name" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Auteur
+                    @if (Model.SortColumn == "Autor_name")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>
+                <a asp-route-name="@Model.Name" asp-route-sortColumn="Date" asp-route-sortOrder="@(Model.SortColumn == "Date" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Date
+                    @if (Model.SortColumn == "Date")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>               
+            <th>Actions</th>
+            <th>
+                <div class="position-relative">
+                    <button id="filterToggle" class="btn btn-light btn_image">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/filter.png" alt="Filtrer" class="filtre_image" />
+                    </button>
+                    <div id="filterPanel" class="position-absolute filtre_div">
+                        <form method="get" class="form-inline d-flex flex-column align-items-start">
+                            <input type="hidden" name="name" value="@Model.Name" />
+                            <div class="mb-2">
+                                <input type="text"
+                                       name="searchString"
+                                       value="@Request.Query["searchString"]"
+                                       class="form-control mr-2"
+                                       placeholder="Rechercher un article" />
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary">Filtrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var article in Model.Articles)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => article.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => article.Edition)</td>
+                    <td>@Html.DisplayFor(modelItem => article.Autor_name)</td>
+                    @*<td>@Html.DisplayFor(modelItem => article.Date)</td>*@
+                    <td>
+                        @{
+                            if (DateTime.TryParse(article.Date, out var parsedDate))
+                            {
+                                @parsedDate.ToString("dd/MM/yyyy")
+                            }
+                        }
+                    </td>
+                    <td>
+                        <a asp-page="./Details" asp-route-id="@article.Id" class="btn btn-info btn-sm">Détails</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+@*else
+{
+    <p>Collections vides.</p>
+}*@
+
+<!-- Contrôles de pagination -->
+<div class="d-flex justify-content-between align-items-center">
+    <p>Page @Model.Articles.PageIndex sur @Model.Articles.TotalPages</p>
+
+    <nav>
+        <ul class="pagination">
+            @if (Model.Articles.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./IndexFamilysCollection"
+                       asp-route-name="@Model.Name"
+                       asp-route-pageIndex="@(Model.Articles.PageIndex - 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Précédent</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Précédent</span>
+                </li>
+            }
+
+            @if (Model.Articles.HasNextPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./IndexFamilysCollection"
+                       asp-route-name="@Model.Name"
+                       asp-route-pageIndex="@(Model.Articles.PageIndex + 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Suivant</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Suivant</span>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+@section Scripts {
+         <script>
+           document.getElementById("filterToggle").addEventListener("click", function () {
+                    var filterPanel = document.getElementById("filterPanel");
+
+                    if (filterPanel.style.display === "none" || filterPanel.style.display === "") {
+                        filterPanel.style.display = "block";
+                    } else {
+                        filterPanel.style.display = "none";
+                    }
+                });
+        </script>
+}

@@ -1,0 +1,23 @@
+﻿@page
+@model Gestionnaire_Collections.Areas.Identity.Pages.Account.ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirmer votre email";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger">
+            @Model.ErrorMessage
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Status))
+    {
+        <div class="alert alert-info">
+            @Model.Status
+        </div>
+    }
+</div>

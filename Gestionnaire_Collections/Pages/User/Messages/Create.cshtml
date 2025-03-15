@@ -1,0 +1,27 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Messages.CreateModel
+@{
+    ViewData["Title"] = "Créer un Message";
+}
+
+<h1>Créer un Message</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Message.UserId" value="@Model.UserId" />
+    <div class="mb-3">
+        <label asp-for="Message.MessageObjet" class="form-label"></label>
+        <input asp-for="Message.MessageObjet" class="form-control" />
+        <span asp-validation-for="Message.MessageObjet" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Message.Text" class="form-label"></label>
+        <textarea asp-for="Message.Text" class="form-control" rows="5" cols="50"></textarea>
+        <span asp-validation-for="Message.Text" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Envoyer</button>
+    <a asp-page="./Index" class="btn btn-secondary">Annuler</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

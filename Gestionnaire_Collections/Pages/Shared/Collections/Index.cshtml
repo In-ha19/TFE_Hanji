@@ -1,0 +1,306 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Shared.Collections.IndexModel
+@{
+    ViewData["Title"] = "Liste des collections";
+}
+
+<h1>Liste des @Model.Name</h1>
+
+<div class="d-flex justify-content-between">
+    <a asp-page="Create" asp-route-name="@Model.Name" class="btn btn-success">Ajouter "@Model.Name"</a>
+
+    <a asp-page="IndexMyCollection" asp-route-name="@Model.Name" class="btn btn-autre">Ma Collection de @Model.Name</a>
+
+    <a asp-page="IndexFamilysCollection" asp-route-name="@Model.Name" class="btn btn-autre">Collections de mes familles</a>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-warning">
+        @Model.ErrorMessage
+    </div>
+}
+else
+{
+   @*@if (Model.Articles.Any())
+    {*@ 
+        <table class="table">
+            <thead>
+                <tr>
+                <th>
+                    <a asp-route-name="@Model.Name" asp-route-sortColumn="Name" asp-route-sortOrder="@(Model.SortColumn == "Name" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                        Nom
+                        @if (Model.SortColumn == "Name")
+                        {
+                            <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                        }
+                    </a>
+                </th>
+                <th>
+                    <a asp-route-name="@Model.Name" asp-route-sortColumn="Edition" asp-route-sortOrder="@(Model.SortColumn == "Edition" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                        Édition
+                        @if (Model.SortColumn == "Edition")
+                        {
+                            <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                        }
+                    </a>
+                </th>
+                <th>
+                    <a asp-route-name="@Model.Name" asp-route-sortColumn="Autor_name" asp-route-sortOrder="@(Model.SortColumn == "Autor_name" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                        Auteur
+                        @if (Model.SortColumn == "Autor_name")
+                        {
+                            <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                        }
+                    </a>
+                </th>
+                <th>
+                    <a asp-route-name="@Model.Name" asp-route-sortColumn="Date" asp-route-sortOrder="@(Model.SortColumn == "Date" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                        Date
+                        @if (Model.SortColumn == "Date")
+                        {
+                            <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                        }
+                    </a>
+                </th>
+                <th>Actions</th>
+                <th>
+                    <div class="position-relative">
+                        <button id="filterToggle" class="btn btn-light btn_image">
+                            <img src="https://img.icons8.com/ios-filled/50/000000/filter.png" alt="Filtrer" class="filtre_image" />
+                        </button>
+                        <div id="filterPanel" class="position-absolute filtre_div">
+                            <form method="get" class="form-inline d-flex flex-column align-items-start">
+                                <input type="hidden" name="name" value="@Model.Name" />
+                                <div class="mb-2">
+                                    <input type="text"
+                                           name="searchString"
+                                           value="@Request.Query["searchString"]"
+                                           class="form-control mr-2"
+                                           placeholder="Rechercher un article" />
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Filtrer</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var article in Model.Articles)
+                {
+                    var isInCollection = Model.UserCollectionArticleIds.Contains(article.Id);
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => article.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => article.Edition)</td>
+                        <td>@Html.DisplayFor(modelItem => article.Autor_name)</td>
+                        @*<td>@Html.DisplayFor(modelItem => article.Date)</td>*@
+                        <td>
+                            @{
+                                if (DateTime.TryParse(article.Date, out var parsedDate))
+                                {
+                                            @parsedDate.ToString("dd/MM/yyyy")
+                                }
+                            }
+                        </td>
+                        <td>
+                            <a asp-page="./Details" asp-route-id="@article.Id" class="btn btn-info btn-sm">Détails</a>
+                            <button class="btn btn-sm btn-success btn-add-to-collection"
+                                    data-id="@article.Id"
+                                    data-price="@article.Price"
+                            @if (isInCollection)
+                            {
+                                <text>disabled</text>
+                            } >
+                                Ajouter à ma collection
+                            </button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+   @*}
+    else
+    {
+        <p>Aucun article trouvé pour cette catégorie.</p>
+    }*@ 
+
+    <!-- Contrôles de pagination -->
+<div class="d-flex justify-content-between align-items-center">
+    <p>Page @Model.Articles.PageIndex sur @Model.Articles.TotalPages</p>
+
+    <nav>
+        <ul class="pagination">
+            @if (Model.Articles.HasPreviousPage)
+            {
+                    <li class="page-item">
+                        <a asp-page="./Index"
+                           asp-route-name="@Model.Name"
+                           asp-route-pageIndex="@(Model.Articles.PageIndex - 1)"
+                           asp-route-searchString="@Request.Query["searchString"]"
+                           asp-route-sortColumn="@Model.SortColumn"
+                           asp-route-sortOrder="@Model.SortOrder"
+                           class="page-link">Précédent</a>
+                    </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Précédent</span>
+                </li>
+            }
+
+            @if (Model.Articles.HasNextPage)
+            {
+                    <li class="page-item">
+                        <a asp-page="./Index"
+                           asp-route-name="@Model.Name"
+                           asp-route-pageIndex="@(Model.Articles.PageIndex + 1)"
+                           asp-route-searchString="@Request.Query["searchString"]"
+                           asp-route-sortColumn="@Model.SortColumn"
+                           asp-route-sortOrder="@Model.SortOrder"
+                           class="page-link">Suivant</a>
+                    </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Suivant</span>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+    <!-- Modale -->
+    <div class="modal fade" id="addToCollectionModal" tabindex="-1" aria-labelledby="addToCollectionLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="addToCollectionForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addToCollectionLabel">Ajouter à ma collection</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="articleId" name="ArticleId" />
+                        @*<div class="mb-3">
+                    <label for="note" class="form-label">Évaluation</label>
+                    <input type="number" class="form-control" id="note" name="Note" min="0" max="5" step="0.1" />
+                    </div>*@
+                        <div class="mb-3">
+                            <label for="note" class="form-label">Évaluation</label>
+                            <div id="star-rating" class="star-rating">
+                                <input type="radio" name="Note" value="5" id="star5" />
+                                <label for="star5" title="5 étoiles">★</label>
+                                <input type="radio" name="Note" value="4" id="star4" />
+                                <label for="star4" title="4 étoiles">★</label>
+                                <input type="radio" name="Note" value="3" id="star3" />
+                                <label for="star3" title="3 étoiles">★</label>
+                                <input type="radio" name="Note" value="2" id="star2" />
+                                <label for="star2" title="2 étoiles">★</label>
+                                <input type="radio" name="Note" value="1" id="star1" />
+                                <label for="star1" title="1 étoile">★</label>
+                            </div>
+                        </div>                       
+                        
+                        <div class="mb-3">
+                            <label for="statut" class="form-label">Statut</label>
+                            <select class="form-control" id="statut" name="Statut">
+                                <option value="0">À lire</option>
+                                <option value="1">En cours</option>
+                                <option value="2">Terminé</option>
+                                <option value="3">Aucun</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="text" class="form-label">Note</label>
+                            <textarea class="form-control" id="text" name="Text"></textarea>
+                        </div>                       
+                        <div class="mb-3">
+                            <label for="purchasedPrice" class="form-label">Prix d'achat</label>
+                            <input type="text" class="form-control" id="purchasedPrice" name="Purchased_Price" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="purchasedDate" class="form-label">Date d'achat</label>
+                            <input type="date" class="form-control" id="purchasedDate" name="Purchased_Date" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        document.getElementById('purchasedPrice').addEventListener('input', function (e) {
+            let value = e.target.value.replace(',', '.');
+            e.target.value = value;
+        });
+        $(document).ready(function () {
+            $(".star-rating input[type='radio']").change(function () {
+                var note = $(this).val();
+                console.log("Note sélectionnée : " + note); 
+            });
+
+            $(".btn-add-to-collection").click(function () {
+                if ($(this).is(":disabled")) {
+                    return; 
+                }
+                var articleId = $(this).data("id");
+                var price = $(this).data("price");
+                console.log(price);
+                console.log(articleId);
+                $("#articleId").val(articleId);
+                $("#purchasedPrice").val(price);
+                $("#addToCollectionModal").modal("show");
+            });
+
+            $("#addToCollectionForm").submit(function (e) {
+                e.preventDefault();
+
+                var formData = $(this).serialize();
+                console.log(formData);
+
+                $.ajax({
+                    url: '@Url.Page("/Shared/Collections/Index", "AddToCollection")',
+                    method: "POST",
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            $("#addToCollectionModal").modal("hide");
+                            alert("L'article a été ajouté à votre collection avec succès !");
+                            location.reload();
+                        }
+                        else {
+                            $("#addToCollectionModal").modal("hide");
+                            alert(response.message);
+                        }   
+                    },
+                    error: function () {
+                        alert("Une erreur s'est produite lors de l'ajout à la collection.");
+                    }
+                });
+            });
+        });
+
+        document.getElementById("filterToggle").addEventListener("click", function () {
+            var filterPanel = document.getElementById("filterPanel");
+
+            if (filterPanel.style.display === "none" || filterPanel.style.display === "") {
+                filterPanel.style.display = "block";
+            } else {
+                filterPanel.style.display = "none";
+            }
+        });
+    </script>
+}
+
+

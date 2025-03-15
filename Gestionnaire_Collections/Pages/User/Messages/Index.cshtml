@@ -1,0 +1,233 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Messages.IndexModel
+@{
+    ViewData["Title"] = "Mes Messages";
+}
+
+<h1>Liste de mes Messages</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-success">Envoyer un message à l'administrateur</a>
+</p>
+
+@{
+    var statusOptions = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Sélectionner un statut", Value = "" },
+        new SelectListItem { Text = "En attente", Value = "0", Selected = Request.Query["statusFilter"] == "0" },
+        new SelectListItem { Text = "Accepté", Value = "1", Selected = Request.Query["statusFilter"] == "1" },
+        new SelectListItem { Text = "Refusé", Value = "2", Selected = Request.Query["statusFilter"] == "2" }
+    };
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-warning">
+        @Model.ErrorMessage
+    </div>
+}
+else
+{
+   @*@if (Model.Messages.Any())
+    {*@ 
+        <table class="table">
+            <thead>
+                <tr>
+            <th>
+                <a asp-route-sortColumn="MessageObjet" asp-route-sortOrder="@(Model.SortColumn == "MessageObjet" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Objet du message
+                    @if (Model.SortColumn == "MessageObjet")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>
+                <a asp-route-sortColumn="Date" asp-route-sortOrder="@(Model.SortColumn == "Date" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Date
+                    @if (Model.SortColumn == "Date")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+                    <th>@Html.DisplayNameFor(model => model.Messages[0].Statut)</th>
+                    <th>Actions</th>
+            <th>
+                <div class="position-relative">
+                    <button id="filterToggle" class="btn btn-light btn_image">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/filter.png" alt="Filtrer" class="filtre_image" />
+                    </button>
+                    <div id="filterPanel" class="position-absolute filtre_div">
+                        <form method="get" class="form-inline d-flex flex-column align-items-start">
+                            <div class="mb-2">
+                                <input type="text"
+                                       name="searchString"
+                                       value="@Request.Query["searchString"]"
+                                       class="form-control mr-2"
+                                       placeholder="Rechercher un message" />
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="dateFilter" class="form-label">Filtrer par date</label>
+                                <input type="date"
+                                       name="dateFilter"
+                                       value="@Request.Query["dateFilter"]"
+                                       class="form-control" />
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="statusFilter" class="form-label">Filtrer par statut</label>
+                                <select name="statusFilter" class="form-control" asp-items="statusOptions"></select>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="btn btn-primary">Filtrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var message in Model.Messages)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => message.MessageObjet)</td>
+                        <td>@message.Date.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            @{
+                                var statutHtml = message.Statut switch
+                                {
+                                    0 => "<span class='text-warning'>En attente</span>",
+                                    1 => "<span class='text-success'>Accepté</span>",
+                                    2 => "<span class='text-danger'>Refusé</span>",
+                                    _ => "<span class='text-secondary'>Inconnu</span>"
+                                };
+                            }
+                            @Html.Raw(statutHtml)
+                        </td>
+                        <td>
+                            <a asp-page="./Details" asp-route-id="@message.Id" class="btn btn-info btn-sm">Détails</a>
+                            <button class="btn btn-danger btn-sm btn-delete" data-id="@message.Id"
+                                @(message.Statut != 0 ? "disabled" : "")>
+                                    Supprimer
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    @*}
+    else
+    {
+        <p>Vous n'avez aucun message pour le moment.</p>
+    }*@
+}
+
+<!-- Contrôles de pagination -->
+<div class="d-flex justify-content-between align-items-center">
+    <p>Page @Model.Messages.PageIndex sur @Model.Messages.TotalPages</p>
+
+    <nav>
+        <ul class="pagination">
+            @if (Model.Messages.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./Index"
+                       asp-route-pageIndex="@(Model.Messages.PageIndex - 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-dateFilter="@Request.Query["dateFilter"]"
+                       asp-route-statusFilter="@Request.Query["statusFilter"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Précédent</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Précédent</span>
+                </li>
+            }
+
+            @if (Model.Messages.HasNextPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./Index"
+                       asp-route-pageIndex="@(Model.Messages.PageIndex + 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-dateFilter="@Request.Query["dateFilter"]"
+                       asp-route-statusFilter="@Request.Query["statusFilter"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Suivant</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Suivant</span>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+<!-- Modal de confirmation -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmer la suppression</h5>
+                <button type="button" class="close confirmationModalCloseButton" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Voulez-vous vraiment supprimer ce message ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary confirmationModalCloseButton" data-dismiss="modal">Annuler</button>
+                <form id="deleteForm" method="post" asp-page-handler="Delete" style="display:inline;">
+                    <input type="hidden" name="id" id="messageIdToDelete" />
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.btn-delete').on('click', function () {
+                const messageId = $(this).data('id');
+                $('#messageIdToDelete').val(messageId);
+                $('#deleteModal').modal('show');
+            });
+
+            $('.confirmationModalCloseButton').on('click', function () {
+                $('#deleteModal').modal('hide');
+            });
+        });
+
+        document.getElementById("filterToggle").addEventListener("click", function () {
+            var filterPanel = document.getElementById("filterPanel");
+
+            if (filterPanel.style.display === "none" || filterPanel.style.display === "") {
+                filterPanel.style.display = "block";
+            } else {
+                filterPanel.style.display = "none";
+            }
+        });
+    </script>
+}

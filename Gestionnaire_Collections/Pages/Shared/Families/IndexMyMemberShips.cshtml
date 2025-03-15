@@ -1,0 +1,301 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Shared.Families.IndexMyMemberShipsModel
+@{
+    ViewData["Title"] = "Mes adhésions";
+}
+
+<h1>Liste de mes adhésions</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sortColumn="Name" asp-route-sortOrder="@(Model.SortColumn == "Name" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Nom
+                    @if (Model.SortColumn == "Name")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>
+                <a asp-route-sortColumn="Description" asp-route-sortOrder="@(Model.SortColumn == "Description" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Description
+                    @if (Model.SortColumn == "Description")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>
+                Actions
+            </th>
+            <th>
+                <div class="position-relative">
+                    <button id="filterToggle" class="btn btn-light btn_image">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/filter.png" alt="Filtrer" class="filtre_image" />
+                    </button>
+                    <div id="filterPanel" class="position-absolute filtre_div">
+                        <form method="get" class="form-inline d-flex flex-column align-items-start">
+                            <div class="mb-2">
+                                <input type="text"
+                                       name="searchString"
+                                       value="@Request.Query["searchString"]"
+                                       class="form-control mr-2"
+                                       placeholder="Nom, description" />
+                            </div>
+
+                            <div>
+                                <button type="submit" class="btn btn-primary">Filtrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FamilyLeave)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Family.Name)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Family.Description)
+                </td>*@
+                <td data-bs-toggle="tooltip" data-bs-placement="top" title="@(item.Family.Description ?? "")">
+                    @(string.IsNullOrEmpty(item.Family.Description) ? "" :
+                        (item.Family.Description.Length > 50 ? item.Family.Description.Substring(0, 50) + "..." : item.Family.Description))
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm btn-remove"
+                            data-id="@item.Family.Id"
+                            data-is-manager="@item.Is_manager"
+                            data-user-id="@User.Identity.Name">
+                        Quitter
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Contrôles de pagination -->
+<div class="d-flex justify-content-between align-items-center">
+    <p>Page @Model.FamilyLeave.PageIndex sur @Model.FamilyLeave.TotalPages</p>
+
+    <nav>
+        <ul class="pagination">
+            @if (Model.FamilyLeave.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./IndexMyMemberShipsModel"
+                       asp-route-pageIndex="@(Model.FamilyLeave.PageIndex - 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Précédent</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Précédent</span>
+                </li>
+            }
+
+            @if (Model.FamilyLeave.HasNextPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./IndexMyMemberShipsModel"
+                       asp-route-pageIndex="@(Model.FamilyLeave.PageIndex + 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Suivant</a>
+                </li>
+
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Suivant</span>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+<!-- Modal pour changer le manager -->
+<div class="modal fade" id="NewManagerModal" tabindex="-1" role="dialog" aria-labelledby="managerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="managerModalLabel">Choisir un nouveau manager pour votre famille</h5>
+                <button type="button" class="close confirmationModalCloseButton" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <p>Choisissez un nouveau manager parmi les membres disponibles :</p>
+                    <ul id="memberList" class="list-group">
+                        <!-- Les membres seront insérés ici  -->
+                    </ul>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary confirmationModalCloseButton" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="confirmManagerChange" onclick="confirmNewManager()" disable>Confirmer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+        function confirmNewManager() {
+            var newManagerId = $('input[name="newManager"]:checked').val(); 
+            var familyId = $('#memberList').data('family-id'); 
+            var currentUserId = $('button.btn-remove[data-id="' + familyId + '"]').data('user-id'); 
+
+            if (!newManagerId) {
+                alert('Veuillez sélectionner un nouveau manager.');
+                return;
+            }
+
+            $.ajax({
+                url: '/Shared/Families/IndexMyMemberShips?handler=UpdateManagerAndQuit', 
+                method: 'POST',
+                data: {
+                    familyId: familyId,
+                    newManagerId: newManagerId,
+                    currentUserId: currentUserId
+                },
+                success: function () {
+                    alert('Le nouveau manager a été défini et vous avez quitté la famille.');
+                    location.reload(); 
+                },
+                error: function (xhr, status, error) {
+                    console.log("Erreur : ", status, error);
+                    alert('Erreur lors de la mise à jour du manager et de la suppression de votre adhésion. Vérifier votre serveur SMTP local/visionneur de courriels.');
+                }
+            });
+        }
+        $(document).ready(function () {
+            $('#confirmManagerChange').prop('disabled', true);
+
+            $(document).on('change', 'input[name="newManager"]', function () {
+                if ($('input[name="newManager"]:checked').length > 0) {
+                    $('#confirmManagerChange').prop('disabled', false);  
+                } else {
+                    $('#confirmManagerChange').prop('disabled', true);  
+                }
+            });
+            $('.confirmationModalCloseButton').on('click', function () {
+                $('#NewManagerModal').modal('hide');
+            });
+
+            $('button.btn-remove').click(function () {
+                var familyId = $(this).data('id');
+                var isManager = $(this).data('is-manager');
+                var currentUserId = $(this).data('user-id');
+                console.log("Family ID:", familyId);
+                console.log("Is Manager:", isManager);
+                console.log("Current User ID:", currentUserId);
+                $.ajax({
+                    url: '/Shared/Families/IndexMyMemberShips?handler=Members',
+                    method: 'GET',
+                    data: {
+                        familyId: familyId,
+                        currentUserId: currentUserId
+                    },
+                    success: function (members) {
+                        console.log('onSuccess');
+                        console.log(members);
+                        confirmQuit(familyId, isManager, members);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Erreur lors de la récupération des membres : ", status, error);
+                        alert('Erreur lors de la récupération des membres.');
+                    }
+                });
+            });
+
+            function confirmQuit(familyId, isManager, members) {
+                console.log('confirmQuit');
+                console.log(members);
+                if (confirm('Êtes-vous sûr de vouloir quitter cette famille ?')) {
+                    console.log("Is Manager:", isManager);
+                    if (isManager === 'True') {
+                        var memberList = $('#memberList');
+                        memberList.empty();
+                        memberList.data('family-id', familyId);
+                        if (members && members.length > 0) {
+                            members.forEach(function (member) {
+                                var listItem = `
+                                            <li class="list-group-item">
+                                                <input type="radio" name="newManager" value="${member.userId}" id="manager_${member.userId}">
+                                                <label for="manager_${member.userId}">${member.userName}</label>
+                                            </li>`;
+                                $('#memberList').append(listItem);
+                            });
+                            $("#NewManagerModal").modal('show');
+                        } else {
+                            deleteFamilyAndUser(familyId);
+                        }
+                    } else {
+                        quitFamily(familyId);
+                    }
+                }
+            }
+
+            function deleteFamilyAndUser(familyId) {
+                $.ajax({
+                    url: '/Shared/Families/IndexMyMemberShips?handler=DeleteFamilyAndAssociation',
+                    method: 'POST',
+                    data: { familyId: familyId },
+                    success: function () {
+                        location.reload(); 
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Erreur lors de la suppression de la famille et de l'association : ", status, error);
+                        alert('Erreur lors de la suppression de la famille et de l\'association.');
+                    }
+                });
+            }
+
+            function quitFamily(familyId) {
+                console.log("coucou");
+                $.ajax({
+                    url: '/Shared/Families/IndexMyMemberShips?handler=QuitFamily',
+                    method: 'POST',
+                    data: { familyId: familyId },
+                    success: function () {
+                        alert('Vous avez quitté la famille avec succès.');
+                        location.reload(); 
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Erreur lors de la suppression de l'association : ", status, error);
+                        alert('Erreur lors de la suppression de l\'association.');
+                    }
+                });
+            }
+        });
+        document.getElementById("filterToggle").addEventListener("click", function () {
+            var filterPanel = document.getElementById("filterPanel");
+
+            if (filterPanel.style.display === "none" || filterPanel.style.display === "") {
+                filterPanel.style.display = "block";
+            } else {
+                filterPanel.style.display = "none";
+            }
+        });
+    </script>
+}
+

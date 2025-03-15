@@ -1,0 +1,360 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+/* Styles pour la liste des membres d'une famille */
+.scrollable-table {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.scrollable-table .table {
+    margin-bottom: 0; 
+}
+
+/*Style pour le select des catégories secondaire*/
+.custom-multi-select-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
+}
+
+    .custom-multi-select-wrapper select.custom-multi-select {
+        width: 300px;
+        height: 150px;
+        border-radius: 4px;
+    }
+
+    .custom-multi-select-wrapper .custom-multi-select-btn-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+        .custom-multi-select-wrapper .custom-multi-select-btn-wrapper .btn-add {
+            text-align: center;
+            border-radius: 4px;
+            width: 50px;
+            height: 50px;
+            margin-bottom: 4px;
+            background-color: #bfc3c9;
+            border-color: #bfc3c9;
+        }
+
+        .custom-multi-select-wrapper .custom-multi-select-btn-wrapper .btn-substract {
+            text-align: center;
+            border-radius: 4px;
+            width: 50px;
+            height: 50px;
+            margin-top: 4px;
+            background-color: #bfc3c9;
+            border-color: #bfc3c9;
+        }
+
+/*Style pour la couleur du btn activer user*/
+
+.btn-ActiveUser {
+    background-color: #03cefc;
+}
+
+/*Style pour les images des articles */
+.article-image {
+    width: 350px; 
+    height: 350px; 
+    object-fit: cover;
+    /*float: right; 
+    margin-left: 20px; */
+}
+
+/*Style pour les tableaux avec scroll */
+.table_scroll {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+/*Style des étoiles pour les notes */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 5px;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+    .star-rating label {
+        font-size: 2rem;
+        color: #ccc;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: #f5c518;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f5c518;
+}
+
+/*Style pour la table de user possèdant cet article */
+/*#userTable {
+    max-height: 300px;
+    overflow-y: auto;
+    display: block;
+    width: 100%;
+}*/
+
+#familyUsersSection {
+    display: none;
+    width: center;
+}
+
+#userTable {
+    width: auto;
+    max-width: 100%; /* Empêche le débordement */
+    table-layout: auto; /* Permet aux colonnes de s'ajuster à leur contenu */
+    white-space: max-content; /* Empêche le retour à la ligne */
+}
+
+/*Style pour la table des statistiques  */
+#table_statistica {
+    max-height: 300px;
+    overflow-y: auto;
+    display: block;
+    width: 100%;
+}
+
+/*Style pour les filtres*/
+.filtre {
+    width: 250px;
+}
+.filtre_div{
+    z-index: 20;
+    top: 50px;
+    right: 10px; 
+    width: 250px;
+    display: none;
+    background: white;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn_image{
+    top: 10px;
+    right: 10px;
+    border: none;
+}
+
+.filtre_image{
+    width: 16px;
+    height: 16px;
+}
+
+#tableau_depense_categorie:target {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/*Style pour les scroll des tableaux de statistiques*/
+.tableau_stat_scroll {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/*Style pour l'image de la page d'accueil*/
+.image-container {
+    background-image: url('/images/Fond_image.png'); 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: calc(100vh - 60px); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    z-index: 1;
+}
+
+.text-center {
+    position: relative;
+    z-index: 2;
+}
+
+/*Style pour la barre de navigation*/
+.nav_color_blue {
+    color: #007BFF !important
+}
+
+.nav_hover:hover {
+   text-decoration: underline;
+}
+
+.nav_color_pink {
+    color: #ff99cc !important
+}
+
+.nav_color_cat {
+    color: #a64dff !important
+}
+
+/*Style de la page d'accueil*/
+
+/*Style pour le texte de la page d'accueil*/
+.text_accueil {
+    color: black;
+    position: absolute;
+    top: 150px;
+    left: 0;
+    right: 0;
+}
+
+.p_font {
+    font-weight: bold;
+}
+
+.div_welcome {
+    position: relative;
+}
+
+.h1_welcome {
+    font-weight: bold;
+}
+
+/*Style pour les boutons*/
+.btn-primary {
+    background-color: #66a3ff !important;
+    border-color: #66a3ff !important;
+}
+    .btn-primary:hover,
+    .btn-primary:focus {
+        background-color: #3385ff !important; 
+        border-color: #3385ff !important;
+    }
+
+.btn-delete {
+    background-color: #ff0066 !important;
+    border-color: #ff0066 !important;
+    color: white !important;
+}
+
+    .btn-delete:hover,
+    .btn-delete:focus {
+        background-color: #e60059 !important; 
+        border-color: #e60059 !important; 
+    }
+
+.btn-info {
+    background-color: #ffe066 !important;
+    border-color: #ffe066 !important;
+    color: white !important;
+}
+
+    .btn-info:hover,
+    .btn-info:focus {
+        background-color: #e6cc4c !important;
+        border-color: #e6cc4c !important;
+    }
+
+.btn-warning {
+    background-color: #cc99ff !important;
+    border-color: #cc99ff !important;
+    color: white !important;
+}
+
+    .btn-warning:hover,
+    .btn-warning:focus {
+        background-color: #b38aff !important; 
+        border-color: #b38aff !important; 
+    }
+
+.btn-active {
+    background-color: #99ff99;
+}
+
+.btn-success {
+    background-color: #66a3ff !important;
+    border-color: #66a3ff !important;
+    color: white !important;
+}
+
+    .btn-success:hover,
+    .btn-success:focus {
+        background-color: #4d8aff !important; 
+        border-color: #4d8aff !important;
+    }
+
+.btn-autre {
+    background-color: #bfc3c9 !important;
+    border-color: #bfc3c9 !important;
+    color: white !important;
+}
+
+    .btn-autre:hover,
+    .btn-autre:focus {
+        background-color: #ff80b3 !important; 
+        border-color: #ff80b3 !important; 
+    }
+
+/*Style pour la checkbox */
+.switch-checkbox {
+    width: 30px;
+    height: 15px;
+    appearance: none;
+    background: #ddd;
+    border-radius: 15px;
+    position: relative;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+    .switch-checkbox:checked {
+        background: #4caf50;
+    }
+
+    .switch-checkbox::before {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 10px;
+        height: 10px;
+        background: white;
+        border-radius: 50%;
+        transition: transform 0.3s;
+    }
+
+    .switch-checkbox:checked::before {
+        transform: translateX(15px);
+    }
+
+.hidden {
+    display: none;
+}
+
+/*Style pour les liens page login */

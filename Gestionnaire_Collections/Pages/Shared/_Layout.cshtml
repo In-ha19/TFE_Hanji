@@ -1,0 +1,137 @@
+﻿@using Gestionnaire_Collections.Services
+@inject ICategoryService CategoryService
+
+<!DOCTYPE html>
+<html lang="fr-be">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Gestionnaire_Collections</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Gestionnaire_Collections.styles.css" asp-append-version="true" />
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">
+                        <img src="/images/Logo_Hanji.png" alt="Hanji Logo" style="height: 200px; margin-right: 8px;">
+                    </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark nav_hover" asp-area="" asp-page="/Index">Accueil</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Admin"))
+                            {
+                                <!-- Options de navigation pour les administrateurs -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark nav_hover" asp-area="" asp-page="/Admin/Users/Index">Utilisateurs</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark nav_hover" asp-area="" asp-page="/Admin/Categories/Index">Catégories</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark nav_hover" asp-area="" asp-page="/Admin/Articles/Index">Articles</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark nav_hover" asp-area="" asp-page="/Admin/Messages/Index">Messages</a>
+                                </li>
+
+                            }
+                            else
+                            {
+                                <!-- Options de navigation pour les utilisateurs connectés non admin -->                                              
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark nav_hover" asp-area="" asp-page="/User/Messages/Index">Messages</a>
+                                </li>                                
+                            }
+
+                            <!-- Options de navigation pour les utilisateurs connéctés -->
+                            @*<li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Shared/Collection/Index">Mes Collections</a>
+                        </li>*@
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-dark nav_hover nav_color_cat" id="navbarDropdownCategories" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Catégories
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownCategories">
+                                        @foreach (var category in await CategoryService.GetPrincipalCategoriesAsync())
+                                        {
+                                            <li><a class="dropdown-item" asp-area="" asp-page="/Shared/Collections/Index" asp-route-name="@category.Name">@category.Name</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark nav_hover" asp-area="" asp-page="/Shared/Families/Index">Familles</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark nav_hover" asp-area="" asp-page="/Shared/Notepads/Index">Notes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark nav_hover" asp-area="" asp-page="/Shared/Statisticals/Index">Dépenses</a>
+                            </li>
+                            if (!User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <!--<a class="nav-link text-dark" id="profileLink" asp-page="/User/Profil/Index" asp-route-name="@User.Identity.Name">Mon Profil</a>-->
+                                    <a class="nav-link text-dark nav_hover" id="profileLink" href="/User/Profil/Index?name=@User.Identity.Name">Profil</a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark nav_hover nav_color_blue" asp-area="Identity" asp-page="/Account/Logout">Déconnexion</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <!-- Options de navigation pour les visiteurs non connectés -->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark nav_hover nav_color_blue" asp-area="Identity" asp-page="/Account/Login">Connexion</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark nav_hover nav_color_pink" asp-area="Identity" asp-page="/Account/Register">S'inscrire</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <p>
+                <strong>Hanji</strong> mon gestionnaire de collection
+                <span style="display: inline-block;">
+                    <img src="/images/cherry-blossom_1f338.png" alt="Fleur de Sakura" style="width: 20px; height: 20px; vertical-align: middle;">
+                </span>
+            </p>
+        </div>
+
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

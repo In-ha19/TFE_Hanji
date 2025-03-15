@@ -1,0 +1,238 @@
+﻿@page
+@using System.Globalization
+@model Gestionnaire_Collections.Pages.Shared.Statisticals.IndexModel
+@{
+    ViewData["Title"] = "Statistiques de dépenses";
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-warning">
+        @Model.ErrorMessage
+    </div>
+}
+else
+{
+    @if (Model.SelectedYear > 0 || Model.SelectedMonth > 0)
+    {
+        <p>
+            Vous avez sélectionné :
+            <strong>@Model.SelectedYear</strong>
+            @if (Model.SelectedMonth.GetValueOrDefault() > 0)
+            {
+                <span>- @CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Model.SelectedMonth.GetValueOrDefault())</span>
+            }
+            else
+            {
+                <span>- Tous les mois</span>
+            }
+            <br />
+            <h3>
+                Total des dépenses pour @Model.SelectedMonth/@Model.SelectedYear :
+                <strong>@Model.TotalExpensesFiltered.ToString("C", CultureInfo.CurrentCulture)</strong>
+            </h3>
+            @if (Model.CategoryExpensesFiltered != null && Model.CategoryExpensesFiltered.Any())
+            {
+                <h4>Dépenses par catégorie pour @Model.SelectedMonth/@Model.SelectedYear :</h4>
+                <div class="tableau_stat_scroll" >
+                    <table class="table table-striped table_statistical">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <a asp-route-sortColumn="CategoryName" asp-route-sortOrder="@(Model.SortColumn == "CategoryName" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                                        Catégorie
+                                        @if (Model.SortColumn == "CategoryName")
+                                        {
+                                            <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                                        }
+                                    </a>
+                                </th>
+                                <th>
+                                    <a asp-route-sortColumn="TotalSpent" asp-route-sortOrder="@(Model.SortColumn == "TotalSpent" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                                        Dépense
+                                        @if (Model.SortColumn == "TotalSpent")
+                                        {
+                                            <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                                        }
+                                    </a>
+                                </th>
+                                <th>
+                                    <div class="position-relative">
+                                        <button id="filterToggle" class="btn btn-light btn_image">
+                                            <img src="https://img.icons8.com/ios-filled/50/000000/filter.png" alt="Filtrer" class="filtre_image" />
+                                        </button>
+                                        <div id="filterPanel" class="position-absolute filtre_div">
+                                            <form method="get" class="form-inline d-flex flex-column align-items-start">
+                                                <div class="mb-2">
+                                                    <input type="text"
+                                                           name="searchString1"
+                                                           value="@Request.Query["searchString1"]"
+                                                           class="form-control mr-2"
+                                                           placeholder="Rechercher une catégorie" />
+                                                </div>
+
+                                                <div>
+                                                    <button type="submit" class="btn btn-primary">Filtrer</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var expense in Model.CategoryExpensesFiltered)
+                            {
+                                <tr>
+                                    <td>@expense.CategoryName</td>
+                                    <td>@expense.TotalSpent.ToString("C", CultureInfo.CurrentCulture)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+            <p>Aucune dépense par catégorie n'est disponible pour cette période.</p>
+            }
+
+        </p>
+    }
+    else
+    {
+        <p>
+            Aucune sélection effectuée. Total des dépenses pour toute la collection :
+            <strong>@Model.TotalCollectionPrice.ToString("C", CultureInfo.CurrentCulture)</strong>
+        </p>
+    }
+    <form method="get">
+        <div class="form-group">
+            <label for="yearSelect">Année :</label>
+            <select id="yearSelect" name="year" class="form-control" onchange="this.form.submit()">
+                @for (int i = DateTime.Now.Year; i >= 2000; i--)
+                {
+                    <option value="@i" selected="@(i == Model.SelectedYear)">@i</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="monthSelect">Mois :</label>
+            <select id="monthSelect" name="month" class="form-control" onchange="this.form.submit()">
+                <option value="" selected="@(Model.SelectedMonth == 0)">Tous les mois</option>
+                @for (int i = 1; i <= 12; i++)
+                {
+                    <option value="@i" selected="@(i == Model.SelectedMonth)">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i)</option>
+                }
+            </select>
+        </div>
+    </form>
+
+    <canvas id="expensesChart" width="400" height="200"></canvas>
+
+    <h3>Total des dépenses globales : <strong>@Model.TotalCollectionPrice.ToString("C", CultureInfo.CurrentCulture)</strong></h3>
+    <p>Ce prix est indicatif et dépend du prix indiqué dans la fiche de l'article</p>
+    <div class="tableau_stat_scroll" id="tableau_depense_categorie" tabindex="-1">
+        <table class="table table-striped table_statistical">
+            <thead>
+                <tr>
+                    <th>
+                        <a asp-route-sortColumn2="CategoryName" asp-route-sortOrder2="@(Model.SortColumn2 == "CategoryName" && Model.SortOrder2 == "asc" ? "desc" : "asc")" asp-fragment="tableau_depense_categorie">
+                            Catégorie
+                            @if (Model.SortColumn2 == "CategoryName")
+                            {
+                                <span>(@(Model.SortOrder2 == "asc" ? "⬆" : "⬇"))</span>
+                            }
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-route-sortColumn2="TotalSpent" asp-route-sortOrder2="@(Model.SortColumn2 == "TotalSpent" && Model.SortOrder2 == "asc" ? "desc" : "asc")" asp-fragment="tableau_depense_categorie">
+                            Dépense
+                            @if (Model.SortColumn2 == "TotalSpent")
+                            {
+                                <span>(@(Model.SortOrder2 == "asc" ? "⬆" : "⬇"))</span>
+                            }
+                        </a>
+                    </th>
+                    <th>
+                        <div class="position-relative">
+                            <button id="filterToggle2" class="btn btn-light btn_image">
+                                <img src="https://img.icons8.com/ios-filled/50/000000/filter.png" alt="Filtrer" class="filtre_image" />
+                            </button>
+                            <div id="filterPanel2" class="position-absolute filtre_div">
+                                <form method="get" class="form-inline d-flex flex-column align-items-start" asp-fragment="tableau_depense_categorie">
+                                    <input type="hidden" name="fragment" value="tableau_depense_categorie" />
+                                    <div class="mb-2">
+                                        <input type="text"
+                                               name="searchString2"
+                                               value="@Request.Query["searchString2"]"
+                                               class="form-control mr-2"
+                                               placeholder="Rechercher une catégorie" />
+                                    </div>
+
+                                    <div>
+                                        <button type="submit" class="btn btn-primary">Filtrer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var expense in Model.CategoryExpenses)
+                {
+                    <tr>
+                        <td>@expense.CategoryName</td>
+                        <td>@expense.TotalSpent €</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('expensesChart').getContext('2d');
+        var expensesChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Serialize(CultureInfo.CurrentCulture.DateTimeFormat.MonthNames.Take(12))),
+                datasets: [{
+                    label: 'Dépenses mensuelles',
+                    data: @Html.Raw(Json.Serialize(Model.MonthlyExpenses)),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        document.getElementById("filterToggle")?.addEventListener("click", function () {
+            var filterPanel = document.getElementById("filterPanel");
+
+            if (filterPanel.style.display === "none" || filterPanel.style.display === "") {
+                filterPanel.style.display = "block";
+            } else {
+                filterPanel.style.display = "none";
+            }
+        });
+        console.log("coucou");
+        document.getElementById("filterToggle2").addEventListener("click", function () {
+            var filterPanel2 = document.getElementById("filterPanel2");
+
+            if (filterPanel2.style.display === "none" || filterPanel2.style.display === "") {
+                filterPanel2.style.display = "block";
+            } else {
+                filterPanel2.style.display = "none";
+            }
+        });
+    </script>
+}

@@ -1,0 +1,197 @@
+0000000000000000000000000000000000000000 b42371ab595ec0b0d42a0c9e79862714819a16ad LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733584630 +0100	commit (initial): gitignore
+b42371ab595ec0b0d42a0c9e79862714819a16ad bf05c6e39f61f8fce2b31872f9d1ec89a4a0d76b LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733584649 +0100	commit: Initial commit
+bf05c6e39f61f8fce2b31872f9d1ec89a4a0d76b bf05c6e39f61f8fce2b31872f9d1ec89a4a0d76b LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733584815 +0100	checkout: moving from master to demo-git
+bf05c6e39f61f8fce2b31872f9d1ec89a4a0d76b bf05c6e39f61f8fce2b31872f9d1ec89a4a0d76b LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733584817 +0100	checkout: moving from demo-git to master
+bf05c6e39f61f8fce2b31872f9d1ec89a4a0d76b bf05c6e39f61f8fce2b31872f9d1ec89a4a0d76b LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733584818 +0100	checkout: moving from master to demo-git
+bf05c6e39f61f8fce2b31872f9d1ec89a4a0d76b bf05c6e39f61f8fce2b31872f9d1ec89a4a0d76b LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733584819 +0100	checkout: moving from demo-git to master
+bf05c6e39f61f8fce2b31872f9d1ec89a4a0d76b bf05c6e39f61f8fce2b31872f9d1ec89a4a0d76b LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733584826 +0100	checkout: moving from master to demo-git
+bf05c6e39f61f8fce2b31872f9d1ec89a4a0d76b 7e57d923706e6716152a540d9735555924554809 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733584854 +0100	commit: ajout commentaires dans OnPostDeactivateUserAsync
+7e57d923706e6716152a540d9735555924554809 849114fb03242c53d7f4861133ba8388fd2c5769 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733584888 +0100	revert: Revert "ajout commentaires dans OnPostDeactivateUserAsync"
+849114fb03242c53d7f4861133ba8388fd2c5769 70cc4389994e1d7c360dc6a3c4b8242e4db20ce8 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733584911 +0100	commit: commentaires
+70cc4389994e1d7c360dc6a3c4b8242e4db20ce8 bf05c6e39f61f8fce2b31872f9d1ec89a4a0d76b LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733584922 +0100	checkout: moving from demo-git to master
+bf05c6e39f61f8fce2b31872f9d1ec89a4a0d76b 70cc4389994e1d7c360dc6a3c4b8242e4db20ce8 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733584945 +0100	merge demo-git: Fast-forward
+70cc4389994e1d7c360dc6a3c4b8242e4db20ce8 8043204fc0d184573bdfdeae34547288975218cd LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733584999 +0100	commit: suppression commentaire
+8043204fc0d184573bdfdeae34547288975218cd 8043204fc0d184573bdfdeae34547288975218cd LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733585190 +0100	checkout: moving from master to Desactiver_admin
+8043204fc0d184573bdfdeae34547288975218cd 6df29a61229fb84ebc9aab23adf94e0c9454d512 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733585989 +0100	commit: desactivation admin
+6df29a61229fb84ebc9aab23adf94e0c9454d512 8043204fc0d184573bdfdeae34547288975218cd LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733586006 +0100	checkout: moving from Desactiver_admin to master
+8043204fc0d184573bdfdeae34547288975218cd 6df29a61229fb84ebc9aab23adf94e0c9454d512 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733586014 +0100	merge Desactiver_admin: Fast-forward
+6df29a61229fb84ebc9aab23adf94e0c9454d512 6df29a61229fb84ebc9aab23adf94e0c9454d512 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1733586471 +0100	checkout: moving from master to Manager_quitte_sa_famille
+6df29a61229fb84ebc9aab23adf94e0c9454d512 f8c76cce02b8c8ef268a81861e8257ead2afefa2 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734171937 +0100	commit: quitter famille (non managaer)
+f8c76cce02b8c8ef268a81861e8257ead2afefa2 019c6ff4a25beb21d41c5ca98d6ea1c04b79d699 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734182587 +0100	commit: quitter si manager et membre dans la famille
+019c6ff4a25beb21d41c5ca98d6ea1c04b79d699 64cd51f4041964d58b55408f371f9af30b2dd8ba LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734185960 +0100	commit: Quitter une famille fin
+64cd51f4041964d58b55408f371f9af30b2dd8ba 6df29a61229fb84ebc9aab23adf94e0c9454d512 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734185962 +0100	checkout: moving from Manager_quitte_sa_famille to master
+6df29a61229fb84ebc9aab23adf94e0c9454d512 64cd51f4041964d58b55408f371f9af30b2dd8ba LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734185971 +0100	merge Manager_quitte_sa_famille: Fast-forward
+64cd51f4041964d58b55408f371f9af30b2dd8ba 64cd51f4041964d58b55408f371f9af30b2dd8ba LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734186002 +0100	checkout: moving from master to desactiver_User_update_admin
+64cd51f4041964d58b55408f371f9af30b2dd8ba c3b9be58de21dbf69c2af10e3336dd64fc1a6be4 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734696577 +0100	commit: ativation du btn annuller et crioix de la modal de quitter une famille dans user
+c3b9be58de21dbf69c2af10e3336dd64fc1a6be4 64cd51f4041964d58b55408f371f9af30b2dd8ba LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734696614 +0100	checkout: moving from desactiver_User_update_admin to master
+64cd51f4041964d58b55408f371f9af30b2dd8ba c3b9be58de21dbf69c2af10e3336dd64fc1a6be4 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734696624 +0100	merge desactiver_User_update_admin: Fast-forward
+c3b9be58de21dbf69c2af10e3336dd64fc1a6be4 c3b9be58de21dbf69c2af10e3336dd64fc1a6be4 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734696690 +0100	checkout: moving from master to Envoie_mail_NewManager
+c3b9be58de21dbf69c2af10e3336dd64fc1a6be4 b0792825c6f218e7bad8460ba9e4b0cef191b350 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734702960 +0100	commit: envoie mail au nouveau manager
+b0792825c6f218e7bad8460ba9e4b0cef191b350 c3b9be58de21dbf69c2af10e3336dd64fc1a6be4 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734702964 +0100	checkout: moving from Envoie_mail_NewManager to master
+c3b9be58de21dbf69c2af10e3336dd64fc1a6be4 b0792825c6f218e7bad8460ba9e4b0cef191b350 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734702970 +0100	merge Envoie_mail_NewManager: Fast-forward
+b0792825c6f218e7bad8460ba9e4b0cef191b350 b0792825c6f218e7bad8460ba9e4b0cef191b350 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734702999 +0100	checkout: moving from master to UpdateUserActiv/desac
+b0792825c6f218e7bad8460ba9e4b0cef191b350 37bdf518513542971a54f6c77b3ad95dffb7aa5c LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734703816 +0100	commit: Btn activer user dans edit user pour admin
+37bdf518513542971a54f6c77b3ad95dffb7aa5c b0792825c6f218e7bad8460ba9e4b0cef191b350 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734703820 +0100	checkout: moving from UpdateUserActiv/desac to master
+b0792825c6f218e7bad8460ba9e4b0cef191b350 37bdf518513542971a54f6c77b3ad95dffb7aa5c LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734704354 +0100	checkout: moving from master to UpdateUserActiv/desac
+37bdf518513542971a54f6c77b3ad95dffb7aa5c b0792825c6f218e7bad8460ba9e4b0cef191b350 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734704364 +0100	checkout: moving from UpdateUserActiv/desac to master
+b0792825c6f218e7bad8460ba9e4b0cef191b350 37bdf518513542971a54f6c77b3ad95dffb7aa5c LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734704369 +0100	merge UpdateUserActiv/desac: Fast-forward
+37bdf518513542971a54f6c77b3ad95dffb7aa5c 37bdf518513542971a54f6c77b3ad95dffb7aa5c LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734704715 +0100	checkout: moving from master to ArticleRDetail
+37bdf518513542971a54f6c77b3ad95dffb7aa5c 4d9837d0bf9bce4b333c95fbba7b666ffc5a09f1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734791749 +0100	commit: debut detail article
+4d9837d0bf9bce4b333c95fbba7b666ffc5a09f1 37bdf518513542971a54f6c77b3ad95dffb7aa5c LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734791772 +0100	checkout: moving from ArticleRDetail to master
+37bdf518513542971a54f6c77b3ad95dffb7aa5c 4d9837d0bf9bce4b333c95fbba7b666ffc5a09f1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734791776 +0100	merge ArticleRDetail: Fast-forward
+4d9837d0bf9bce4b333c95fbba7b666ffc5a09f1 4d9837d0bf9bce4b333c95fbba7b666ffc5a09f1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734791788 +0100	checkout: moving from master to correction-selection-categories
+4d9837d0bf9bce4b333c95fbba7b666ffc5a09f1 ba10fdcdc8d19c24b1bc57261ef830f0d43bbf23 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734792436 +0100	commit: filtre des valeurs déjà existantes dans la sélection de catégories secondaire
+ba10fdcdc8d19c24b1bc57261ef830f0d43bbf23 4d9837d0bf9bce4b333c95fbba7b666ffc5a09f1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734792453 +0100	checkout: moving from correction-selection-categories to master
+4d9837d0bf9bce4b333c95fbba7b666ffc5a09f1 ba10fdcdc8d19c24b1bc57261ef830f0d43bbf23 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734792457 +0100	merge correction-selection-categories: Fast-forward
+ba10fdcdc8d19c24b1bc57261ef830f0d43bbf23 ba10fdcdc8d19c24b1bc57261ef830f0d43bbf23 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734792482 +0100	checkout: moving from master to correction-update-image
+ba10fdcdc8d19c24b1bc57261ef830f0d43bbf23 70c7ca95965385a283433f5e1cb9727cc2593400 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734799572 +0100	commit: update article
+70c7ca95965385a283433f5e1cb9727cc2593400 ba10fdcdc8d19c24b1bc57261ef830f0d43bbf23 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734799580 +0100	checkout: moving from correction-update-image to master
+ba10fdcdc8d19c24b1bc57261ef830f0d43bbf23 70c7ca95965385a283433f5e1cb9727cc2593400 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734799585 +0100	merge correction-update-image: Fast-forward
+70c7ca95965385a283433f5e1cb9727cc2593400 70c7ca95965385a283433f5e1cb9727cc2593400 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734799600 +0100	checkout: moving from master to delete_article_deleteImage
+70c7ca95965385a283433f5e1cb9727cc2593400 6def6ae9f61be0621e3f94982d777ab059b7b85a LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734801577 +0100	commit: delete article
+6def6ae9f61be0621e3f94982d777ab059b7b85a 70c7ca95965385a283433f5e1cb9727cc2593400 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734801580 +0100	checkout: moving from delete_article_deleteImage to master
+70c7ca95965385a283433f5e1cb9727cc2593400 6def6ae9f61be0621e3f94982d777ab059b7b85a LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1734801590 +0100	merge delete_article_deleteImage: Fast-forward
+6def6ae9f61be0621e3f94982d777ab059b7b85a fd90738cfceb573901f79c3e1616376aa5954ee4 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736006016 +0100	commit: Avant problème prix
+fd90738cfceb573901f79c3e1616376aa5954ee4 bdec2dab84b08d7b52adc5d4cd12c21a04b62c9b LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736010148 +0100	commit: Ajouter un article existant à la collection
+bdec2dab84b08d7b52adc5d4cd12c21a04b62c9b bdecd45d7401cab045858de5bae6007912568380 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736508063 +0100	commit: Détails bouton ajouter collection
+bdecd45d7401cab045858de5bae6007912568380 bdecd45d7401cab045858de5bae6007912568380 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736508081 +0100	checkout: moving from master to ajouter_collection
+bdecd45d7401cab045858de5bae6007912568380 664141549b87cdf411811de314e5a81f469edcb8 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736530849 +0100	commit: Ajouter une collection
+664141549b87cdf411811de314e5a81f469edcb8 bdecd45d7401cab045858de5bae6007912568380 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736530854 +0100	checkout: moving from ajouter_collection to master
+bdecd45d7401cab045858de5bae6007912568380 664141549b87cdf411811de314e5a81f469edcb8 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736530867 +0100	merge ajouter_collection: Fast-forward
+664141549b87cdf411811de314e5a81f469edcb8 664141549b87cdf411811de314e5a81f469edcb8 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736530886 +0100	checkout: moving from master to UploadImageUniquement
+664141549b87cdf411811de314e5a81f469edcb8 7d50670fe2588e63fa491f709628779ce3b4a73e LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736531248 +0100	commit: Télécharge image que extension image
+7d50670fe2588e63fa491f709628779ce3b4a73e 664141549b87cdf411811de314e5a81f469edcb8 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736531252 +0100	checkout: moving from UploadImageUniquement to master
+664141549b87cdf411811de314e5a81f469edcb8 7d50670fe2588e63fa491f709628779ce3b4a73e LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736531267 +0100	merge UploadImageUniquement: Fast-forward
+7d50670fe2588e63fa491f709628779ce3b4a73e 7d50670fe2588e63fa491f709628779ce3b4a73e LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736531317 +0100	checkout: moving from master to CollectionOfUser
+7d50670fe2588e63fa491f709628779ce3b4a73e de0943aae737e3a836894eee21524bbd44f81ab1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736587573 +0100	commit: retour à la liste
+de0943aae737e3a836894eee21524bbd44f81ab1 483e7eaaf53a5e230e4f233397cd51ed19d78d24 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736589676 +0100	commit: Supprimer article de la collection
+483e7eaaf53a5e230e4f233397cd51ed19d78d24 7d50670fe2588e63fa491f709628779ce3b4a73e LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736589679 +0100	checkout: moving from CollectionOfUser to master
+7d50670fe2588e63fa491f709628779ce3b4a73e 483e7eaaf53a5e230e4f233397cd51ed19d78d24 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736589688 +0100	merge CollectionOfUser: Fast-forward
+483e7eaaf53a5e230e4f233397cd51ed19d78d24 483e7eaaf53a5e230e4f233397cd51ed19d78d24 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736589722 +0100	checkout: moving from master to Mon_Profil_user
+483e7eaaf53a5e230e4f233397cd51ed19d78d24 e6baad3ce9e49c365a2c2ccfe1a1301225b6a7cf LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736602639 +0100	commit: avant statistique profil user
+e6baad3ce9e49c365a2c2ccfe1a1301225b6a7cf dc9d7fc5665d0ecf03835ed37c78628673a34d50 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736604346 +0100	commit: Fin mon profile
+dc9d7fc5665d0ecf03835ed37c78628673a34d50 483e7eaaf53a5e230e4f233397cd51ed19d78d24 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736604350 +0100	checkout: moving from Mon_Profil_user to master
+483e7eaaf53a5e230e4f233397cd51ed19d78d24 dc9d7fc5665d0ecf03835ed37c78628673a34d50 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736604366 +0100	merge Mon_Profil_user: Fast-forward
+dc9d7fc5665d0ecf03835ed37c78628673a34d50 dc9d7fc5665d0ecf03835ed37c78628673a34d50 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736604718 +0100	checkout: moving from master to Page_Message_User
+dc9d7fc5665d0ecf03835ed37c78628673a34d50 c3eb2d7cf8b2ea343f50140f2c01c50dbc5b1b4d LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736605593 +0100	commit: index message
+c3eb2d7cf8b2ea343f50140f2c01c50dbc5b1b4d c29a2ff59f5bd7c7f5406079908e68b5193d952e LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1736607572 +0100	commit: create message
+c29a2ff59f5bd7c7f5406079908e68b5193d952e 89f73dfe290f506c51177522ab36da82ba7c187d LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737015454 +0100	commit: page user detail, create et index
+89f73dfe290f506c51177522ab36da82ba7c187d dc9d7fc5665d0ecf03835ed37c78628673a34d50 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737015463 +0100	checkout: moving from Page_Message_User to master
+dc9d7fc5665d0ecf03835ed37c78628673a34d50 89f73dfe290f506c51177522ab36da82ba7c187d LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737015468 +0100	merge Page_Message_User: Fast-forward
+89f73dfe290f506c51177522ab36da82ba7c187d 89f73dfe290f506c51177522ab36da82ba7c187d LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737015499 +0100	checkout: moving from master to Admin_index_Message
+89f73dfe290f506c51177522ab36da82ba7c187d b2b2e90e58127212e2c1ad1cbed5a86278575c11 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737026192 +0100	commit: Index et accepter/refuser message pour l'admin
+b2b2e90e58127212e2c1ad1cbed5a86278575c11 89f73dfe290f506c51177522ab36da82ba7c187d LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737026197 +0100	checkout: moving from Admin_index_Message to master
+89f73dfe290f506c51177522ab36da82ba7c187d b2b2e90e58127212e2c1ad1cbed5a86278575c11 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737026202 +0100	merge Admin_index_Message: Fast-forward
+b2b2e90e58127212e2c1ad1cbed5a86278575c11 b2b2e90e58127212e2c1ad1cbed5a86278575c11 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737026212 +0100	checkout: moving from master to User_delete_Message
+b2b2e90e58127212e2c1ad1cbed5a86278575c11 b6227d1a89b59c78bdc46a06e9101be1f4f6f4c1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737028390 +0100	commit: User : supprimer message que si en attendant
+b6227d1a89b59c78bdc46a06e9101be1f4f6f4c1 b2b2e90e58127212e2c1ad1cbed5a86278575c11 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737028394 +0100	checkout: moving from User_delete_Message to master
+b2b2e90e58127212e2c1ad1cbed5a86278575c11 b6227d1a89b59c78bdc46a06e9101be1f4f6f4c1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737028405 +0100	merge User_delete_Message: Fast-forward
+b6227d1a89b59c78bdc46a06e9101be1f4f6f4c1 b6227d1a89b59c78bdc46a06e9101be1f4f6f4c1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737028426 +0100	checkout: moving from master to Admin_Detail_Message
+b6227d1a89b59c78bdc46a06e9101be1f4f6f4c1 85572bbed7677b675891ffd0e4251c3dd405aeb2 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737028948 +0100	commit: Fin message admin
+85572bbed7677b675891ffd0e4251c3dd405aeb2 b6227d1a89b59c78bdc46a06e9101be1f4f6f4c1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737028951 +0100	checkout: moving from Admin_Detail_Message to master
+b6227d1a89b59c78bdc46a06e9101be1f4f6f4c1 85572bbed7677b675891ffd0e4251c3dd405aeb2 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737028955 +0100	merge Admin_Detail_Message: Fast-forward
+85572bbed7677b675891ffd0e4251c3dd405aeb2 85572bbed7677b675891ffd0e4251c3dd405aeb2 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737029226 +0100	checkout: moving from master to Shared_ListeSouh_indexCreate
+85572bbed7677b675891ffd0e4251c3dd405aeb2 7a875161812b781ff35388aaf009aba355fe98d4 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737039712 +0100	commit: Shared note/souhait index et create
+7a875161812b781ff35388aaf009aba355fe98d4 85572bbed7677b675891ffd0e4251c3dd405aeb2 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737039715 +0100	checkout: moving from Shared_ListeSouh_indexCreate to master
+85572bbed7677b675891ffd0e4251c3dd405aeb2 7a875161812b781ff35388aaf009aba355fe98d4 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737039719 +0100	merge Shared_ListeSouh_indexCreate: Fast-forward
+7a875161812b781ff35388aaf009aba355fe98d4 7a875161812b781ff35388aaf009aba355fe98d4 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737039755 +0100	checkout: moving from master to Shared_Notepad_details
+7a875161812b781ff35388aaf009aba355fe98d4 48968d45ce295202f34d100baa3de92f2d096207 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737042166 +0100	commit: detail et delete notepad
+48968d45ce295202f34d100baa3de92f2d096207 7a875161812b781ff35388aaf009aba355fe98d4 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737042169 +0100	checkout: moving from Shared_Notepad_details to master
+7a875161812b781ff35388aaf009aba355fe98d4 48968d45ce295202f34d100baa3de92f2d096207 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737042173 +0100	merge Shared_Notepad_details: Fast-forward
+48968d45ce295202f34d100baa3de92f2d096207 48968d45ce295202f34d100baa3de92f2d096207 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737042225 +0100	checkout: moving from master to Shared_Notepads_rappel
+48968d45ce295202f34d100baa3de92f2d096207 975d46c5988cf17184651e1a866ea00b1dac2cda LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737112991 +0100	commit: rappel des notes
+975d46c5988cf17184651e1a866ea00b1dac2cda 48968d45ce295202f34d100baa3de92f2d096207 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737112998 +0100	checkout: moving from Shared_Notepads_rappel to master
+48968d45ce295202f34d100baa3de92f2d096207 975d46c5988cf17184651e1a866ea00b1dac2cda LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737113009 +0100	merge Shared_Notepads_rappel: Fast-forward
+975d46c5988cf17184651e1a866ea00b1dac2cda 975d46c5988cf17184651e1a866ea00b1dac2cda LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737113511 +0100	checkout: moving from master to Shared_CollectionOfFamily
+975d46c5988cf17184651e1a866ea00b1dac2cda 5aa54c62ff67adc1d318362770ac6754172acc58 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737116603 +0100	commit: indexFailysCollection
+5aa54c62ff67adc1d318362770ac6754172acc58 af8d236a4b7833e005b33064f02e1f6b691b191c LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737129257 +0100	commit: Detail collection de la famille
+af8d236a4b7833e005b33064f02e1f6b691b191c d80ba6dfa5d5bfdc43c46dda550b301c31efabcd LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737191943 +0100	commit: Shared : detail collecton de la famille
+d80ba6dfa5d5bfdc43c46dda550b301c31efabcd 975d46c5988cf17184651e1a866ea00b1dac2cda LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737191947 +0100	checkout: moving from Shared_CollectionOfFamily to master
+975d46c5988cf17184651e1a866ea00b1dac2cda d80ba6dfa5d5bfdc43c46dda550b301c31efabcd LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737191952 +0100	merge Shared_CollectionOfFamily: Fast-forward
+d80ba6dfa5d5bfdc43c46dda550b301c31efabcd d80ba6dfa5d5bfdc43c46dda550b301c31efabcd LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737191963 +0100	checkout: moving from master to Shared_Statistiques
+d80ba6dfa5d5bfdc43c46dda550b301c31efabcd 7d0a1868c648e91cfb5f313233505205677f20ef LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737196937 +0100	commit: price de l'article dans modal
+7d0a1868c648e91cfb5f313233505205677f20ef d489af0767168c1b6de0a08f0ac071574932ca98 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737200570 +0100	commit: avant le graphique
+d489af0767168c1b6de0a08f0ac071574932ca98 5c18b8a60b28d9974160a94581bd0d48aa2f5614 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737205298 +0100	commit: stati
+5c18b8a60b28d9974160a94581bd0d48aa2f5614 f2445bd38077d86b584ec7a3bec135f531443720 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737633419 +0100	commit: fin statistiques
+f2445bd38077d86b584ec7a3bec135f531443720 d80ba6dfa5d5bfdc43c46dda550b301c31efabcd LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737633427 +0100	checkout: moving from Shared_Statistiques to master
+d80ba6dfa5d5bfdc43c46dda550b301c31efabcd f2445bd38077d86b584ec7a3bec135f531443720 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737633431 +0100	merge Shared_Statistiques: Fast-forward
+f2445bd38077d86b584ec7a3bec135f531443720 f2445bd38077d86b584ec7a3bec135f531443720 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737633447 +0100	checkout: moving from master to Shared_Collection_detailofCol
+f2445bd38077d86b584ec7a3bec135f531443720 21b7fa3d3fa46f02ce7dac79c6c95e3a9c391342 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737714988 +0100	commit: detail my collection
+21b7fa3d3fa46f02ce7dac79c6c95e3a9c391342 f2445bd38077d86b584ec7a3bec135f531443720 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737714993 +0100	checkout: moving from Shared_Collection_detailofCol to master
+f2445bd38077d86b584ec7a3bec135f531443720 21b7fa3d3fa46f02ce7dac79c6c95e3a9c391342 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737714997 +0100	merge Shared_Collection_detailofCol: Fast-forward
+21b7fa3d3fa46f02ce7dac79c6c95e3a9c391342 21b7fa3d3fa46f02ce7dac79c6c95e3a9c391342 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737715011 +0100	checkout: moving from master to sShared_Stat
+21b7fa3d3fa46f02ce7dac79c6c95e3a9c391342 6810a51ad32873f7736224d4a2e238a49bde2c19 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737736792 +0100	commit: avant pagination et filtre
+6810a51ad32873f7736224d4a2e238a49bde2c19 21b7fa3d3fa46f02ce7dac79c6c95e3a9c391342 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737736797 +0100	checkout: moving from sShared_Stat to master
+21b7fa3d3fa46f02ce7dac79c6c95e3a9c391342 6810a51ad32873f7736224d4a2e238a49bde2c19 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737736801 +0100	merge sShared_Stat: Fast-forward
+6810a51ad32873f7736224d4a2e238a49bde2c19 6810a51ad32873f7736224d4a2e238a49bde2c19 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737736909 +0100	checkout: moving from master to PaginationFiltre_AdminArticle
+6810a51ad32873f7736224d4a2e238a49bde2c19 addf6d86c78d36ad5835e8611fb699656b47afec LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737737833 +0100	commit: pagination article
+addf6d86c78d36ad5835e8611fb699656b47afec d6e8cd488b90a1fbc59857950e8d5764e3ebe9ed LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737738416 +0100	commit: filtre colonne article
+d6e8cd488b90a1fbc59857950e8d5764e3ebe9ed 6f6c0ce01cccde082a78e3a4a67337d6a93e08fe LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737740383 +0100	commit: filtre article
+6f6c0ce01cccde082a78e3a4a67337d6a93e08fe 6810a51ad32873f7736224d4a2e238a49bde2c19 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737740391 +0100	checkout: moving from PaginationFiltre_AdminArticle to master
+6810a51ad32873f7736224d4a2e238a49bde2c19 6f6c0ce01cccde082a78e3a4a67337d6a93e08fe LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737740395 +0100	merge PaginationFiltre_AdminArticle: Fast-forward
+6f6c0ce01cccde082a78e3a4a67337d6a93e08fe 6f6c0ce01cccde082a78e3a4a67337d6a93e08fe LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737740409 +0100	checkout: moving from master to Filtre_Pagination
+6f6c0ce01cccde082a78e3a4a67337d6a93e08fe 2b1c90c0abe7253be3c66d710fb472dd97ff6d82 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737741702 +0100	commit: FILTRE ARTICLE
+2b1c90c0abe7253be3c66d710fb472dd97ff6d82 67fc796020fb1ca259908674a2d23fe7e6007e21 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737743202 +0100	commit: pagination catégorie
+67fc796020fb1ca259908674a2d23fe7e6007e21 b71e50a40beb691ff5abe3bfa9eaf20cec2fa190 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737744467 +0100	commit: create categorie
+b71e50a40beb691ff5abe3bfa9eaf20cec2fa190 f46bf7fc78cd9ff3c50ee94807d522505678c644 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737799753 +0100	commit: pagi et filtre cat
+f46bf7fc78cd9ff3c50ee94807d522505678c644 1419ed35959e35002b8011e4e6995244797dbb18 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737801514 +0100	commit: filtre cat fin
+1419ed35959e35002b8011e4e6995244797dbb18 d2af641918b801b957cc56596590d3e2ce393179 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737801835 +0100	commit: filtre avec image pour article
+d2af641918b801b957cc56596590d3e2ce393179 f52f112b808a6f34de1f52277c2c11df629474c9 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737810531 +0100	commit: PAGI ET FILTRE message
+f52f112b808a6f34de1f52277c2c11df629474c9 19534e119e33f120645baf0997e1e547b895ecb0 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737814248 +0100	commit: pagi et filtre user
+19534e119e33f120645baf0997e1e547b895ecb0 165d33820508401066f57d8fca505ba2bd82b253 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737818304 +0100	commit: correction create article pour les users
+165d33820508401066f57d8fca505ba2bd82b253 ee749f036519642da7e7d0613306d65006b21c13 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737824561 +0100	commit: pagi et filtre shared_collection
+ee749f036519642da7e7d0613306d65006b21c13 056c83cea11d652476546b9e784f28c3dcbb3f68 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737969973 +0100	commit: pagi et filtre index family
+056c83cea11d652476546b9e784f28c3dcbb3f68 bf13f94490f802b7e786f0b7d374e76c5f004058 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737973331 +0100	commit: pagi et filtre index myfamilly
+bf13f94490f802b7e786f0b7d374e76c5f004058 d3f94548a0ac7b811767041549e7f4eff33a223f LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737974114 +0100	commit: pagi et filtre index mymembership de famille
+d3f94548a0ac7b811767041549e7f4eff33a223f a44b680dc3f9a73b2249de1fe1f4c57b964e2215 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737975595 +0100	commit: pagi et filtre notepads
+a44b680dc3f9a73b2249de1fe1f4c57b964e2215 b4fc6aafb1a6875829a498cb05a8414cec1b1b26 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1737982359 +0100	commit: filtre statistique
+b4fc6aafb1a6875829a498cb05a8414cec1b1b26 d0d9d497d49a34c167958e247b64e3843f8ed3c5 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738051053 +0100	commit: pagi et filtre message du user
+d0d9d497d49a34c167958e247b64e3843f8ed3c5 6f6c0ce01cccde082a78e3a4a67337d6a93e08fe LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738051058 +0100	checkout: moving from Filtre_Pagination to master
+6f6c0ce01cccde082a78e3a4a67337d6a93e08fe d0d9d497d49a34c167958e247b64e3843f8ed3c5 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738051062 +0100	merge Filtre_Pagination: Fast-forward
+d0d9d497d49a34c167958e247b64e3843f8ed3c5 d0d9d497d49a34c167958e247b64e3843f8ed3c5 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738051082 +0100	checkout: moving from master to Verif_Correction
+d0d9d497d49a34c167958e247b64e3843f8ed3c5 a46eea6ab030235934132d129ef7c5a892797034 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738062973 +0100	commit: verif et imahe logo et accueil
+a46eea6ab030235934132d129ef7c5a892797034 2f4780c94549db0cdc98defb47c22f861a4c6f39 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738066610 +0100	commit: suite verif
+2f4780c94549db0cdc98defb47c22f861a4c6f39 2417eb0175827c3d86156da88b93e636c801b32e LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738071853 +0100	commit: correction ajouter ma collection dans detail
+2417eb0175827c3d86156da88b93e636c801b32e e39f299a289e2f9e32be69604968bb2400da1fb1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738074352 +0100	commit: correction updtae de mes info pour un article
+e39f299a289e2f9e32be69604968bb2400da1fb1 fb061580adde9046a3b862c32cef50933552af1f LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738139352 +0100	commit: deplacement brtn user à l'article
+fb061580adde9046a3b862c32cef50933552af1f 17345aae3538e7d57c1ddfc702d0cdc143ae5208 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738140600 +0100	commit: erreur login das profil
+17345aae3538e7d57c1ddfc702d0cdc143ae5208 da7abdf114a49689d75bacde1c41e3964d41cfa1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738141031 +0100	commit: correction profil
+da7abdf114a49689d75bacde1c41e3964d41cfa1 291b155cb7a82e5c6b432ede30b147206c2630ab LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738146246 +0100	commit: correction on voit les article des user de nos familles
+291b155cb7a82e5c6b432ede30b147206c2630ab 8a6dccdd99c57019cc9d9edab355c9133615d31a LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738147488 +0100	commit: correction
+8a6dccdd99c57019cc9d9edab355c9133615d31a f267e0b01a4c719c0c91c2098548cb4486d6a5a7 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738153568 +0100	commit: verif et correction famille, message, collection, profil pour les user
+f267e0b01a4c719c0c91c2098548cb4486d6a5a7 36c115823bce3cb543a614c21027f58e8c431aa1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738157753 +0100	commit: verifi et correction sauf pagi ok user
+36c115823bce3cb543a614c21027f58e8c431aa1 2ac80626c1601eef4b9c5321694864c5ba088b12 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738170933 +0100	commit: verif et correction admin : user et categories
+2ac80626c1601eef4b9c5321694864c5ba088b12 0c2a973e01a95be9327fb912353623e1c426e9d4 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738223465 +0100	commit: taille pour résumé article, message user et description famille
+0c2a973e01a95be9327fb912353623e1c426e9d4 126db531eb5324cdcc171905c27dd3f0d83855e9 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738226466 +0100	commit: verif et correction fin
+126db531eb5324cdcc171905c27dd3f0d83855e9 05338abc8f588a0ace2bad6da848d99599fbacd0 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738232035 +0100	commit: correction retirection
+05338abc8f588a0ace2bad6da848d99599fbacd0 d0d0f32847ae1554d43002ead00dfa4e32368bc8 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738232782 +0100	commit: changement bar de nav
+d0d0f32847ae1554d43002ead00dfa4e32368bc8 b779e9b4cdfee1be4fff2ccb2d8459e1cef7e7af LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738232982 +0100	commit: login erreur message en francais
+b779e9b4cdfee1be4fff2ccb2d8459e1cef7e7af c6de846314e481d6d376abd502037b8c5ff0ee53 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738234622 +0100	commit: style dans css et enter pas pour les filtre
+c6de846314e481d6d376abd502037b8c5ff0ee53 f05652508575e58eb96cacb93032db2573fc1ecc LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738245691 +0100	commit: enlever enter pour lien réinisialissatin des mail
+f05652508575e58eb96cacb93032db2573fc1ecc dc2ed74071a7aea03cd3ce03e056fb989e3ce409 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738248917 +0100	commit: correction email dans profil et debut coulueur bouton
+dc2ed74071a7aea03cd3ce03e056fb989e3ce409 dc2ed74071a7aea03cd3ce03e056fb989e3ce409 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738401490 +0100	reset: moving to HEAD
+dc2ed74071a7aea03cd3ce03e056fb989e3ce409 d45d4ecc6f417b9c056f4070b0843aaad2efafbc LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738402931 +0100	commit: rechargelment page des depense lors de filtre du dernier tableau
+d45d4ecc6f417b9c056f4070b0843aaad2efafbc e275b1493e5a8c583fdb0e8fb3b75c210a1aa862 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738405140 +0100	commit: corr
+e275b1493e5a8c583fdb0e8fb3b75c210a1aa862 22f484afb48345092fe802c7d198594df9f8231d LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738408418 +0100	commit: c
+22f484afb48345092fe802c7d198594df9f8231d 75aca0673d14f9f343bc8f56ab793f8979ef1999 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738411771 +0100	commit: masquer les champs si pas livre pour les articles
+75aca0673d14f9f343bc8f56ab793f8979ef1999 ba8b580410341f9c9f5d8087a943e675947bb3b8 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738415413 +0100	commit: pagi et filtre d'une page à une autre ok
+ba8b580410341f9c9f5d8087a943e675947bb3b8 3bf0b366c7d86a018cc5a08612d69294c6d498b1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738751810 +0100	commit: correction diverse
+3bf0b366c7d86a018cc5a08612d69294c6d498b1 d0d9d497d49a34c167958e247b64e3843f8ed3c5 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738751883 +0100	checkout: moving from Verif_Correction to master
+d0d9d497d49a34c167958e247b64e3843f8ed3c5 3bf0b366c7d86a018cc5a08612d69294c6d498b1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738751892 +0100	merge Verif_Correction: Fast-forward
+3bf0b366c7d86a018cc5a08612d69294c6d498b1 3bf0b366c7d86a018cc5a08612d69294c6d498b1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738751914 +0100	checkout: moving from master to CorrectionCategorySec_createartilce
+3bf0b366c7d86a018cc5a08612d69294c6d498b1 93eaf5eadcc6de46cca776f16d5261e88d56ccac LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738764314 +0100	commit: corection create article admin
+93eaf5eadcc6de46cca776f16d5261e88d56ccac 6b4b328ad7a902e81b6938025fb0c3e3dcf18781 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738765395 +0100	commit: correction edit admin
+6b4b328ad7a902e81b6938025fb0c3e3dcf18781 31a2398c30d8bca96ee6c9d236bc03c058cc138b LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738829715 +0100	commit: user problème cat
+31a2398c30d8bca96ee6c9d236bc03c058cc138b 21ce08a8023a80c5f914b7ee583fb05b3d83829c LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738831145 +0100	commit: admin create cat
+21ce08a8023a80c5f914b7ee583fb05b3d83829c 630a34c23022a3adbd7c7c091a48034c460986b7 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738832830 +0100	commit: create user correction cate secon que de la ct princ
+630a34c23022a3adbd7c7c091a48034c460986b7 3bf0b366c7d86a018cc5a08612d69294c6d498b1 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738924984 +0100	checkout: moving from CorrectionCategorySec_createartilce to master
+3bf0b366c7d86a018cc5a08612d69294c6d498b1 630a34c23022a3adbd7c7c091a48034c460986b7 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738924988 +0100	merge CorrectionCategorySec_createartilce: Fast-forward
+630a34c23022a3adbd7c7c091a48034c460986b7 630a34c23022a3adbd7c7c091a48034c460986b7 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738924996 +0100	checkout: moving from master to correction_accent
+630a34c23022a3adbd7c7c091a48034c460986b7 34bda906613e1896c5e7cb16969fa1dc88fc5998 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738929454 +0100	commit: correction avec accent pour les catégories
+34bda906613e1896c5e7cb16969fa1dc88fc5998 630a34c23022a3adbd7c7c091a48034c460986b7 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738930058 +0100	checkout: moving from correction_accent to master
+630a34c23022a3adbd7c7c091a48034c460986b7 34bda906613e1896c5e7cb16969fa1dc88fc5998 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738930062 +0100	merge correction_accent: Fast-forward
+34bda906613e1896c5e7cb16969fa1dc88fc5998 34bda906613e1896c5e7cb16969fa1dc88fc5998 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738930071 +0100	checkout: moving from master to google_alert
+34bda906613e1896c5e7cb16969fa1dc88fc5998 0000000000000000000000000000000000000000 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738930185 +0100	Branch: renamed refs/heads/google_alert to refs/heads/scan_isbn
+0000000000000000000000000000000000000000 34bda906613e1896c5e7cb16969fa1dc88fc5998 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1738930185 +0100	Branch: renamed refs/heads/google_alert to refs/heads/scan_isbn
+34bda906613e1896c5e7cb16969fa1dc88fc5998 dd391b848e284fc50ed00af140f8ed6e2456cce3 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1739176705 +0100	commit: ap mobil plus designe
+dd391b848e284fc50ed00af140f8ed6e2456cce3 dd391b848e284fc50ed00af140f8ed6e2456cce3 LAPTOP-I7QALV1R\bombl <celine.bombled@hotmail.com> 1739176723 +0100	checkout: moving from scan_isbn to test_version9

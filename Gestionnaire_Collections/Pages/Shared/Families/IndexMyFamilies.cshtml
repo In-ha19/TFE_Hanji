@@ -1,0 +1,199 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Shared.Families.IndexMyFamiliesModel
+@{
+    ViewData["Title"] = "Mes familles";
+}
+
+<h1>Liste de mes familles</h1>
+
+@{
+    var statusOptions = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Sélectionner un statut", Value = "" },
+        new SelectListItem { Text = "En attente", Value = "0", Selected = Request.Query["statusFilter"] == "0" }
+    };
+} 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sortColumn="Name" asp-route-sortOrder="@(Model.SortColumn == "Name" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Nom
+                    @if (Model.SortColumn == "Name")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>
+                <a asp-route-sortColumn="Description" asp-route-sortOrder="@(Model.SortColumn == "Description" && Model.SortOrder == "asc" ? "desc" : "asc")">
+                    Description
+                    @if (Model.SortColumn == "Description")
+                    {
+                        <span>(@(Model.SortOrder == "asc" ? "⬆" : "⬇"))</span>
+                    }
+                </a>
+            </th>
+            <th>
+                Actions
+            </th>   
+            <th>
+                Demandes
+            </th>
+            <th>
+                <div class="position-relative">
+                    <button id="filterToggle" class="btn btn-light btn_image">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/filter.png" alt="Filtrer" class="filtre_image" />
+                    </button>
+                    <div id="filterPanel" class="position-absolute filtre_div">
+                        <form method="get" class="form-inline d-flex flex-column align-items-start">
+                            <div class="mb-2">
+                                <input type="text"
+                                       name="searchString"
+                                       value="@Request.Query["searchString"]"
+                                       class="form-control mr-2"
+                                       placeholder="Nom, description" />
+                            </div>
+                           
+                            <div class="mb-2">
+                                <label for="statusFilter" class="form-label">Demande en attente</label>
+                                <select name="statusFilter" class="form-control" asp-items="statusOptions"></select>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="btn btn-primary">Filtrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Family)
+        {           
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>*@
+                <td data-bs-toggle="tooltip" data-bs-placement="top" title="@(item.Description ?? "")">
+                    @(string.IsNullOrEmpty(item.Description) ? "" :
+                        (item.Description.Length > 50 ? item.Description.Substring(0, 50) + "..." : item.Description))
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" asp-route-returnUrl="IndexMyFamilies" class="btn btn-warning btn-sm">Modifier</a>
+                    <a asp-page="./Details" asp-route-id="@item.Id" asp-route-returnUrl="IndexMyFamilies" class="btn btn-info btn-sm">Détails</a>
+                        <button class="btn btn-danger btn-sm btn-delete" data-id="@item.Id">Supprimer</button>
+                </td>
+                <td>
+                    @if (Model.RequestsFamilyIds.Contains(item.Id))
+                    {
+                        <span class="badge bg-warning text-dark">En attente</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Contrôles de pagination -->
+<div class="d-flex justify-content-between align-items-center">
+    <p>Page @Model.Family.PageIndex sur @Model.Family.TotalPages</p>
+
+    <nav>
+        <ul class="pagination">
+            @if (Model.Family.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./IndexMyFamilies"
+                       asp-route-pageIndex="@(Model.Family.PageIndex - 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-statusFilter="@Request.Query["statusFilter"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Précédent</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Précédent</span>
+                </li>
+            }
+
+            @if (Model.Family.HasNextPage)
+            {
+                <li class="page-item">
+                    <a asp-page="./IndexMyFamilies"
+                       asp-route-pageIndex="@(Model.Family.PageIndex + 1)"
+                       asp-route-searchString="@Request.Query["searchString"]"
+                       asp-route-statusFilter="@Request.Query["statusFilter"]"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       class="page-link">Suivant</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Suivant</span>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+<!-- Modal de confirmation -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmer la suppression</h5>
+                <button type="button" class="close confirmationModalCloseButton" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Voulez-vous vraiment supprimer cette famille ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary confirmationModalCloseButton" data-dismiss="modal">Annuler</button>
+                <form id="deleteForm" method="post" style="display:inline;">
+                    <input type="hidden" name="id" id="familyIdToDelete" />
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+        $(document).ready(function () {
+            $('.btn-delete').on('click', function () {
+                const familyId = $(this).data('id');
+                $('#familyIdToDelete').val(familyId);
+                $('#deleteModal').modal('show');
+            });
+
+            $('.confirmationModalCloseButton').on('click', function () {
+                $('#deleteModal').modal('hide');
+            });
+        });
+        document.getElementById("filterToggle").addEventListener("click", function () {
+            var filterPanel = document.getElementById("filterPanel");
+
+            if (filterPanel.style.display === "none" || filterPanel.style.display === "") {
+                filterPanel.style.display = "block";
+            } else {
+                filterPanel.style.display = "none";
+            }
+        });
+    </script>
+}

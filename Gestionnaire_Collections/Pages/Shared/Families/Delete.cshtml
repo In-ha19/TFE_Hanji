@@ -1,0 +1,55 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Shared.Families.DeleteModel
+
+@{
+    ViewData["Title"] = "Suppression de la famille ";
+}
+
+<h1>Suppression : </h1>
+
+<div>
+    <h4>@Model.Family.Name</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Family.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Family.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Family.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Family.Description)
+        </dd>
+    </dl>
+    
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal">
+        Supprimer
+    </button> |
+    <a asp-page="./Index">Retour à la liste</a>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmation de la suppression</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Voulez-vous vraiment supprimer cette famille ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <form method="post" id="deleteForm">
+                    <input type="hidden" asp-for="Family.Id" />
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

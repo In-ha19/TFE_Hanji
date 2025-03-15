@@ -1,0 +1,81 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Admin.Categories.CreateModel
+
+@{
+    ViewData["Title"] = "Crééer une catégorie";
+}
+
+<h1>Créer une catégorie</h1>
+
+<h4>Catégorie</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Category.Name" class="control-label"></label>
+                <input asp-for="Category.Name" class="form-control" />
+                <span asp-validation-for="Category.Name" class="text-danger"></span>
+            </div>        
+            
+            <div class="form-group form-check">
+                <input class="form-check-input" asp-for="Category.Is_principal" id="isPrincipalCheckbox" />
+                <label class="form-check-label" asp-for="Category.Is_principal"></label>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Category.Parent_id" class="control-label"></label>
+                <select asp-for="Category.Parent_id" class="form-control" asp-items="@(ViewData["Parent_id"] as IEnumerable<SelectListItem>)" id="parentCategoryDropdown">
+                    <option value="">-- Sélectionnez une catégorie principale --</option>
+                </select>
+            </div>
+            <span asp-validation-for="Category.Parent_id" class="text-danger"></span>
+
+
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary">Créer</button>
+                <a asp-page="/Admin/Categories/Index" class="btn btn-secondary">Annuler</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Fonction pour activer/désactiver la liste déroulante en fonction de l'état de la case à cocher
+            $('#isPrincipalCheckbox').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#parentCategoryDropdown').prop('disabled', true);
+                    $('#parentCategoryDropdown').val(''); // Réinitialise la valeur si c'est un principal
+                } else {
+                    $('#parentCategoryDropdown').prop('disabled', false);
+                }
+            });
+
+            // Si la case est déjà cochée au moment du chargement de la page
+            if ($('#isPrincipalCheckbox').is(':checked')) {
+                $('#parentCategoryDropdown').prop('disabled', true);
+            } else {
+                $('#parentCategoryDropdown').prop('disabled', false);
+            }
+
+            // Validation personnalisée avant la soumission du formulaire
+            $('form').submit(function (e) {
+                var isPrincipalChecked = $('#isPrincipalCheckbox').is(':checked');
+                var parentCategoryValue = $('#parentCategoryDropdown').val();
+
+                if (!isPrincipalChecked && parentCategoryValue === '') {
+                    alert('Veuillez sélectionner une catégorie principale.');
+                    e.preventDefault(); // Empêche l'envoi du formulaire
+                }
+            });
+        });
+    </script>
+}
+
+

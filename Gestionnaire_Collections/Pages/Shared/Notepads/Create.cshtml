@@ -1,0 +1,32 @@
+﻿@page
+@model Gestionnaire_Collections.Pages.Shared.Notepads.CreateModel
+@{
+    ViewData["Title"] = "Créer une note";
+}
+
+<h1>Créer une note</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Note.UserId" value="@Model.UserId" />
+    <div class="mb-3">
+        <label asp-for="Note.Titre" class="form-label"></label>
+        <input asp-for="Note.Titre" class="form-control"/>
+        <span asp-validation-for="Note.Titre" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Note.Text" class="form-label"></label>
+        <textarea asp-for="Note.Text" class="form-control" rows="5" cols="50"></textarea>
+        <span asp-validation-for="Note.Text" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Note.Date_reminder" class="form-label"></label>
+        <input asp-for="Note.Date_reminder" class="form-control" type="date"/>
+        <span asp-validation-for="Note.Date_reminder" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <a asp-page="./Index" class="btn btn-secondary">Annuler</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
