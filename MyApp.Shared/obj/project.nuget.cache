@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OKrwlWY4WwYxdswwS+8LVs64b8jDGn4uuK8iQQsoEJxdZ8glAasvtq3iPpzCeLwEZzJNB6xcoaHGzUn0ayX9sw==",
+  "dgSpecHash": "4rxd8QNllIlZSv0GBMorGhLMB3JfCtdAMw1sSfC4XBI0fz+I3i1/fHztRdWLrLYVnxlhz/wOX7raTq05GvPhDQ==",
   "success": true,
-  "projectFilePath": "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj",
+  "projectFilePath": "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bombl\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\bombl\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.0\\microsoft.aspnetcore.cryptography.internal.8.0.0.nupkg.sha512",

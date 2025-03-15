@@ -20,59 +20,59 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MonApplicationMobile
-build_property.ProjectDir = C:\Repos\tfe\MonApplicationMobile\
+build_property.ProjectDir = C:\Repos\tfeGitHub\MonApplicationMobile\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[C:/Repos/tfe/MonApplicationMobile/App.xaml]
+[C:/Repos/tfeGitHub/MonApplicationMobile/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MonApplicationMobile.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[C:/Repos/tfe/MonApplicationMobile/AppShell.xaml]
+[C:/Repos/tfeGitHub/MonApplicationMobile/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MonApplicationMobile.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[C:/Repos/tfe/MonApplicationMobile/MainPage.xaml]
+[C:/Repos/tfeGitHub/MonApplicationMobile/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MonApplicationMobile.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[C:/Repos/tfe/MonApplicationMobile/Pages/CategoryForSynchro.xaml]
+[C:/Repos/tfeGitHub/MonApplicationMobile/Pages/CategoryForSynchro.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MonApplicationMobile.Pages.CategoryForSynchro.xaml
 build_metadata.AdditionalFiles.TargetPath = Pages\CategoryForSynchro.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\CategoryForSynchro.xaml
 
-[C:/Repos/tfe/MonApplicationMobile/Pages/CategorySelectPage.xaml]
+[C:/Repos/tfeGitHub/MonApplicationMobile/Pages/CategorySelectPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MonApplicationMobile.Pages.CategorySelectPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Pages\CategorySelectPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\CategorySelectPage.xaml
 
-[C:/Repos/tfe/MonApplicationMobile/Pages/LoginPage.xaml]
+[C:/Repos/tfeGitHub/MonApplicationMobile/Pages/LoginPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MonApplicationMobile.Pages.LoginPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Pages\LoginPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\LoginPage.xaml
 
-[C:/Repos/tfe/MonApplicationMobile/Pages/MesCollectionsPage.xaml]
+[C:/Repos/tfeGitHub/MonApplicationMobile/Pages/MesCollectionsPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MonApplicationMobile.Pages.MesCollectionsPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Pages\MesCollectionsPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\MesCollectionsPage.xaml
 
-[C:/Repos/tfe/MonApplicationMobile/Resources/Styles/Colors.xaml]
+[C:/Repos/tfeGitHub/MonApplicationMobile/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MonApplicationMobile.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
-[C:/Repos/tfe/MonApplicationMobile/Resources/Styles/Styles.xaml]
+[C:/Repos/tfeGitHub/MonApplicationMobile/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MonApplicationMobile.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml

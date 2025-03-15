@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GfA8nJeGHf++4QkU6HEamN3jyfp2qjMmMF141QZcnWxQeI4mSujm01CP7ar+j7p4ecQ4ONJboibtYYXyot0Vnw==",
+  "dgSpecHash": "85ccIO+nE/HNWpAxLLnk+0B1En8KRI9jIzQg1Y7qfUGFDq3IcgykN4qRo3pVKnXyp3U2xjCyYBEN3/QglwU/7A==",
   "success": true,
-  "projectFilePath": "C:\\Repos\\tfe\\MonApplicationMobile\\MonApplicationMobile.csproj",
+  "projectFilePath": "C:\\Repos\\tfeGitHub\\MonApplicationMobile\\MonApplicationMobile.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bombl\\.nuget\\packages\\camera.maui\\1.5.0\\camera.maui.1.5.0.nupkg.sha512",
     "C:\\Users\\bombl\\.nuget\\packages\\camera.maui.zxing\\1.0.0\\camera.maui.zxing.1.0.0.nupkg.sha512",

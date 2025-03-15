@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj": {}
+    "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj": {}
   },
   "projects": {
-    "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj": {
+    "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj",
+        "projectUniqueName": "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj",
         "projectName": "MyApp.Shared",
-        "projectPath": "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj",
+        "projectPath": "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj",
         "packagesPath": "C:\\Users\\bombl\\.nuget\\packages\\",
-        "outputPath": "C:\\Repos\\tfe\\MyApp.Shared\\obj\\",
+        "outputPath": "C:\\Repos\\tfeGitHub\\MyApp.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

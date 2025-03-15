@@ -46,7 +46,6 @@ namespace Gestionnaire_Collections.Pages.Shared.Families
         public async Task OnGetAsync(string searchString, int? statusFilter)
         {
             const int pageSize = 10;
-
             var query = _context.Families.AsQueryable();
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

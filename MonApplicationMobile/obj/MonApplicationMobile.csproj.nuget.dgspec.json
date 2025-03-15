@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Repos\\tfe\\MonApplicationMobile\\MonApplicationMobile.csproj": {}
+    "C:\\Repos\\tfeGitHub\\MonApplicationMobile\\MonApplicationMobile.csproj": {}
   },
   "projects": {
-    "C:\\Repos\\tfe\\MonApplicationMobile\\MonApplicationMobile.csproj": {
+    "C:\\Repos\\tfeGitHub\\MonApplicationMobile\\MonApplicationMobile.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Repos\\tfe\\MonApplicationMobile\\MonApplicationMobile.csproj",
+        "projectUniqueName": "C:\\Repos\\tfeGitHub\\MonApplicationMobile\\MonApplicationMobile.csproj",
         "projectName": "MonApplicationMobile",
-        "projectPath": "C:\\Repos\\tfe\\MonApplicationMobile\\MonApplicationMobile.csproj",
+        "projectPath": "C:\\Repos\\tfeGitHub\\MonApplicationMobile\\MonApplicationMobile.csproj",
         "packagesPath": "C:\\Users\\bombl\\.nuget\\packages\\",
-        "outputPath": "C:\\Repos\\tfe\\MonApplicationMobile\\obj\\",
+        "outputPath": "C:\\Repos\\tfeGitHub\\MonApplicationMobile\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
@@ -37,32 +37,32 @@
           "net8.0-android34.0": {
             "targetAlias": "net8.0-android",
             "projectReferences": {
-              "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj": {
-                "projectPath": "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj"
+              "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj": {
+                "projectPath": "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj"
               }
             }
           },
           "net8.0-ios18.0": {
             "targetAlias": "net8.0-ios",
             "projectReferences": {
-              "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj": {
-                "projectPath": "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj"
+              "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj": {
+                "projectPath": "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj"
               }
             }
           },
           "net8.0-maccatalyst18.0": {
             "targetAlias": "net8.0-maccatalyst",
             "projectReferences": {
-              "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj": {
-                "projectPath": "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj"
+              "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj": {
+                "projectPath": "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj"
               }
             }
           },
           "net8.0-windows10.0.19041": {
             "targetAlias": "net8.0-windows10.0.19041.0",
             "projectReferences": {
-              "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj": {
-                "projectPath": "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj"
+              "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj": {
+                "projectPath": "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj"
               }
             }
           }
@@ -397,14 +397,14 @@
         }
       }
     },
-    "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj": {
+    "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj",
+        "projectUniqueName": "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj",
         "projectName": "MyApp.Shared",
-        "projectPath": "C:\\Repos\\tfe\\MyApp.Shared\\MyApp.Shared.csproj",
+        "projectPath": "C:\\Repos\\tfeGitHub\\MyApp.Shared\\MyApp.Shared.csproj",
         "packagesPath": "C:\\Users\\bombl\\.nuget\\packages\\",
-        "outputPath": "C:\\Repos\\tfe\\MyApp.Shared\\obj\\",
+        "outputPath": "C:\\Repos\\tfeGitHub\\MyApp.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
