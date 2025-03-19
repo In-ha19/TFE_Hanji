@@ -158,7 +158,7 @@ namespace Gestionnaire_Collections.Areas.Identity.Pages.Account
                             protocol: Request.Scheme);
 
                         // Envoyer l'email de confirmation
-                        await _emailSender.SendEmailAsync(User.Email, "Confirmez votre email",
+                        await _emailSender.SendEmailAsync(User.Email, "Confirmez votre email pour le gestionnaire de collection HANJI",
                             $"Veuillez confirmer votre compte en <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>cliquant ici</a>.");
 
                         ConfirmationMessage = "Un email de confirmation a été envoyé. Veuillez vérifier votre boîte de réception.";

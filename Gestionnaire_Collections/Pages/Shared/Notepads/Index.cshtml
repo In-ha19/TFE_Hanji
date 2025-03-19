@@ -25,9 +25,13 @@
 }
 else
 {
+    <div class="mt-5">
+        <p>Afin de voir les informations d'une note, il faut cliquer sur la ligne correspondante</p>
+    </div>
+
    @*@if (Model.Notes.Any())
-    {*@ 
-        <table class="table table-hover">
+    {*@
+    <table id="TableauNotes" class="table table-hover">
             <thead>
                 <tr>
                 <th>
