@@ -63,6 +63,7 @@
     <partial name="_ValidationScriptsPartial" />
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // Récupération des éléments du formulaire
             const form = document.getElementById("userForm");
             const saveButton = document.getElementById("saveButton");
             const usernameInput = document.getElementById("inputLogin");
@@ -74,6 +75,10 @@
                 email: emailInput.value
             };
 
+            /**
+         * Vérifie si les valeurs des champs ont changé par rapport aux valeurs initiales.
+         * Si une modification est détectée, active le bouton de sauvegarde, sinon le désactive.
+         */
             function checkForChanges() {
                 const currentValues = {
                     login: usernameInput.value,
@@ -87,6 +92,7 @@
                 }
             }
 
+            // Ajoute un écouteur d'événements sur le formulaire pour détecter les changements dans les champs
             form.addEventListener("input", checkForChanges);
 
             sendResetLinkBtn.addEventListener('click', function () {

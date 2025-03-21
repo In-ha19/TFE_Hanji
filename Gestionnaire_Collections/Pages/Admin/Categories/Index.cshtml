@@ -186,8 +186,9 @@
     <script>
         $(document).ready(function () {
             $("button[data-action='deactivate']").click(function () {
+                // Récupère l'ID de la catégorie en cherchant l'élément input avec le nom 'categoryId' dans le même formulaire que le bouton cliqué
                 var categoryId = $(this).closest("form").find("input[name='categoryId']").val();
-
+                // Affiche une fenêtre de confirmation avant de procéder à la désactivation
                 if (confirm('Êtes-vous sûr de vouloir désactiver cette catégorie et ses sous-catégories ?')) {
                     $(this).closest("form").submit();
                 }

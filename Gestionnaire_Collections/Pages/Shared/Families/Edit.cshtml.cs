@@ -54,6 +54,16 @@ namespace Gestionnaire_Collections.Pages.Shared.Families
                 return Page();
             }
 
+            var existingFamilyName = await _context.Families
+                    .FirstOrDefaultAsync(a => a.Name.ToLower() == Family.Name.ToLower());
+
+            if (existingFamilyName != null)
+            {
+                ModelState.AddModelError("Family.Name", "Cette famille existe déjà, veuillez choisir un autre nom.");
+
+                return Page();
+            }
+
             _context.Attach(Family).State = EntityState.Modified;
 
             try

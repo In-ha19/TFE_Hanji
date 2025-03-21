@@ -66,7 +66,7 @@
             $('form').submit(function (e) {
                 var isPrincipalChecked = $('#isPrincipalCheckbox').is(':checked');
                 var parentCategoryValue = $('#parentCategoryDropdown').val();
-
+                // Si la case n'est pas cochée et que la catégorie principale n'est pas sélectionnée, affiche un message d'alerte et empêche l'envoi du formulaire
                 if (!isPrincipalChecked && parentCategoryValue === '') {
                     alert('Veuillez sélectionner une catégorie principale.');
                     e.preventDefault(); 

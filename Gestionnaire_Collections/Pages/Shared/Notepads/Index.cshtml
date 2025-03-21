@@ -212,32 +212,38 @@ else
 
         document.querySelectorAll('tr[data-bs-toggle="modal"]').forEach(row => {
             row.addEventListener('click', function () {
+                // Récupération des attributs de la note sélectionnée
                 const id = this.getAttribute('data-id');
                 const titre = this.getAttribute('data-titre');
                 const text = this.getAttribute('data-text'); 
                 const dateReminder = this.getAttribute('data-date-reminder');
 
+                // Remplissage des champs du formulaire dans le modal avec les données récupérées
                 document.getElementById('noteId').value = id;
                 document.getElementById('noteTitre').value = titre;
                 document.getElementById('noteText').value = text; 
                 document.getElementById('noteDateReminder').value = dateReminder;
 
+                // Stockage des valeurs initiales pour détecter des modifications
                 originalData = { id, titre, text, dateReminder };
 
+                // Désactivation du bouton de sauvegarde tant qu'aucune modification n'est faite
                 document.getElementById('saveNoteButton').disabled = true;
             });
         });
-
+        // Ajoute un écouteur d'événement pour détecter les changements dans le formulaire de la note
         document.getElementById('noteForm').addEventListener('input', function () {
             const titre = document.getElementById('noteTitre').value;
             const text = document.getElementById('noteText').value; 
             const dateReminder = document.getElementById('noteDateReminder').value;
 
+            // Vérifie si une modification a été apportée par rapport aux valeurs originales
             const isModified = titre !== originalData.titre || text !== originalData.text || dateReminder !== originalData.dateReminder;
             document.getElementById('saveNoteButton').disabled = !isModified;
         });
 
         document.getElementById('deleteNoteButton').addEventListener('click', function () {
+            // Récupération de l'ID de la note à supprimer
             const id = document.getElementById('noteId').value;
             document.getElementById('noteToDeleteId').value = id;
 
@@ -245,6 +251,7 @@ else
             confirmDeleteModal.show();
         });
 
+        // Confirmation et exécution de la suppression d'une note via une requête AJAX
         document.getElementById('confirmDeleteButton').addEventListener('click', function () {
             const id = document.getElementById('noteToDeleteId').value;
 
@@ -260,7 +267,7 @@ else
                 }
             });
         });
-
+        // Sauvegarde des modifications d'une note via une requête AJAX
         document.getElementById('saveNoteButton').addEventListener('click', function () {
             const id = document.getElementById('noteId').value;
             const titre = document.getElementById('noteTitre').value;

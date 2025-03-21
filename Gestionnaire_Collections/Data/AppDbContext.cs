@@ -110,6 +110,11 @@ namespace Gestionnaire_Collections.Data
             .HasIndex(u => u.ArticleId)
             .IsUnique();
 
+            // Configuration de l'unicité pour Famille
+            modelBuilder.Entity<Family>()
+            .HasIndex(u => u.Name)
+            .IsUnique();
+
             // Configuration de la relation 1-N entre ApplicationUser et MemberShip_Family
 
             modelBuilder.Entity<MemberShip_Family>()

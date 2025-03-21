@@ -164,6 +164,7 @@
         $(document).ready(function () {
             $('[data-bs-toggle="tooltip"]').tooltip();
         });
+        // Fonction pour confirmer le nouveau manager et quitter la famille
         function confirmNewManager() {
             var newManagerId = $('input[name="newManager"]:checked').val(); 
             var familyId = $('#memberList').data('family-id'); 
@@ -213,6 +214,7 @@
                 console.log("Family ID:", familyId);
                 console.log("Is Manager:", isManager);
                 console.log("Current User ID:", currentUserId);
+                // Envoi d'une requête AJAX pour récupérer la liste des membres de la famille
                 $.ajax({
                     url: '/Shared/Families/IndexMyMemberShips?handler=Members',
                     method: 'GET',
@@ -276,7 +278,7 @@
             }
 
             function quitFamily(familyId) {
-                console.log("coucou");
+                //console.log("coucou");
                 $.ajax({
                     url: '/Shared/Families/IndexMyMemberShips?handler=QuitFamily',
                     method: 'POST',

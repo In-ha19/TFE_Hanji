@@ -73,10 +73,9 @@
     <script>
         $(document).ready(function () {
             
-
             const saveButton = $("#saveChanges");
             let isModified = false;
-
+            // Détection des changements dans les champs du formulaire
             $("#statut, .star-rating input, #textInput, #priceInput, #dateInput").on("change input", function () {
                 isModified = true;
                 console.log("Champ modifié :", this.id);
@@ -110,10 +109,10 @@
                     }
                 });
             });
-
+            // Récupération et affichage de la note existante pour la notation par étoiles
             //const existingNote = @Model.Collection.Note;
             const existingNote = @Html.Raw(Json.Serialize(Model.Collection.Note ?? 0));
-
+            // Sélectionne automatiquement l'étoile correspondant à la note enregistrée
             if (existingNote) {
                 $(`input[name="Note"][value="${existingNote}"]`).prop('checked', true);
             }

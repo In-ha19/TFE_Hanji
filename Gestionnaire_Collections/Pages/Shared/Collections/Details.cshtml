@@ -227,6 +227,7 @@
                 if ($(this).is(":disabled")) {
                     return; 
                 }
+                // Récupération de l'ID de l'article et du prix à partir des attributs data
                 var artId = $(this).data("id");
                 var price = $(this).data("price");
                 console.log(price);
@@ -242,7 +243,7 @@
                 e.preventDefault();
 
                 var articleId = $("#articleId").val();
-    console.log("Valeur de #articleId lors de la soumission :", articleId);
+                console.log("Valeur de #articleId lors de la soumission :", articleId);
 
                 var formData = $(this).serialize();
                 //formData.push({ name: "ArticleId", value: $("#articleId").val() });
@@ -270,6 +271,7 @@
                 });
             });
         });
+        // Gestion du bouton pour afficher/masquer les utilisateurs de la famille possédant l'article
         document.getElementById("showFamilyUsersButton").addEventListener("click", function () {
             const articleId = document.getElementById("articleId").value;
             const section = document.getElementById("familyUsersSection");

@@ -10,6 +10,7 @@ using Gestionnaire_Collections.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace Gestionnaire_Collections.Pages.Shared.Families
 {
@@ -37,6 +38,16 @@ namespace Gestionnaire_Collections.Pages.Shared.Families
         {
             if (!ModelState.IsValid)
             {
+                return Page();
+            }
+
+            var existingFamilyName = await _context.Families
+                    .FirstOrDefaultAsync(a => a.Name.ToLower() == Family.Name.ToLower());
+
+            if (existingFamilyName != null)
+            {
+                ModelState.AddModelError("Family.Name", "Cette famille existe déjà, veuillez choisir un autre nom.");
+
                 return Page();
             }
 

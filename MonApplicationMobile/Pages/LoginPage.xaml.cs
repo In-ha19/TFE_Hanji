@@ -17,6 +17,10 @@ namespace MonApplicationMobile.Views
             LoginTaskCompletionSource = new TaskCompletionSource<bool>();
         }
 
+        /**
+ * Méthode déclenchée lorsqu'on clique sur le bouton de connexion.
+ * Vérifie que l'utilisateur a entré un login valide et tente une authentification via une API.
+ */
         private async void OnLoginClicked(object sender, EventArgs e)
         {
             string username = LoginEntry.Text?.Trim();

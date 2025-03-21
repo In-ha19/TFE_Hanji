@@ -52,6 +52,10 @@ namespace MonApplicationMobile
                 Multiple = false 
             };
         }
+        /**
+ * Méthode appelée lors de la navigation dans le WebView.
+ * Elle vérifie l'URL pour décider si la navigation doit être autorisée ou annulée.
+ */
         private void OnNavigating(object sender, WebNavigatingEventArgs e)
         {
             if (e.Url.StartsWith("https://"))
@@ -105,6 +109,10 @@ namespace MonApplicationMobile
             Console.WriteLine($"Scanner détecte : {cameraBarcodeReaderView.IsDetecting}");
         }
 
+        /**
+ * Méthode appelée après qu'une navigation dans le WebView soit terminée.
+ * Elle vérifie le résultat de la navigation et affiche un message d'erreur si la navigation a échoué.
+ */
         private void OnNavigated(object sender, WebNavigatedEventArgs e)
         {
             if (e.Result == WebNavigationResult.Failure)

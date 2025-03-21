@@ -141,7 +141,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             const toggleDetails = document.getElementById("toggleDetails");
             const detailsFields = document.getElementById("detailsFields");
-
+            // Ajoute un événement qui écoute le changement d'état de la case à cocher (checked ou non)
             toggleDetails.addEventListener("change", function () {
                 if (this.checked) {
                     detailsFields.classList.remove("hidden");

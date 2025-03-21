@@ -94,6 +94,7 @@ namespace Gestionnaire_Collections.Pages.Admin.Categories
 
             Category = await PaginatedList<CategoryViewModelIndex>.CreateAsync(categoriesQuery.AsNoTracking(), PageIndex, pageSize);
         }
+        //Méthode permettant d'activer ou de désactiver une catégorie, tout en prenant en compte plusieurs conditions spécifiques
         public async Task<IActionResult> OnPostStatutCategoryAsync(string categoryId)
         {
             var category = await _context.Categories

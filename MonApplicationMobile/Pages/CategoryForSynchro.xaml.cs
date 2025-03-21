@@ -24,6 +24,10 @@ namespace MonApplicationMobile.Views
             BindingContext = this;
         }
 
+        /**
+ * Méthode appelée lorsqu'on valide la sélection des catégories.
+ * Elle récupère les catégories sélectionnées, lance la synchronisation et ferme la page modale.
+ */
         private async void OnValidateCategory(object sender, EventArgs e)
         {
             var selectedCategories = categoryCollectionView.SelectedItems.Cast<string>().ToList();
@@ -39,13 +43,18 @@ namespace MonApplicationMobile.Views
                 await DisplayAlert("Erreur", "Veuillez sélectionner une ou plusieurs catégories.", "OK");
             }
         }
-
+        /**
+ * Méthode appelée lorsqu'on annule la sélection des catégories.
+ * Elle ferme la page modale sans enregistrer de sélection.
+ */
         private async void OnCancelCategory(object sender, EventArgs e)
         {
             tcs.SetResult(null);
             await Navigation.PopModalAsync();
         }
-
+        /**
+ * Synchronise les articles liés aux catégories sélectionnées avec le serveur.
+ */
         private async Task SynchronizeDataAsync(List<string> selectedCategories)
         {
             string username = Preferences.Get("UserLogin", null);

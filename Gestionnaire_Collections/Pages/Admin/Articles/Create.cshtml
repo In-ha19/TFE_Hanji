@@ -156,12 +156,13 @@
                     e.preventDefault();  
                 }
             });
-
+            // Lorsque la catégorie principale est modifiée dans le menu déroulant
             $('#CategoryList').change(function () {
                 var categoryPrincipalId = $(this).val(); 
 
                 if (categoryPrincipalId) {
                     $('#SelectedCategories').empty();
+                    // Effectue une requête AJAX pour récupérer les catégories secondaires
                     $.ajax({
                         url: '@Url.Page("/Admin/Articles/Create", new { handler = "SecondaryCategories" })',
                         type: 'GET',
@@ -183,13 +184,13 @@
                     });
                 }
             });
-
+            // Lorsque le bouton de recherche principale est cliqué
             $('#CategorySearchPrincipalButton').click(function () {
                 console.log("Search button clicked.");
                 var searchQuery = $('#CategorySearchId').val();
 
                 console.log("Search query:", searchQuery);
-
+                // Effectue une requête AJAX pour rechercher les catégories principales
                 $.ajax({
                     url: '@Url.Page("/Admin/Articles/Create", new { handler = "Search" })',
                     type: 'GET',
@@ -212,9 +213,10 @@
                     }
                 });
             });
+            // Lorsque le bouton de réinitialisation de recherche principale est cliqué
             $('#ResetSearchPrincipalButton').click(function () {
                 $('#CategorySearchId').val('');
-
+                // Effectue une requête AJAX pour récupérer toutes les catégories principales
                 $.ajax({
                     url: '@Url.Page("/Admin/Articles/Create", "AllCategories")',
                     type: 'GET',
@@ -234,17 +236,18 @@
                     }
                 });
             });
+            // Lorsque le bouton de recherche secondaire est cliqué
             $('#CategorySearchSecondaryButton').click(function () {
                 var searchQuery = $('#CategorySecondarySearchId').val();
                 var categoryPrincipalId = $('#CategoryList').val();
                 console.log("Category Principal ID:", categoryPrincipalId);
-
+                // Récupère les catégories sélectionnées dans le menu des catégories
                  var selectedCategories = $('#SelectedCategories option').map(function () {
                  return $(this).val();
                  }).get();
 
                 console.log("Catégories sélectionnées :", selectedCategories);
-
+                // Effectue une requête AJAX pour rechercher les catégories secondaires
                 $.ajax({
                     url: '@Url.Page("/Admin/Articles/Create", new { handler = "Search" })',
                     type: 'GET',
@@ -269,12 +272,12 @@
                     }
                 });
             });
-
+            // Lorsque le bouton de réinitialisation de recherche secondaire est cliqué
             $('#ResetSearchSecondaryButton').click(function () {
                 const selectedIds = Array.from(document.getElementById("SelectedCategories").options).map(option => option.value);
                 console.log(selectedIds)
                 var categoryPrincipalId = $('#CategoryList').val();
-
+                // Effectue une requête AJAX pour récupérer les catégories secondaires non sélectionnées
                 $.ajax({
                     url: '@Url.Page("/Admin/Articles/Create", new { handler = "AllCategoriesSecondary" })',
                     type: 'GET',
@@ -295,10 +298,11 @@
                 });
             });
         });
+        // Fonction pour déplacer les options entre les listes disponibles et sélectionnées
         function select(deselect = false) {
             let fromSelectElement;
             let toSelectElement;
-
+            // Détermine quelle liste (disponible ou sélectionnée) sera la source et la destination
             if (deselect) {
                 toSelectElement = document.getElementById("AvailableCategories");
                 fromSelectElement = document.getElementById("SelectedCategories");
@@ -313,20 +317,21 @@
             }
 
             const optionList = fromSelectElement.selectedOptions;
+            // Déplace les options sélectionnées de la source vers la destination
             while (optionList.length !== 0) {
                 toSelectElement.add(optionList[0]);
             }
         }
 
         const deselect = () => select(true);
-
+        // Ajoute les options sélectionnées au formulaire avant l'envoi pour garantir qu'elles sont envoyées
         document.querySelector('form').addEventListener('submit', function () {
             const selectedCategories = document.getElementById("SelectedCategories");
             for (let i = 0; i < selectedCategories.options.length; i++) {
                 selectedCategories.options[i].selected = true;
             }
         });
-
+        // Affiche ou cache les champs de détails lorsque la case à cocher est activée/désactivée
         document.addEventListener("DOMContentLoaded", function () {
             const toggleDetails = document.getElementById("toggleDetails");
             const detailsFields = document.getElementById("detailsFields");

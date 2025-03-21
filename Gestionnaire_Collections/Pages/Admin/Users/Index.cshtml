@@ -218,6 +218,10 @@
 
 @section Scripts {
     <script>
+        /*
+        * Désactive le bouton de désactivation pour l'utilisateur actuellement connecté.
+        * Désactive également les boutons des utilisateurs déjà désactivés.
+        */
         $(document).ready(function () {
             const currentUserLogin = '@User.Identity.Name'; 
             $(`#btn-${currentUserLogin}`).prop('disabled', true);
@@ -232,6 +236,10 @@
         $('.confirmationModalCloseButton').on('click', function () {
             $('#NewManagerModal').modal('hide');
         });
+        /*
+        * Affiche une boîte de dialogue de confirmation avant la désactivation d'un utilisateur.
+        * Si confirmé, vérifie d'abord s'il est manager avant de procéder.
+        */
         function confirmDeactivation(login, isActive) {
             if (confirm('Êtes-vous sûr de vouloir désactiver cet utilisateur ?')) {
                 checkManagerStatus(login, isActive);
@@ -239,7 +247,11 @@
                 console.log("Désactivation annulée.");
             }
         }
-
+        /*
+        * Vérifie si l'utilisateur à désactiver est un manager.
+        * - Si oui, ouvre une modale pour attribuer un nouveau manager.
+        * - Sinon, désactive directement l'utilisateur.
+        */
         function checkManagerStatus(login, isActive) {
             isActive = isActive == 'True';
 
@@ -268,6 +280,10 @@
                 });
             }
         }
+        /*
+        * Récupère la liste des familles gérées par l'utilisateur et affiche une modale
+        * permettant de sélectionner un nouveau manager pour chaque famille.
+        */
         function newManager(login) {
             $.ajax({
                 url: '/Admin/Users/Index?handler=NewManager',
@@ -290,6 +306,9 @@
             })
 
         }
+        /*
+        * Désactive un utilisateur via une requête AJAX et recharge la page après la mise à jour.
+        */
         function updateUserStatus(login, isActive) {
             console.log("updateUserStatus called with login: " + login + " and isActive: " + isActive);
 

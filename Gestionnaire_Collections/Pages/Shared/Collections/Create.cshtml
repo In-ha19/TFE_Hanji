@@ -220,7 +220,7 @@
                     e.preventDefault();  
                 }
             });
-
+            // Recherche des catégories secondaires avec Ajax
             $('#CategorySearchSecondaryButton').click(function () {
                 var searchQuery = $('#CategorySecondarySearchId').val();
                 @*const categoryName = '@ViewData["CategoryName"]';*@
@@ -251,6 +251,7 @@
                     }
                 });
             });
+            // Réinitialise la recherche et recharge toutes les catégories secondaires
             $('#ResetSearchSecondaryButton').click(function () {
                 const selectedCategory = document.getElementById("SelectedCategories");
                 if (!selectedCategory) console.error('Impossible de récupérer selectedCategory')
@@ -280,6 +281,7 @@
                     }
                 });
             });
+            // Vérifie si une modal doit être affichée après une action précédente
             if ('@TempData["ShowModal"]' === 'True') {
                 const addToCollectionModal = document.getElementById('addToCollectionModal');
                 if (!addToCollectionModal) console.error('Impossible de récupérer addToCollectionModal ')
@@ -289,10 +291,12 @@
                 modal.show();
                 $('#articleIdInput').val(articleId);
             }
+            // Écoute les changements de note dans le système de notation par étoiles
             $(".star-rating input[type='radio']").change(function () {
                 var note = $(this).val();
                 console.log("Note sélectionnée : " + note);
             });
+            // Soumission du formulaire d'ajout à la collection via AJAX
 
             $("#addToCollectionForm").submit(function (e) {
                 e.preventDefault();
@@ -333,6 +337,7 @@
                 e.target.value = value;
             });
         }
+        // Fonction permettant de déplacer des éléments d'une liste à une autre
         function select(deselect = false) {
             let fromSelectElement;
             let toSelectElement;
@@ -357,14 +362,14 @@
         }
 
         const deselect = () => select(true);
-
+        // Marque toutes les catégories sélectionnées avant la soumission du formulaire
         document.querySelector('form').addEventListener('submit', function () {
             const selectedCategories = document.getElementById("SelectedCategories");
             for (let i = 0; i < selectedCategories.options.length; i++) {
                 selectedCategories.options[i].selected = true;
             }
         });
-
+        // Affiche ou masque les champs de détails en fonction de l'état de la case à cocher
         document.addEventListener("DOMContentLoaded", function () {
             const toggleDetails = document.getElementById("toggleDetails");
             const detailsFields = document.getElementById("detailsFields");
@@ -378,7 +383,7 @@
             });
         });
 
-        //AniList
+        // Recherche d'informations sur un manga via l'API AniList
         async function searchAnilist() {
             let title = document.getElementById("title").value;
             if (!title) {
@@ -428,7 +433,7 @@
                 alert("Titre non trouvé sur AniList !");
             }
         }
-
+        // Télécharge l'image de couverture et l'ajoute au champ fichier
         function downloadImage(imageUrl) {
             fetch(imageUrl)
                 .then(response => response.blob())
