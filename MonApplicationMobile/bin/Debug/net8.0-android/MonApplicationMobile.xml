@@ -4,5 +4,51 @@
         <name>MonApplicationMobile</name>
     </assembly>
     <members>
+        <member name="M:MonApplicationMobile.MainPage.OnNavigating(System.Object,Microsoft.Maui.Controls.WebNavigatingEventArgs)">
+            Méthode appelée lors de la navigation dans le WebView.
+            Elle vérifie l'URL pour décider si la navigation doit être autorisée ou annulée.
+        </member>
+        <member name="M:MonApplicationMobile.MainPage.OnNavigated(System.Object,Microsoft.Maui.Controls.WebNavigatedEventArgs)">
+            Méthode appelée après qu'une navigation dans le WebView soit terminée.
+            Elle vérifie le résultat de la navigation et affiche un message d'erreur si la navigation a échoué.
+        </member>
+        <member name="M:MonApplicationMobile.Views.CategoryForSynchro.OnValidateCategory(System.Object,System.EventArgs)">
+            Méthode appelée lorsqu'on valide la sélection des catégories.
+            Elle récupère les catégories sélectionnées, lance la synchronisation et ferme la page modale.
+        </member>
+        <member name="M:MonApplicationMobile.Views.CategoryForSynchro.OnCancelCategory(System.Object,System.EventArgs)">
+            Méthode appelée lorsqu'on annule la sélection des catégories.
+            Elle ferme la page modale sans enregistrer de sélection.
+        </member>
+        <member name="M:MonApplicationMobile.Views.CategoryForSynchro.SynchronizeDataAsync(System.Collections.Generic.List{System.String})">
+            Synchronise les articles liés aux catégories sélectionnées avec le serveur.
+        </member>
+        <member name="M:MonApplicationMobile.Views.CategorySelectPage.OnCategorySelected(System.Object,System.EventArgs)">
+            Méthode appelée lorsqu'une catégorie est sélectionnée dans le Picker.
+            Affiche la catégorie sélectionnée dans la console.
+        </member>
+        <member name="M:MonApplicationMobile.Views.CategorySelectPage.OnValidateCategory(System.Object,System.EventArgs)">
+            Méthode appelée lors de la validation de la sélection de catégorie.
+            Vérifie si une catégorie est sélectionnée, la valide et ferme la page modale.
+        </member>
+        <member name="M:MonApplicationMobile.Views.CategorySelectPage.OnCancelCategory(System.Object,System.EventArgs)">
+            Méthode appelée lorsqu'on annule la sélection de catégorie.
+            Ferme la page modale sans enregistrer de sélection.
+        </member>
+        <member name="M:MonApplicationMobile.Views.LoginPage.OnLoginClicked(System.Object,System.EventArgs)">
+            Méthode déclenchée lorsqu'on clique sur le bouton de connexion.
+            Vérifie que l'utilisateur a entré un login valide et tente une authentification via une API.
+        </member>
+        <member name="M:MonApplicationMobile.Views.MesCollectionsPage.OnAppearing">
+            Méthode appelée automatiquement lorsque la page apparaît à l'écran.
+            Elle charge les données des articles à partir de la base locale.
+        </member>
+        <member name="M:MonApplicationMobile.Views.MesCollectionsPage.LoadData">
+            Charge les articles depuis la base de données locale et remplit la liste des catégories uniques.
+        </member>
+        <member name="M:MonApplicationMobile.Views.MesCollectionsPage.OnCategorySelected(System.Object,System.EventArgs)">
+            Méthode appelée lorsqu'une catégorie est sélectionnée dans le Picker.
+            Elle filtre les articles en fonction de la catégorie choisie.
+        </member>
     </members>
 </doc>

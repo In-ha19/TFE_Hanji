@@ -15,8 +15,9 @@ namespace MonApplicationMobile.Views
         private TaskCompletionSource<List<string>> tcs = new TaskCompletionSource<List<string>>();
         public Task<List<string>> CategoriesSelectedTask => tcs.Task;
 
-        private readonly string apiBaseUrl = "http://192.168.0.23:7054/api/UserArticles/GetUserArticles";  
-
+        //private readonly string apiBaseUrl = "http://192.168.0.23:7054/api/UserArticles/GetUserArticles";  
+       
+        private readonly string apiBaseUrl = $"{App.ServerIP}/api/UserArticles/GetUserArticles";
         public CategoryForSynchro(List<string> categories)
         {
             InitializeComponent();
@@ -97,7 +98,7 @@ namespace MonApplicationMobile.Views
                 }
                 else
                 {
-                    await DisplayAlert("Erreur", "Une erreur est survenue lors de la synchronisation.", "OK");
+                    await DisplayAlert("Erreur", "Une erreur est survenue lors de la synchronisation. Vérifiez si des articles sont présents dans votre collection pour les catégories choisies.", "OK");
                 }
             }
             catch (Exception ex)

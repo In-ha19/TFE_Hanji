@@ -41,8 +41,9 @@ namespace MonApplicationMobile
 #endif
             //SetupSignalRConnection();
 
-            ///!!!!! en http en production mettre https
-            string url = "http://192.168.0.23:7054";
+            
+            //string url = "http://192.168.0.23:7054";
+            string url = $"{App.ServerIP}";
             webView.Source = url;
 
             cameraBarcodeReaderView.Options = new ZXing.Net.Maui.BarcodeReaderOptions
@@ -224,8 +225,10 @@ namespace MonApplicationMobile
         private async Task<List<string>> GetCategoriesFromApi()
         {
             var httpClient = new HttpClient();
-            //Attention http --> https
-            var response = await httpClient.GetAsync("http://192.168.0.23:7054/api/categories");
+
+            
+            //var response = await httpClient.GetAsync("http://192.168.0.23:7054/api/categories");
+            var response = await httpClient.GetAsync($"{App.ServerIP}/api/categories");
 
             if (response.IsSuccessStatusCode)
             {
@@ -282,9 +285,11 @@ namespace MonApplicationMobile
                 Console.WriteLine($"Request body: {json}");
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                //!!! attention  https en production
-                var response = await client.PostAsync("http://192.168.0.23:7054/api/articles", content);
-      
+                
+               // var response = await client.PostAsync("http://192.168.0.23:7054/api/articles", content);
+
+                var response = await client.PostAsync($"{App.ServerIP}/api/articles", content);
+
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsStringAsync();

@@ -50,7 +50,9 @@ namespace MonApplicationMobile.Views
         {
             try
             {
-                string apiUrl = $"http://192.168.0.23:7054/api/auth/check-user/{username}"; 
+                
+                //string apiUrl = $"http://192.168.0.23:7054/api/auth/check-user/{username}"; 
+                string apiUrl = $"{App.ServerIP}/api/auth/check-user/{username}";
                 HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
 
                 return response.IsSuccessStatusCode; 
