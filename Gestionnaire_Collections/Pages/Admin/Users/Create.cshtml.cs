@@ -73,7 +73,7 @@ namespace Gestionnaire_Collections.Pages.Admin.Users
                             await _userManager.AddToRoleAsync(user, "User");
                         }
 
-                        return RedirectToPage("/Index");
+                        return RedirectToPage("./Index");
                     }
 
                     foreach (var error in result.Errors)
@@ -125,7 +125,8 @@ namespace Gestionnaire_Collections.Pages.Admin.Users
                 }
 
             }
-                return Page();
+            //return Page();
+            return RedirectToPage("./Index");
         }
     }
 }

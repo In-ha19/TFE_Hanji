@@ -55,12 +55,11 @@ namespace Gestionnaire_Collections.Pages.Shared.Families
             }
 
             var existingFamilyName = await _context.Families
-                    .FirstOrDefaultAsync(a => a.Name.ToLower() == Family.Name.ToLower());
+             .FirstOrDefaultAsync(a => a.Name.ToLower() == Family.Name.ToLower() && a.Id != Family.Id);
 
             if (existingFamilyName != null)
             {
                 ModelState.AddModelError("Family.Name", "Cette famille existe déjà, veuillez choisir un autre nom.");
-
                 return Page();
             }
 
