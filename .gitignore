@@ -132,8 +132,7 @@ config.ps1
 # Rider
 .idea/
 
-# VSCode extension outputs
-dist/
+# VSCode extension output
 out/
 
 # Test generated
