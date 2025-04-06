@@ -19,8 +19,7 @@ artifacts/
 [Rr]elease/
 x64/
 x86/ !eng/common/cross/x86/
-[Bb]in/
-[Oo]bj/
+
 msbuild.log
 msbuild.err
 msbuild.wrn
