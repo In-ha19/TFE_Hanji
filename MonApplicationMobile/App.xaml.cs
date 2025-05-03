@@ -1,6 +1,5 @@
 ﻿using Microsoft.Maui.Storage;  // Pour accéder au FileSystem
 using MonApplicationMobile;
-using MyApp.Shared.Services; 
 using MonApplicationMobile.Views;
 using System.IO;
 using System.Text.Json;

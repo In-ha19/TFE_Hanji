@@ -2199,8 +2199,6 @@ C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-android\com.monapplicat
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-android\com.monapplicationmobile-Signed.aab
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-android\com.monapplicationmobile-Signed.apk
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-android\com.monapplicationmobile-Signed.apk.idsig
-C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-android\MyApp.Shared.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-android\MyApp.Shared.pdb
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\build.props
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\adb.props
@@ -2322,7 +2320,6 @@ C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\MonApplicationM
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\MonApplicationMobile.csproj.CoreCompileInputs.cache
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\MonApplicationMobile.sourcelink.json
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\XamlC.stamp
-C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\MonAppli.B529290E.Up2Date
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\MonApplicationMobile.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\MonApplicationMobile.pdb
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\MonApplicationMobile.genruntimeconfig.cache
@@ -2334,8 +2331,6 @@ C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\bin\com
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\res\values\colors.xml
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\uploadflags.txt
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\resolvedassemblies.hash
-C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\arm64-v8a\System.Private.CoreLib.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\armeabi-v7a\System.Private.CoreLib.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\ar\Microsoft.Maui.Controls.resources.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Camera.MAUI.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Camera.MAUI.ZXing.dll
@@ -2360,11 +2355,8 @@ C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Jsr305Binding.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\ko\Microsoft.Maui.Controls.resources.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.AspNetCore.Connections.Abstractions.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.AspNetCore.Cryptography.Internal.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.AspNetCore.Http.Connections.Client.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.AspNetCore.Http.Connections.Common.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.AspNetCore.SignalR.Client.Core.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.AspNetCore.SignalR.Client.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.AspNetCore.SignalR.Common.dll
@@ -2385,8 +2377,6 @@ C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.Extensions.DependencyInjection.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.Extensions.DependencyModel.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.Extensions.Features.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.Extensions.Identity.Core.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.Extensions.Identity.Stores.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.Extensions.Logging.Debug.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Microsoft.Extensions.Logging.dll
@@ -2417,8 +2407,6 @@ C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Mono.Android.Runtime.pdb
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\mscorlib.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\ms\Microsoft.Maui.Controls.resources.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\MyApp.Shared.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\MyApp.Shared.pdb
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\nb\Microsoft.Maui.Controls.resources.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\netstandard.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Newtonsoft.Json.dll
@@ -2601,8 +2589,6 @@ C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\uk\Microsoft.Maui.Controls.resources.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\vi\Microsoft.Maui.Controls.resources.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\WindowsBase.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\x86\System.Private.CoreLib.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\x86_64\System.Private.CoreLib.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Xamarin.Android.Glide.Annotations.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Xamarin.Android.Glide.DiskLruCache.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-android\android\assets\Xamarin.Android.Glide.dll

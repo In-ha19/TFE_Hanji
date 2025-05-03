@@ -7,11 +7,8 @@ public class MonoPackageManager_Resources {
 		"Camera.MAUI.ZXing.dll",
 		"GoogleGson.dll",
 		"Microsoft.AspNetCore.Connections.Abstractions.dll",
-		"Microsoft.AspNetCore.Cryptography.Internal.dll",
-		"Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
 		"Microsoft.AspNetCore.Http.Connections.Client.dll",
 		"Microsoft.AspNetCore.Http.Connections.Common.dll",
-		"Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
 		"Microsoft.AspNetCore.SignalR.Client.dll",
 		"Microsoft.AspNetCore.SignalR.Client.Core.dll",
 		"Microsoft.AspNetCore.SignalR.Common.dll",
@@ -31,8 +28,6 @@ public class MonoPackageManager_Resources {
 		"Microsoft.Extensions.DependencyInjection.Abstractions.dll",
 		"Microsoft.Extensions.DependencyModel.dll",
 		"Microsoft.Extensions.Features.dll",
-		"Microsoft.Extensions.Identity.Core.dll",
-		"Microsoft.Extensions.Identity.Stores.dll",
 		"Microsoft.Extensions.Logging.dll",
 		"Microsoft.Extensions.Logging.Abstractions.dll",
 		"Microsoft.Extensions.Logging.Debug.dll",
@@ -181,7 +176,6 @@ public class MonoPackageManager_Resources {
 		"Microsoft.Maui.Controls.resources.dll",
 		"Microsoft.Maui.Controls.resources.dll",
 		"Microsoft.Maui.Controls.resources.dll",
-		"MyApp.Shared.dll",
 		"_Microsoft.Android.Resource.Designer.dll",
 	};
 	public static String[] Dependencies = new String[]{

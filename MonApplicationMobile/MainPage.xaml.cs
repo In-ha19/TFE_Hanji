@@ -10,7 +10,6 @@ using System.Text;
 using Microsoft.Maui.Controls.PlatformConfiguration;
 using System.Text.Json;
 using Microsoft.AspNetCore.SignalR.Client;
-using MyApp.Shared;
 using Microsoft.EntityFrameworkCore;
 using MonApplicationMobile.Models;
 using MonApplicationMobile.Data;

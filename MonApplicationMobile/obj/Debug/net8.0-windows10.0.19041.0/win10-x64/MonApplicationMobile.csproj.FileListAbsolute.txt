@@ -313,11 +313,8 @@ C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Camera.MAUI.ZXing.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Humanizer.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.AspNetCore.Connections.Abstractions.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.AspNetCore.Cryptography.Internal.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.AspNetCore.Http.Connections.Client.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.AspNetCore.Http.Connections.Common.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.AspNetCore.SignalR.Client.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.AspNetCore.SignalR.Client.Core.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.AspNetCore.SignalR.Common.dll
@@ -345,8 +342,6 @@ C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.DependencyModel.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Features.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Identity.Core.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Identity.Stores.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Logging.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Logging.Debug.dll
@@ -501,8 +496,6 @@ C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\e_sqlite3.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Windows.SDK.NET.dll
 C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\WinRT.Runtime.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MyApp.Shared.dll
-C:\Repos\tfeGitHub\MonApplicationMobile\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MyApp.Shared.pdb
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\MonApplicationMobile.csproj.AssemblyReference.cache
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\mauiimage.inputs
 C:\Repos\tfeGitHub\MonApplicationMobile\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\mauifont.inputs
